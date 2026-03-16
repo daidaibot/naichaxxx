@@ -1,0 +1,82 @@
+<t-nav-bar title="签到中心" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+<!--pages/recharge/index.wxml-->
+<page id="page">
+<view>
+  <view class="mine-wrap">
+		<view class="mine__bg" style="background-color:#2bae67;background-image: url('/images/mine/header.png');opacity: 1;">
+			<view class="mine__info">		
+					<view class="mine__info--name mb-5">当前积分</view>
+          <view class="mine__info--name mb-5 mt-15" style="font-size: 60rpx;">{{points_info.points}}</view>
+          <navigator class="mine__info--desc" url="/pagesUser/points/index"  open-type="navigate">
+          <van-button round="true" size="small" type="default" custom-style="width:200rpx;height:60rpx;">
+            <van-icon name="point-gift" size="30rpx" custom-style="margin-right:5rpx;" />
+             积分商城
+             </van-button>
+          </navigator>			
+			</view>
+		</view>
+  </view>
+  <view class="main-body">
+    <view style="margin-top: 35rpx;">
+        <view class="title-wrap">
+            <view class="change-date">
+                <view class="prev" bindtap="changeMonthFun" data-type="prev">
+                    <image src="/images/mine/prev.png" mode="" />
+                </view>
+                <view class="year-mouth">
+                    {{year}}年 {{month}}月
+                </view>
+                <view clstyle="next" bindtap="changeMonthFun" data-type="next">
+                    <image src="/images/mine/next.png" mode="" />
+                </view>
+            </view>
+            <view class="week">
+                <text wx:for="{{weeksArr}}" wx:key="*this">{{item}}</text>
+            </view>
+        </view>
+        <!-- 日期 -->
+        <view class="date-wrap">
+            <!-- 上个月日期 -->
+            <view wx:for="{{lastMonthDays}}" wx:key="*this" class="mouth-date last-mouth">
+                <text class="day-text">{{item.date}}</text>
+                <!-- 农历还未配置，不用管，你可以二开这个组件，因为我们的设计图不显示上下月的日期，故不渲染也可以 -->
+                <text class="day-nongli">十五</text>
+                <text class="day-dot"></text>
+            </view>
+            <!-- 当月日期 -->
+            <view class="mouth-date current-mouth" wx:for="{{nowMonthDays}}" wx:key="*this" bindtap="selectDate"
+            data-item="{{item}}" data-type="nowMonthDays" data-index="{{index}}"
+            >
+              <view class="day-box {{item.isNowMonthDay?'active':''}}">
+                <text class="day-text {{item.color?'color':''}}">{{item.date}}</text>
+                <!-- day 后面会换成农历展示 -->
+                <text class="day-nongli">{{item.day}}</text>
+                <text class=" {{item.color?'day-dot':'not-dot'}}"></text>
+              </view>
+            </view>
+            <!-- 下个月日期 -->
+            <view class="mouth-date next-mouth" wx:for="{{nextMonthDays}}" wx:key="*this">
+                <text class="day-text">{{item.date}}</text>
+                <!-- 农历还未配置，不用管，你可以二开这个组件，因为我们的设计图不显示上下月的日期，故不渲染也可以 -->
+                <text class="day-nongli">十五</text>
+                <text class="day-dot"></text>
+            </view>
+        </view>
+    </view>
+  </view>
+
+  <view class="points_rule">
+       <view style="border-top: 1px solid #CCCCCC;width: 100rpx;margin-top: 20rpx;margin-right: 18rpx;"></view>
+       <view>积分签到规则</view>
+       <view style="border-top: 1px solid #CCCCCC;width: 100rpx;margin-top: 20rpx;margin-left: 18rpx;"></view>  
+  </view>
+  <view class="points_rule_info" style="margin-top:-30rpx">
+    <text>{{points_info.points_rule_info}}</text>
+  </view>
+  <view class="points_rule_info" style="margin-top:-100rpx">
+    <van-button round="true" size="primary" type="info" color="#2bae67" custom-style="width:600rpx;height:85rpx;" bind:click="dosign"> 立即签到</van-button>  
+  </view> 
+</view>
+</page>
+
+  

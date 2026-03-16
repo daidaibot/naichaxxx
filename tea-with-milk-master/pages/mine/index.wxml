@@ -1,0 +1,155 @@
+<!--pages/mine/index.wxml-->
+<!-- <page id="page"> -->
+  <view class="mine-wrap">
+		<view class="mine__bg" style="background: linear-gradient(90deg, hsl(180, 46%, 90%) 0%, #a5e5ee 50%, #b5e4e7 100%);">
+			<view class="mine__info" style="padding-top:70rpx;">
+        <image class="mine__bg--avatar" style="background: #a5e5ee" src="/images/mine/avatar.png" wx:if="{{!userInfo.wx_openid}}"></image>
+        <image class="mine__bg--avatar" style="background:#a5e5ee" src="{{userInfo.wx_icon}}" wx:if="{{userInfo.wx_openid}}"></image>
+				<view class="mine__info--cell" bindtap="{{userInfo.wx_openid?'':'routeToLogin'}}" data-recommendId="{{recommendId}}">
+					<view class="mine__info--name">
+            <text>{{userInfo.wx_openid?userInfo.nickName:'立即登录'}}</text>
+            <text class="level_name">{{userInfo.level_name?userInfo.level_name:userlevel}}</text>
+          </view>
+					<view class="mine__info--desc">{{userInfo.wx_openid?'用户ID：'+userInfo.id:'登录体验完整功能'}}</view>
+				</view>        
+			</view>
+      <view class="level_set" wx:if="{{userInfo.wx_openid}}">
+        <view class="level_img" style="background-image: url('https://duck.zhuangdongxiang.cn/static/upload/ic_wodhuiy@2x.png');margin-left: -10rpx"></view>
+        <view class="levelName" style="margin-left:-30rpx">{{userInfo.level_info.level_name}}</view>
+        <view class="levelName" style="margin-left: -10rpx; font-size: 20rpx;">{{userInfo.level_info.level_intro}}</view>
+        <view class="level_desc"  bind:tap="dolevel" data-item="{{userInfo.level_info}}">查看权益</view>
+      </view> 
+
+      <view class="level_set" wx:if="{{!userInfo.wx_openid}}" bind:tap="routeToLogin">
+        <view class="level_img" style="background-image: url('https://shop.chengshoushangwu.com/static/upload/ic_wodhuiy@2x.png');margin-left: -10rpx;"></view>
+        <view class="levelName" style="margin-left:-30rpx;">{{userlevel}}</view>
+        <view class="levelName" style="margin-left: -10rpx; font-size: 20rpx;">{{level_intro}}</view>
+        <view class="level_desc"   data-item="{{userInfo.level_info}}">查看权益</view>    
+      </view> 
+
+      
+
+		</view>   
+  </view>
+  <!-- 授权弹窗 -->
+  <view class="auth" wx:if="{{isShow}}">
+      <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{isShow}}"></view>
+      <!-- 弹出层 -->
+      <view class="modalDlg" wx:if="{{isShow}}">
+          <view class="title">
+              <text class="text0">开通权益卡</text>
+          </view>
+          <view class="cartLeft"></view>
+          <u-image :lazy-load="true" width="150rpx" height="150rpx" :src="logo"></u-image>
+          <view class="name mt-10">
+              <text class="text1 ">{{userInfo.level_info.level_name}}：{{userInfo.level_info.level_price}} 元</text>
+          </view>
+          <!-- <view class="cartLeft1"></view> -->
+          <view class="content">
+              <text class="text2">{{userInfo.level_info.level_intro}}</text>
+          </view>
+          <view class="content">
+            <navigator class="cash_submit" url="/pages/level_equity/index?id={{userInfo.level_info.id}}"  open-type="navigate">
+                <text class="text2" style="color: {{main_color}};">《会员权益协议》</text>
+            </navigator>    
+          </view>
+          <view class="cartLeft2"></view>
+          <view class="but mt-10">
+              <!-- <view class="not">
+                  <u-button :hair-line="false" :custom-style='rejectStyle' size="mini" bindtap="rejectInfo">取消
+                  </u-button>
+              </view> -->
+              <van-button  round="true" type="default"  size="small"  bindtap="rejectInfo">取消</van-button>
+              <van-button   round="true" type="info"  size="small"   loading='{{loading}}'   bindtap="{{loading?'':'getUserProfileUrl'}}" data-levelId="{{userInfo.level_info.id}}">开通</van-button>
+              <!-- <view class="ok">
+                  <u-button :hair-line="false" :custom-style='customStyle' size="mini" bindtap="getUserProfileUrl">
+                      开通</u-button>
+              </view> -->
+          </view>
+      </view>
+  </view>
+
+  <view class="mine__cell-wrap">
+      <!-- 订单信息 -->
+			<view class="mine__order mine__cell border-radius">
+				<view class="flex justify-between align-center pl-30 pr-30 pt-20 pb-20 border-b">
+        <view class="flex">
+          <van-icon  size="20px" name="orders-o" />
+					<view class="text-df ml-10 text-bold">我的订单</view>
+        </view>
+          
+					<view class="text-sm text-gray border border-radius pl-10 pr-10 pt-5 pb-5"  bindtap="{{userInfo.wx_openid?'routeToOrder':'routeToLogin'}}" data-recommendId="{{recommendId}}">查看全部</view>
+        </view>
+        <!-- data-url="/pages/docash/index" bindtap="routeToNext" -->
+				<view class="flex justify-around pt-30 pb-30">
+					<view class="flex flex-direction align-center"  bindtap="{{userInfo.wx_openid?'docash':'routeToLogin'}}" data-recommendId="{{recommendId}}">
+						<view class="text-xl mb-5">{{userInfo.wx_openid?userInfo.balance:'0'}}</view>
+						<view class="text-sm text-gray">奖励（元）</view>
+					</view>
+				 <!-- <view class="flex flex-direction align-center" bindtap="{{userInfo.wx_openid?'doshopList':'routeToLogin'}}" data-recommendId="{{recommendId}}" wx:if="{{userInfo.dispenser_count>0}}">
+						<view class="text-xl mb-5" >{{userInfo.dispenser_count}}</view>
+						<view class="text-sm text-gray">业务员店铺</view>
+					</view> -->
+
+          <view class="flex flex-direction align-center" bindtap="{{userInfo.wx_openid?'doSelectshopList':'routeToLogin'}}" data-recommendId="{{recommendId}}" wx:if="{{userInfo.invest_count>0}}">
+						<view class="text-xl mb-5" >{{userInfo.invest_count}}</view>
+						<view class="text-sm text-gray">投资人店铺</view>
+					</view>
+						<view class="flex flex-direction align-center" bindtap="{{userInfo.wx_openid?'coupon':'routeToLogin'}}" data-recommendId="{{recommendId}}">
+						<view class="text-xl mb-5" >{{userInfo.wx_openid?userInfo.coupon_count:'0'}}</view>
+						<view class="text-sm text-gray">优惠券</view>
+					</view>
+          <view class="flex flex-direction align-center" bindtap="{{userInfo.wx_openid?'routeToOrder':'routeToLogin'}}" data-recommendId="{{recommendId}}">
+						<view class="text-xl mb-5" >{{userInfo.wx_openid?userInfo.order_count:'0'}}</view>
+						<view class="text-sm text-gray">我的订单</view>
+					</view>
+					
+				</view>
+			</view>
+
+      <!-- 服务功能 -->
+      <view class="mine__cell mt-20" style="background-color: #fff;">          
+        <view class="flex ml-20">
+          <van-icon  size="20px" name="notes-o" />
+          <text class="service_fw  text-df ml-10 text-bold">服务功能</text>  
+        </view>      
+        <view class="goods_all_main flex flex-wrap">
+          <view  class="service_one" wx:for="{{moduleList}}" wx:for-item="item" wx:key="unique">
+              <button class="button-service" open-type="{{item.openType}}"  bindtap="{{userInfo.wx_openid?'routeUrl':'routeToLogin'}}" data-url="{{item.url}}" data-recommendId="{{recommendId}}">
+                <image src="{{item.icon}}" style="width: 51rpx;height: 55rpx;margin-left: 25rpx;margin-bottom: 5rpx;"></image>
+                <text style="margin-top: 15rpx;">{{item.name}}</text>
+              </button>
+          </view>         
+        </view>
+			</view>	
+
+      <view class="mine__cell mt-20" style="background-color: #ffff;">
+        <view class="flex ml-20">
+          <van-icon size="20px" name="shop-o" />
+          <text class="service_fw  text-df ml-10 text-bold">业务员功能</text>  
+        </view>             
+        <view class="goods_all_main flex flex-wrap mt-10">
+          <view  class="service_one" wx:for="{{salesman}}" wx:for-item="item" wx:key="unique">
+              <button class="button-service" open-type="{{item.openType}}"  bindtap="{{userInfo.wx_openid?'routeUrl':'routeToLogin'}}" data-url="{{item.url}}" data-recommendId="{{recommendId}}">
+                <image src="{{item.icon}}" style="width: 51rpx;height: 55rpx;margin-left: 25rpx;margin-bottom: 5rpx;"></image>
+                <text style="margin-top: 15rpx;">{{item.name}}</text>
+              </button>
+          </view>         
+        </view>
+			</view>	
+
+      <view class="mine__cell mt-20" wx:if="{{userInfo.storageId>0}}" style="background-color: #fff;">
+          <text class="service_fw text-lg">商家功能</text>        
+          <view class="service">
+              <view  class="service_one" wx:for="{{shopList}}" wx:for-item="item" wx:key="unique" >
+                  <button class="button-service" open-type="{{item.openType}}"  bindtap="{{userInfo.wx_openid?'routeUrl':'routeToLogin'}}" data-url="{{item.url}}" data-storageId="{{userInfo.storageId}}" data-recommendId="{{recommendId}}">
+                    <image src="{{item.icon}}" style="width: 60rpx;height: 55rpx;margin-left: 25rpx;margin-bottom: 5rpx;"></image>
+                    <text style="margin-top: 15rpx;">{{item.name}}</text>
+                  </button>
+              </view>         
+          </view>
+			</view>
+
+
+  </view>  
+<!-- </page> -->

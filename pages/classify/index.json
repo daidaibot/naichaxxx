@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+    "t-submit-bar": "/component/submit-bar/index",
+    "iconfont": "/component/iconfont/index",
+    "biz-specs": "/component/specs/index",
+    "biz-pay": "/component/pay_list/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "biz-shop": "/component/shop-info/index",
+    "van-tab": "@vant/weapp/tab/index",
+     "van-tabs": "@vant/weapp/tabs/index",
+     "van-tag": "@vant/weapp/tag/index",
+     "van-rate": "@vant/weapp/rate/index",
+     "t-swiper": "/component/swiper/index"
+  },
+  "navigationStyle": "custom"
+}

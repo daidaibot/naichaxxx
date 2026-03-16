@@ -1,0 +1,57 @@
+<!--pagesUser/groupInfo/index.wxml-->
+<t-nav-bar title="团队管理" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+
+
+<view class="mine-wrap">
+		<view class="mine__bg" style="background-color: {{main_color}};">
+			<view class="mine__info" style="padding-top:70rpx;">
+				<view class="mine__info--cell">
+					<view class="mine__info--name">
+            <text class="text-bold">{{groupInfo.total_recom_num}}</text>
+          </view>
+					<view class="mine__info--desc">推广总人数(人)</view>
+				</view>        
+			</view>
+		</view>   
+  </view>
+
+  <!-- 订单信息 -->
+  <view class="mine__cell-wrap">
+			<view class="mine__order mine__cell border-radius">
+				<view class="flex justify-around pt-30 pb-30">
+					<view class="flex flex-direction align-center">
+						<view class="text-xl mb-5">{{groupInfo.total_money}}</view>
+						<view class="text-sm text-gray">累计收益（元）</view>
+					</view>
+				 
+          <view class="flex flex-direction align-center">
+						<view class="text-xl mb-5" >{{groupInfo.total_y_money}}</view>
+						<view class="text-sm text-gray">周日收益（元）</view>
+					</view>
+				</view>
+			</view>
+
+      <view class="mine__order mine__cell border-radius" style="margin-top:30rpx">
+				<view class="flex justify-around pt-30 pb-30">
+					<view class="flex flex-direction align-center">
+						<view class="text-xl mb-5">{{groupInfo.total_z_count}}</view>
+						<view class="text-sm text-gray">直推人数(人)</view>
+					</view>
+				 
+          <view class="flex flex-direction align-center">
+						<view class="text-xl mb-5" >{{groupInfo.total_j_count}}</view>
+						<view class="text-sm text-gray">间推人数(人)</view>
+					</view>
+
+          <view class="flex flex-direction align-center">
+						<view class="text-xl mb-5" >{{groupInfo.total_day_count}}</view>
+						<view class="text-sm text-gray">今日新增(人)</view>
+					</view> 
+					
+				</view>
+			</view>
+		
+
+    
+    	
+  </view>

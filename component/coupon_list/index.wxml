@@ -1,0 +1,37 @@
+<!--component/specs/index.wxml-->
+<popup id="popup">
+  <view class="specs">
+  <view class="specs-top">
+  <view style="font-size: 30rpx;">优惠券信息</view>
+  
+  </view>
+    <swiper class="tab-content"  duration="300" bindchange="changeTab" style="height:600rpx">
+        <!-- 全部 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="new-list-box" bindscrolltolower="allLoadMore" scroll-top='{{scrollTop}}' scroll-with-animation refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-default-style="white" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onAllRefresh">
+             
+                <block wx:for="{{couponList}}" wx:for-index="index" wx:for-item="item" wx:key="unique">
+                  <view class="coupon-box flex">
+                  <view></view>
+                  <view class="cou-left flex-row j_c margin-20"  style="color:{{ item.use_status=='2'?'gray': ';'}}">
+                    <view>
+                      <text style="font-size: 46rpx;margin-left: 15rpx;">{{item.amount}}</text>
+                      <text>元</text>
+                    </view>
+                    <view class="text-lg" style="margin-left: 30rpx;margin-top:10rpx;">{{item.name}}</view>
+                  </view>
+                  <view class="cou-right flex-row ">
+                    <view style="color:{{ item.use_status=='2'?'gray': ';'}}">
+                      <view>{{item.shop_name}}</view>
+                      <view style="margin-top: 10rpx;">消费满{{item.min_point}}减{{item.amount}}</view>
+                      <view class="cou-right-time" style="font-size: 25rpx; margin-top: 15rpx;color:{{ item.use_status=='2'?'gray': ';'}}">有效时间：{{item.end_time}}</view>
+                      <view  style="margin-left: 30rpx;margin-top:10rpx;"><van-button type="info" size="small" custom-style="border-radius:50rpx" bind:click="draw_coupon" data-couponId="{{item.id}}">领取</van-button></view>
+                    </view>
+                  </view>
+                </view>          
+                </block>             
+            </scroll-view>
+        </swiper-item>        
+    </swiper> 
+  </view>
+</popup>

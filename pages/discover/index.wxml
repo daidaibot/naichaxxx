@@ -1,0 +1,47 @@
+<!--pages/discover/index.wxml-->
+<page id="page">
+  <t-nav-bar title="分享" visible="{{false}}" background="#FFF" btn-color="{{nav_bar_btn_color}}" text-color="#333" />
+ 
+  <t-tabs current="{{ current }}" color="{{main_color}}" bindchange="handleChange">
+    <t-tab key="{{item.key}}" wx:for="{{tabList}}" title="{{item.name}}" wx:key="unique"></t-tab>
+  </t-tabs>
+  <view class="p-20">
+
+    <view wx:if="{{current==1}}">
+      <swiper bindchange="cardSwiper" indicator-dots="true" circular="true" indicator-color="#8799a3" indicator-active-color="#0081ff" style="height: {{winHeight}}rpx;">
+        <block wx:for="{{bannner_list}}" wx:key="*this">
+          <swiper-item class="{{cardCur==index?'cur':''}}">
+            <view class="swiper-view">
+              <image src="{{item.url}}" style="height: 100%;"></image>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <button formType="submit" style="background: #5cadff; color: white;"  loading="{{loading}}" bindtap="share">保存图片</button>
+    </view>
+    <view wx:if="{{current==0}}" style="background:#f5f5f5;">
+        <paging page-count="{{newlist.length}}" emptyText="暂无找到相关文章" emptyImage="/images/common/empty_discover.png">
+          <view wx:for="{{newlist}}" wx:for-item="item" wx:key="unique" style="margin-bottom:20rpx" bind:tap="detail" data-id="{{item.id}}">
+            <t-cell t-class='border-radius-t pt-20 pb-20'>
+              <t-image class="discover-avatar" t-class="discover-avatar" slot="icon" src="/images/common/logo.png"></t-image> 
+              <view class="flex align-center justify-between" slot='content'>
+                <view class='flex align-center'>
+                  <view class="text-gray text-df ellipsis">
+                    {{project_cn}}
+                  </view>
+                </view>
+                <view class="text-sm text-gray">{{item.show_num}}浏览</view>
+              </view>
+            </t-cell>
+            <view class="bg-white pl-20 pr-20 pt-10 pb-20 border-radius-b">
+              <view class="text-df text-black">{{item.title}}</view>
+              <view class="discover-content">
+                <view class="discover-desc">{{item.desc}}</view>
+                <t-image class="discover-image" src="{{item.image}}"></t-image>
+              </view>
+            </view>
+          </view>
+        </paging> 
+     </view>
+  </view>
+</page>

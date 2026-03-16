@@ -1,0 +1,62 @@
+/* pages/login/index.wxss */
+page{
+  background: #FFF;
+}
+
+.login-wrap {
+  padding: 40rpx;
+}
+
+.login__title {
+  font-size: 48rpx;
+  font-weight: 600;
+  color: rgba(51, 51, 51, 1);
+  opacity: 1;
+  /* margin-top: 40rpx; */
+}
+
+.login__content{
+  margin-top: 40rpx;
+  margin-bottom: 100rpx;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+
+
+
+.avatar-wrapper {
+  padding: 0;
+  width: 56px !important;
+  border-radius: 8px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  background-color: #fff;
+}
+.avatar {
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+.container {
+  display: flex;
+}
+.row{
+   border-top: 1px solid #ccc;
+   border-bottom: 1px solid #ccc;
+   display: flex;
+   align-items: center;
+   height: 80rpx;
+   padding-left: 20rpx;
+}
+.text1{
+    flex: 2;
+}
+.weui-input{
+    flex: 6;
+}
+
+.sub-button{
+  margin-top: 80rpx;
+}

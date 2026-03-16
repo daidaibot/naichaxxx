@@ -1,0 +1,132 @@
+/* pages/docash/index.wxss */
+
+
+.margin-top{
+ 
+  padding: 0 25rpx;
+  /* margin-top: 30rpx; */
+  height: 330rpx;
+   background: #FFF;
+}
+
+
+.cash_top{  
+  position: absolute;    
+  padding:  40rpx 250rpx;
+  font-size: 30rpx;
+ 
+  
+}
+.text-lg{
+  margin-bottom: 40rpx;
+  display: flex;
+}
+.cash_money{
+  
+  font-size: 30rpx;
+  margin-left:20rpx ;
+  margin-bottom: 24rpx
+  
+}
+.cash_value{
+  font-size: 30rpx;
+  margin-left:-5rpx ;
+  margin-bottom: 24rpx;
+  color:red;
+}
+.cash_submit{
+    width: 156px;
+    background: #2B91ED;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 50rpx !important;
+    font-size: 28rpx;
+    border: 1rpx solid #f3f3f3 !important;
+    padding-top: 15rpx !important;
+    padding-bottom: 15rpx !important;
+    margin-left: -53rpx;
+}
+.income{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top:13rpx; 
+  padding-left:30rpx; 
+  padding-right:15rpx; 
+  padding-top: 20rpx;
+  background-color: white;
+  border-bottom: 1rpx solid #f3f3f3;
+  height: 50rpx;
+ 
+  
+}
+.income_top{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  color: gray;
+ 
+
+}
+
+.income_top_one{
+  display: flex;
+  flex-direction: column;
+  margin-top: 0rpx;
+  font-size: 30rpx;
+}
+
+.node-tab{
+  background-color: #ffffff;
+  height:88rpx;
+  font-size:33rpx;
+  line-height: 88rpx;
+  display: flex;
+  /* margin-top: 10rpx; */
+}
+.node-tab .tab-item{
+  flex:1;
+  text-align: center;
+  /* color: #666; */
+}
+.node-tab .active{
+  color: #ff6700;
+  position: relative;
+}
+.node-tab .active::before{
+  position:absolute;
+  content: " ";
+  bottom:10rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30rpx;
+  height: 6rpx;
+  background-color: #ff6700;
+  border-radius: 3rpx;
+}
+
+
+.new-list-item {
+  box-sizing:border-box;
+  /* height:260rpx; */
+  position: relative;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  padding: 20rpx 30rpx 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.new-list-item:last-child {
+  margin-bottom: 0;
+}
+
+.new-list-item view {
+  box-sizing: border-box;
+}
+
+.content-deadline {
+  font-size: 24rpx;
+  color: #495060;
+}

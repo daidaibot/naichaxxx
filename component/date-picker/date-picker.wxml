@@ -1,0 +1,16 @@
+<view class="mask" wx:if="{{isShow}}" catchtap="cancel">
+  <view class="content" style="height:800rpx" animation="{{animation}}">
+    <view class="top">
+      <view class="top-text top-left-color" hover-class="top-left-color-hover" catchtap="cancel">取消</view>
+      <view class="top-text top-right-color" hover-class="top-right-color-hover" catchtap="confirm">确定</view>
+    </view>
+    <picker-view style="width: 100%; height: 80%;" value="{{value}}" bindchange="change" catchtap="no">
+      <picker-view-column>
+        <view wx:for="{{date_list}}" wx:key="date_list" class="item">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{time_list}}" wx:key="time_list" class="item">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>

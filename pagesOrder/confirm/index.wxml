@@ -1,0 +1,124 @@
+<page id="page">
+  <t-nav-bar title="确认订单" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+  <view class="shop_info" >
+    <view class="shop_detail">
+        <view>{{shopInfo.storage_shop_name}}</view>
+        <view class="shop_detail_l2">
+          <image src="../../images/common/wz_aigei_com.png" style="width: 60rpx;height: 40rpx; margin-right:9rpx; margin-top:10rpx;"></image>
+          <!-- <image src="../../images/common/detail.png" style="width: 30rpx;height: 30rpx; margin-right:9rpx ;"></image>
+          欢迎光临我们的花店！我们提供精美鲜花和专业花艺服务，让您感受花海的美丽与温馨。 --> 
+          <text>您的位置距离门店{{shopInfo.GetDistance}}km，请确认确认下单门店是否正确</text>
+          <view class="right-arrow"></view>
+        </view>
+    </view>
+    <view class="shop_type">
+      <view class="{{orderType == '1' ? 'shop_type_l1' : 'shop_type_l2'}}" data-orderType="1" bindtap="changeOrder">自提</view>
+     <view style="margin-left:14rpx;"></view>
+     <view class="{{orderType == '2' ? 'shop_type_l1' : 'shop_type_l2'}}" data-orderType="2" bindtap="changeOrder">外卖</view>
+    </view>  
+  </view>
+  <view class="pt-10" wx:if="{{orderType == '2'}}">
+    
+    <view  class="flex justify-center align-center confirm-address-add"  style=" background: #fff; height: 80rpx; line-height: 2.55555556;" data-url="/pagesUser/address/add-edit/index?type=c" bindtap="bindAddress" wx:if="{{comfirmInfo.address==''}}">
+      <iconfont class="mr-10" icon="icon-plus" color="{{main_color}}" size="40rpx" />
+      <text class="text-df" style="color:{{main_color}}">添加收货地址</text>
+    </view>
+   
+    <t-cell isLink wx:if="{{comfirmInfo.address !=''}}" bindtap="routeToNext">
+      <view slot="icon" class="flex flex-direction justify-start confirm-address-icon">
+        <iconfont icon="icon-address" color="#7ad1a1" size="40rpx" />
+      </view>
+      <view slot="content" class="confirm-address-wrap ml-15">
+        <text class="text-df">{{comfirmInfo.address.realname}}</text>
+        <text  class="ml-20 text-sm">{{comfirmInfo.address.phone}}</text>
+        <view class="confirm-address-wrap-detail mt-10 text-sm text-gray">{{comfirmInfo.address.province}}{{comfirmInfo.address.city}}{{comfirmInfo.address.region}}{{comfirmInfo.address.address}}</view>
+      </view>
+    </t-cell>
+    <view class="confirm-address-line" style="background:url('../../images/order/order_border.png')"></view>
+
+  </view>
+  <view class="flex justify-between mt-20 pl-30 pr-30 text-dff" style=" background: #fff; height: 80rpx; line-height: 2.55555556;" wx:if="{{orderType == '2'}}">
+      <view bindtap="timeOpen">选择时间</view>
+      <view class="option"  style="display: flex;flex-direction: row;font-size: 16px;color:#7ad1a1;" bindtap="timeOpen">
+        {{selectDate}}
+        <view > <van-icon name="arrow"  color="#7ad1a1"/></view>          
+      </view>
+  </view>
+  <view wx:if="{{comfirmInfo.selectDate_str}}" class="selectDate">
+   <text>{{comfirmInfo.selectDate_str}}</text>
+  </view>
+  <view class="flex flex-direction mt-20 pl-30 pr-30 text-dff" style=" background: #fff;  line-height: 2.55555556;">
+   <text>商品明细</text>
+ <!--pages/list/list.wxml-->
+<!-- <scroll-view class="container1" scroll-y style="height: 600rpx;"> -->
+    <!--pages/list/list.wxml-->
+    <t-cell wx:for="{{shoppingCartList.list}}" wx:key="unique">
+    <view slot='icon' class="flex align-center">
+      <image class="grid-img" src="{{item.goods_image}}" bindtap="handleChangeGoods" 	mode="scaleToFill"></image>
+    </view>
+    <view class="confirm-wrap-content flex flex-direction justify-between ml-10" slot='content'>
+      <view>
+        <view class='flex align-center cell text-lg ellipsis-l2'>{{item.goods_title}}</view>
+        <view class='flex align-center cell text-sm text-gray'>{{item.goods_spec}}</view>
+      </view>
+      <view class='confirm-wrap-price flex justify-between text-lg'>
+        <text class="text-red">￥{{item.selling_price}}</text>
+        <text class="text-red" wx:if="{{item.cost_price>0}}" style="font-size: 22rpx;margin-left: -180rpx;margin-top: 7rpx">优惠：{{item.cost_price}}</text>
+        <view>
+          ×{{item.number}}
+        </view>
+      </view>
+    </view>
+  </t-cell>
+  <view class="flex justify-between p-10 mr-20" style="border-top: 1rpx solid #f3f3f3;">
+    <text class="text-sm">商品小计</text>
+    <text class="text-sm">￥{{shoppingCartList.storage_total_price}}</text>
+  </view>
+  <view class="flex justify-between p-10 mr-20">
+    <text class="text-sm">运费</text>
+    <text class="text-sm" wx:if="{{orderType == '1'}}">￥0</text>
+    <text class="text-sm" wx:if="{{orderType == '2'}}">￥{{shoppingCartList.freight_price}}</text>
+  </view>
+  <view class="flex justify-between p-10 mr-20" wx:if="{{comfirmInfo.gift_money>0}}">
+    <text class="text-sm">会员折扣</text>
+    <text class="text-sm text-red">-￥{{comfirmInfo.gift_money}}</text>
+  </view>
+
+  <view class="mt-10 mr-20">
+  <t-cell isLink data-url="" bindtap="routeToCoupon">
+    <view class="flex justify-between" slot="content">
+      <text style="margin-left: -17rpx;">优惠券</text>
+      <text class="text-red" style="margin-right: -10rpx;">-￥{{discountPrice}}</text>
+    </view>
+  </t-cell>
+</view>
+  <view class="flex justify-end align-center p-30" style="border-top: 1rpx solid #f3f3f3;">
+    <text class="mr-10 text-grey text-sm">共{{comfirmInfo.allNumber}}件</text>
+    <text class="text-sm">小计：</text>
+    <text class="text-df text-red">￥{{total_money}}</text>
+  </view>
+<!-- </scroll-view> -->
+  </view>
+  <view class="mt-20" style=" background: #fff; height: 80rpx; line-height: 2.55555556;margin-bottom: 100rpx;">  
+      <van-cell-group>
+          <van-field
+            bind:change="onChangeremark"
+            value="{{ remark }}"
+            label="备注"
+            placeholder="请输入您的其他要求"
+            input-align="right"
+          />
+    </van-cell-group>
+  </view>
+  <t-submit-bar safeArea t-class='button-submit' text='去支付' bgcolor='#7ad1a1' z-index='9999' border bind:submit='wxconfirm'>
+    <view slot='left' class="flex align-center text-df">
+      <view class="flex align-center">
+        <text>合计：</text>
+        <text class="text-red text-lg">¥{{total_money}}</text>
+      </view>
+    </view>
+  </t-submit-bar>
+
+  <date-picker id="picker" start_time="{{comfirmInfo.start_time}}" range="8" step="35"  end_time="{{comfirmInfo.end_time}}" bindconfirm="confirm"></date-picker>
+  <biz-address id="address"  bindchange="getAddessId" main-color="{{main_color}}" sub-color="{{sub_color}}"></biz-address>
+</page>

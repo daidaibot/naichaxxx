@@ -1,0 +1,40 @@
+<!--component/specs/index.wxml-->
+<popup id="popup">
+  <view class="specs">
+  <view class="specs-top">
+  <view>已选商品</view>
+  <view style="color: gray;" bindtap="delcar">清空购物车</view>  
+  </view>
+    <swiper class="tab-content"  duration="300" bindchange="changeTab" style="height:600rpx">
+        <!-- 全部 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="new-list-box" bindscrolltolower="allLoadMore" scroll-top='{{scrollTop}}' scroll-with-animation refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-default-style="white" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onAllRefresh">
+             
+                <block wx:for="{{carlist}}" wx:for-index="index" wx:for-item="goods" wx:key="unique">
+                  <view class="flex  mb-30"  wx:for="{{carlist[index].list}}"  wx:for-index="index1" wx:for-item="goods1" wx:key="unique">
+                  <t-image t-class="specs-image" shape src="{{goods1.goods_image}}"></t-image>
+                    <view class="flex flex-direction ml-20" style="width: 600rpx">
+                      <view class="flex specs-goods-name productNameText">{{goods1.goods_title}}</view>
+                      <view class="flex specs-goods">{{goods1.goods_spec}}</view>
+                      <view class="flex justify-between">
+                        <view class="specs-price">￥{{goods1.goods_price}}</view>
+                        <view class="specs-price">
+                          <t-input-number visible custom-color='{{main_color}}' data-carId="{{goods1.id}}" value="{{goods1.goods_number}}" min="0" max="1000" bindnumChange="bindInputNumber" inputType='number'></t-input-number>
+                        </view>
+                      </view>
+                    </view>
+                  </view>                 
+                </block>             
+            </scroll-view>
+        </swiper-item>        
+    </swiper> 
+  </view>
+  <view>
+    <t-submit-bar bindtap="confirm" t-class='button-submit' text='去结算' bgcolor='{{main_color}}' z-index='9999' border self safeArea>
+      <view class="flex justify-between align-center pt-30 mb-15">         
+        <view class="submit-btn-right" style="background: {{mainColor}};" wx:if="{{type ==1}}">去结算</view>
+        <view class="submit-btn-right" style="background: {{mainColor}};" wx:if="{{type ==2}}">去派单</view>
+      </view>      
+    </t-submit-bar>
+  </view>
+</popup>

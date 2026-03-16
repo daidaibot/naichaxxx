@@ -1,0 +1,283 @@
+/* pagesUser/groupInfo/index.wxss *//* pages/mine/index.wxss *//* pages/mine/index.wxss */
+.mine__bg{ 
+  height: 340rpx;
+  background-size: 100% 100%;
+}
+
+.mine__info{
+  display: flex;
+  flex-direction: row;
+  margin-top: 0rpx;
+  margin-left: 50rpx;
+  display: flex;
+}
+
+.mine__info--cell{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20rpx;
+}
+
+.service_fw{
+  display: flex;
+  padding-top: 30rpx;
+  margin-left: 20rpx;
+  margin-bottom: 30rpx;
+  /* font-weight: bold; */
+}
+
+.service{
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-evenly;
+
+}
+
+.service_one{
+  margin-bottom: 5rpx;
+  width: 20%;
+  height: 150rpx;
+  display: flex;
+  flex-direction: column;
+  margin-left: 35rpx;
+  font-size: 28rpx;
+}
+
+.level_set{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 40rpx;
+  margin-left: 30rpx;
+  width: 690rpx;
+  height: 92rpx;
+  background: linear-gradient(90deg, #E4BE7D 0%, #F3E0BC 100%);
+  border-radius: 16rpx;
+  align-items: center;    /**子view垂直居中*/
+  
+}
+.level_img{
+  height: 440rpx;
+  background-size: 100% 100%;
+  /* background-color: red; */
+  width: 46rpx;
+  height: 46rpx;
+
+}
+.levelName{
+  display: flex;
+  flex-direction: row;
+  font-size: 32rpx;
+  font-family: Source Han Sans CN;
+  font-weight: bold;
+  color: #000000;
+  line-height: 42rpx;
+ margin-left: -30rpx;
+}
+.level_desc{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  height: 76rpx;
+  opacity: 1; 
+  border-radius: 0 38rpx 38rpx 0;
+  font-size: 24rpx;
+  width: 150rpx;
+  height: 50rpx;
+  background: linear-gradient(-90deg, #1A1A1A 0%, #434343 100%);
+  border-radius: 22rpx;
+}
+
+.level_name{
+ margin-top: 8rpx;
+  width: 108rpx;
+  height: 36rpx;
+  background: linear-gradient(90deg, #F0BF7D 0%, #FDE1B8 50%, #F2C58B 100%);
+  border-radius: 6rpx;
+  font-size: 24rpx;
+  margin-left: 15rpx;
+  text-align: center;
+  font-size: 22rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #402720;
+  line-height: 38rpx;  
+}
+
+.mine__info--name{
+  display: flex;
+  font-size: 34rpx;
+  color: #FFFFFF;
+}
+
+.mine__info--desc{
+  font-size: 28rpx;
+  color: #FFFFFF;
+  margin-top: 15rpx;
+}
+
+.mine__bg--avatar{
+  width: 110rpx;
+  height: 110rpx;
+  border: 5rpx solid #FFFFFF;
+  border-radius: 50%;
+}
+
+.mine__order{
+  background: #FFF;
+}
+
+.mine__cell-wrap{
+  padding: 0 25rpx;
+  margin-top: -90rpx;
+  /* margin-bottom: 100rpx; */
+}
+
+.mine__cell{
+  box-shadow: 0 0 8rpx rgba(0, 0, 0, 0.01);
+  border-radius: 8rpx !important;
+}
+
+.official-account{
+  position: fixed;
+  bottom: 25rpx;
+  padding: 0 25rpx;
+  width: 705rpx;
+
+}
+
+
+	.auth {
+		width: 620rpx;
+		text-align: center;
+		animation: auth 2s;
+		-webkit-animation: auth 2s;
+
+  }
+		.mask {
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			top: 0;
+			left: 0;
+			background: #000;
+			z-index: 9000;
+			opacity: 0.5;
+		}
+
+		/* 弹出层 */
+		.modalDlg {
+			width: 70%;
+			height: 480rpx;
+			position: fixed;
+			top: 35%;
+			left: 0;
+			right: 0;
+			z-index: 9999;
+			margin: 0 auto;
+			background-color: #fff;
+			border-radius: 10rpx;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
+    }
+			.title {
+        margin-top: 20rpx;
+      }
+
+				.text0 {
+					text-align: center;
+					font-weight: bold;
+					font-size: 34rpx;
+					color: #000;
+				}
+			
+
+			.cartLeft {
+				width: 90%;
+				height: 20rpx;
+				border-bottom: 1rpx solid #f3ebeb;
+			}
+
+			.name {
+				margin-top: 10rpx;
+      }
+				.text1 {
+					text-align: center;
+					font-size: 32rpx;
+					color: #000;
+					width: 360rpx;
+				}
+			
+
+			.cartLeft1 {
+				width: 75%;
+				height: 20rpx;
+				border-bottom: 1rpx solid #f3ebeb;
+
+			}
+
+			.content {
+        margin-top: 20rpx;
+      }
+
+				.text2 {
+					text-align: center; 
+					font-size: 28rpx;
+					color: #AFACB3;
+				
+			}
+
+			.cartLeft2 {
+				width: 100%;
+				height: 20rpx;
+				border-bottom: 1rpx solid #f3ebeb;
+
+			}
+
+			.but {
+				width: 70%;
+				height: 18%;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+      }
+				/* 弹出层里面的按钮 */
+				.not {
+					/* height: 60rpx;
+					background: #fff;
+					line-height: 10rpx;
+					text-align: center;
+          color: #44b549;
+          border: 1rpx solid gray; */
+          border-radius: 50rpx;
+
+				}
+				.ok {
+					height: 60rpx;
+					line-height: 10rpx;
+					text-align: center;
+					font-size: 30rpx;
+        }
+        
+        .button-service{
+          display: flex;
+          flex-direction: column;
+          font-size: 28rpx;
+          background-color: #fff;
+          border: none;
+          padding: 0;
+          margin-left: 1rpx;
+          line-height: 1;
+          border: none !important;
+        }
+        button::after{
+          border: none;
+      }
+        
+			
+		
+	

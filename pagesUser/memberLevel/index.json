@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "t-cell": "/component/cell/index"
+  },
+  "navigationStyle": "custom"
+}

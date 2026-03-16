@@ -1,0 +1,15 @@
+{ 
+  
+  "usingComponents": {
+    "popup": "/component/popup/index",
+    "t-image": "/component/image/index",
+    "t-submit-bar": "/component/submit-bar/index",
+    "iconfont": "/component/iconfont/index",
+    "t-input-number": "/component/input-number/index",
+    "t-cell": "/component/cell/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-empty": "@vant/weapp/empty/index"
+  },
+  "navigationStyle": "custom"
+}

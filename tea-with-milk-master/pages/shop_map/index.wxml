@@ -1,0 +1,19 @@
+<!--pages/shop_map/index.wxml-->
+<page id="page">
+  <t-nav-bar title="配送详情" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+
+  <view>
+    
+    <view class="map-container">
+        <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" 
+          scale="14" markers="{{ markers }}" show-location>
+        </map>
+    </view>
+    <view >
+       <view class="foot" bind:tap="replay">          
+         <van-icon name="replay" size="20" custom-class="replay" />
+         <text style="color: #ffff;margin-top: 3rpx;margin-left: 28rpx;">刷新</text>
+       </view>    
+    </view>
+  </view>
+</page>

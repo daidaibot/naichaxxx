@@ -1,0 +1,4 @@
+<!--pages/wxpay/index.wxml-->
+<view>
+<button bindtap="pay">微信支付</button>
+</view>

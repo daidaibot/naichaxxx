@@ -1,0 +1,26 @@
+<!--pages/login/index.wxml-->
+<t-nav-bar title="登陆" visible="{{false}}" background="#ffff" btn-color="{{nav_bar_btn_color}}" text-color="black" bind:home="routeToHome" />
+<view class="login-wrap">
+	<view style="border-bottom: 1rpx solid rgb(216, 212, 212);">
+		<view class="login__title" >		
+      <image src="https://duck.zhuangdongxiang.cn/static/upload/882bd852cae3d833/00160f6b98c85a18.jpg" mode="aspectFill" style="width: 180rpx;height: 180rpx;"></image>
+		</view>
+		<view class="text-xl" style="margin-bottom:15rpx;">欢迎登录{{project_cn}}</view>    
+	</view>
+  <view class="login__content">
+      <text style="margin-bottom: 15px;">申请获取以下权限</text>
+      <text style="margin-bottom: 5px;color: gray;">获取你的公开信息（昵称、头像等）</text>   
+  </view>
+  <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+    <image class="avatar" src="{{avatarUrl}}"></image>
+  </button> 
+  <view class="row">
+      <view class="text1">昵称：</view>
+        <input type="nickname" class="weui-input" name="nickname" placeholder="请输入昵称" bindblur="changeNickName"/>
+  </view>
+  <view class="sub-button">
+    <t-button bgcolor="{{main_color}}"  open-type="getUserInfo" shape="circle" bindtap="getUserProfile" loading="{{loading}}">{{loading?'登录中...':'立即登录'}}</t-button>
+    <!-- <button  open-type="getUserInfo" bindtap="getUserProfile">授权登录</button> -->
+    <t-button bgcolor="{{cencel_color}}" shape="circle" bind:click="routeToHome">取消登录</t-button>
+  </view>
+</view>

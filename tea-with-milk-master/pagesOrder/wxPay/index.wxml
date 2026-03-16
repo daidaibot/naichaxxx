@@ -1,0 +1,50 @@
+<view>
+  <t-nav-bar title="支付订单" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+  <!-- <view class="pay_top">
+    <text style="font-size:40rpx;margin-bottom: 5rpx;">{{goods_total}}</text>
+    <text style="padding-bottom: 14rpx;margin-top: 10rpx;">支付金额</text>
+  </view> -->
+  <view class="pay_top">
+      <view style="font-size:40rpx;margin-bottom: 10rpx;font-size: 62rpx;font-weight: bold; ">
+        <text style="font-size: 42rpx;">¥ </text>
+        <text>{{goods_total}}</text>
+      </view>
+      <text style="padding-bottom: 14rpx;margin-top: 15rpx;">支付时间剩余：23:56:55</text>
+      <text style="padding-bottom: 14rpx;color: rgba(128, 128, 128, 1); font-size: 28rpx;margin-top: 15rpx;margin-bottom: 15rpx;">可退款 · 可开票 · 平台保障</text>
+  </view>
+<view class="mian">
+   <text>支付方式</text>
+   <view>
+    <van-radio-group value="{{ radio }}" bind:change="onChange">
+
+      <van-cell-group>
+        <view class="pay_type">
+          <image src="/images/common/61e653b7826a43d4ac957b46ef11cba3.png"  class="pay_image"></image>
+          <text style="margin-left: 20rpx;">微信支付</text>
+          <view style="margin-left: 60%;">
+          <van-cell title="单选框 1" clickable data-name="1" bind:click="onClick">
+            <van-radio slot="right-icon" name="1" checked-color="{{main_color}}"/>
+          </van-cell>
+          </view>
+        </view>
+        
+        <view class="pay_type">
+          <image src="/images/common/20230613114451.png"  class="pay_image"></image>
+        <text style="line-height: 2.55556;margin-left: 20rpx;">余额支付</text>
+          <view style="margin-left: 60%;">
+        <van-cell title="单选框 2" clickable data-name="2" bind:click="onClick">
+          <van-radio slot="right-icon" name="2" checked-color="{{main_color}}"/>
+        </van-cell>
+      </view>
+        </view>
+      </van-cell-group>
+</van-radio-group>
+
+   </view>
+</view>
+<!-- <view class="submit" bindtap="wxPay">
+  <van-button type="info" custom-style="width:400rpx;border-radius:13rpx">立即支付</van-button>
+</view> -->
+
+</view>
+<t-submit-bar t-class='button-submit' text='立即支付' bgcolor='{{main_color}}' z-index='9999' full safeArea border bind:submit='wxPay'></t-submit-bar>

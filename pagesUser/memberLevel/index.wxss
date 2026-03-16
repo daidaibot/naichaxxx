@@ -1,0 +1,20 @@
+/* pages/mine/notice/index.wxss */
+.title {
+  width: 650rpx;
+}
+
+.cell-footer {
+  background: #fff;
+  padding: 20rpx 25rpx;
+  /* height: 100rpx; */
+  line-height: 34rpx;
+}
+
+.level_img{
+  height: 440rpx;
+  background-size: 100% 100%;
+  /* background-color: red; */
+  width: 46rpx;
+  height: 46rpx;
+
+}

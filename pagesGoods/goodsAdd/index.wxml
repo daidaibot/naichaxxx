@@ -1,0 +1,85 @@
+<t-nav-bar title="{{cashType=='edit'?'编辑':'添加'}}商品" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+<view class="opinion_wrap">
+  <form bindsubmit="formSubmit">
+    <view class="dochsh_two">
+      <text class="service_fw text-lg">填写商品信息</text> 
+      <view class="phone">
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+          <input name="goods_cate"  wx:if="{{goodsId.length==0}}" value="{{multiArray[0][multiIndex[0]]?multiArray[0][multiIndex[0]]+','+multiArray[1][multiIndex[1]]:''}}" placeholder-class="placeholder" placeholder="请输入商品分类" disabled />
+          <input name="goods_cate"  wx:if="{{goodsId}}" value="{{goodsInfo.goods_cate}}" placeholder-class="placeholder" placeholder="请输入商品分类" disabled />
+        </picker>
+      </view>
+      <view class="phone">
+          <input name="goods_title" value="{{goodsInfo.goods_title}}" placeholder-class="placeholder" placeholder="请输入商品名称" />
+      </view>
+
+      <!-- <view class="phone">
+          <input name="goods_intro" value="{{goodsInfo.goods_intro}}" placeholder-class="placeholder" placeholder="请输入商品简介" />
+      </view> -->
+
+
+      <view class="phone">
+          <input name="goods_price" value="{{goodsInfo.goods_price}}" placeholder-class="placeholder" placeholder="请输入商品价格" />
+      </view>
+
+      <!-- <view class="phone">
+          <input name="goods_spec_stock" value="{{goodsInfo.goods_sku.stock}}" placeholder-class="placeholder" placeholder="请输入商品库存" />
+      </view> -->
+
+
+      <!-- <view class="phone">
+          <input name="goods_market_price" value="{{goods_market_price}}" placeholder-class="placeholder" placeholder="请输入市场价格" />
+      </view> -->
+
+      <view class=" phone showImages" style="background-color: white;margin-top: 15rpx;padding-top: 15rpx;padding-left:20rpx">
+        <text class="text-df" style="margin-top:20rpx;margin-bottom:20rpx;">上传主图片</text>
+        <van-uploader file-list="{{fileList1}}" data-type="1" accept="image" max-count="1" multiple bind:after-read="afterRead" bind:delete="deleteImg"  preview-size="{{(width+50)/4 }}" />
+      </view>  
+
+      <!-- <view class="phone showImages" style="background-color: white;margin-top: 15rpx;padding-top: 15rpx;padding-left:20rpx">
+        <text class="text-df" style="margin-top:20rpx;margin-bottom:20rpx;">上传背景图片</text>
+        <van-uploader file-list="{{fileList2}}" data-type="2" accept="image" max-count="9" multiple bind:after-read="afterRead" bind:delete="deleteImg"  preview-size="{{(width+50)/4 }}" />
+      </view>   -->
+
+      <view class="phone mb-20">
+        <view class="flex justify-between" style="margin-right:30rpx;padding-top:10rpx;">
+          <text class="service_fw text-lg">商品规格信息</text> 
+          <van-icon name="add-o" bindtap='addItem' />
+        </view>
+        <input style="margin-left: 20rpx;" class="godds-info-top" name="goods_spec_name" value="{{goods_spec_name}}" placeholder-class="placeholder" placeholder="名称，口味"  />
+        <input name="goods_sku_id" style="display:none"  value="{{goodsInfo.goods_sku.id}}" />
+         <!-- <view class="goods-one">     -->
+            <!-- <view class="flex justify-center align-center" style="margin-top:20rpx;">
+                <van-uploader file-list="{{fileList3 }}"  data-type="3" accept="image" max-count="1" multiple bind:after-read="afterRead" bind:delete="deleteImg"  preview-size="{{(width+50)/4 }}" />
+               
+            </view>   -->
+            <!-- <view class="flex" style="margin-top:-20rpx;margin-left: 10rpx;">   
+                <input name="goods_sku_id" style="display:none"  value="{{goodsInfo.goods_sku.id}}" />
+                <input class="godds-info" name="goods_spec_value"  style="width: 200rpx;" value="{{goodsInfo.goods_sku.goods_spec?goodsInfo.goods_sku.goods_spec:goods_value}}" placeholder-class="placeholder" placeholder="规格，麻辣"  />
+                <input class="godds-info" name="goods_spec_price" style="width: 180rpx;"  value="{{goodsInfo.goods_sku.selling_price}}" placeholder-class="placeholder" placeholder="商品价格"  />
+                <input class="godds-info" name="goods_spec_stock" style="width: 180rpx;"  value="{{goodsInfo.goods_sku.stock}}" placeholder-class="placeholder" placeholder="商品库存"  />
+            </view>   -->
+         <!-- </view>  -->
+         <view class="goods-one" wx:for="{{info.details}}" wx:key="key">  
+            <input name="goods_skuId[{{index}}]" style="display:none"  value="{{info.details[index].id}}" />  
+            <view class="flex justify-center align-center" style="margin-top:20rpx;">
+                <van-uploader file-list="{{info.details[index].image }}" data-index="{{index}}" data-type="4" accept="image" max-count="1" multiple bind:after-read="afterRead" bind:delete="deleteImg"  preview-size="{{(width+50)/4 }}" />
+                <van-icon name="close" custom-style="position:absolute;margin-right:-480rpx;margin-top:-200rpx" data-index="{{index}}" data-skuId="{{info.details[index].id}}" bindtap='removeItem' />
+            </view>  
+            <view class="flex" style="margin-top:-20rpx;margin-left: 10rpx;">   
+                <input class="godds-info" name="goodsValue[{{index}}]"  style="width: 200rpx;" value="{{info.details[index].goods_spec}}" placeholder-class="placeholder" placeholder="规格，麻辣"  />
+                <input class="godds-info" name="goodsPrice[{{index}}]" style="width: 180rpx;" value="{{info.details[index].selling_price}}" placeholder-class="placeholder" placeholder="商品价格"  />
+                <input class="godds-info" name="goodsStock[{{index}}]" style="width: 180rpx;" value="{{info.details[index].stock}}" placeholder-class="placeholder" placeholder="商品库存"  />
+            </view>  
+         </view>                
+      </view>
+
+      <!-- <view class="phone showImages" style="background-color: white;margin-top: 15rpx;padding-top: 15rpx;padding-left:20rpx">
+        <text class="text-df" style="margin-top:20rpx;margin-bottom:20rpx;">上传介绍图片</text>
+        <van-uploader file-list="{{fileList5 }}" data-type="5" accept="image" max-count="9" multiple bind:after-read="afterRead" bind:delete="deleteImg"  preview-size="{{(width+50)/4 }}" />
+      </view>  -->
+
+      <button formType="submit" hover-class="button_active" loading="{{loading}}">提交</button>
+    </view>
+  </form>
+</view>

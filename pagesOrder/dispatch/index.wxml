@@ -1,0 +1,17 @@
+<!--pagesOrder/dispatch/index.wxml-->
+<t-nav-bar title="商家信息" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+
+
+
+<view class="pt-30 flex justify-around" style="background: #fff;">
+  <view class="main_tag" style="background: {{main_color}};margin-right: 10rpx;" bind:tap="checkbox" data-type="1"><text>全选</text></view>
+  <view class="main_tag" style="background: {{main_color}};"  bind:tap="checkbox" data-type="2"><text>取消</text></view>
+</view>
+<view  class="all_shop">
+    <view class="all_shop_check"  wx:for="{{shopList}}" wx:key="unique" wx:for-item="item">
+      <radio color="{{main_color}}" checked='{{item.checked}}' data-index="{{item.id}}"  catchtap="radioChange"></radio>
+      <text>{{item.storage_shop_name}}</text>
+    </view>
+</view>
+
+<t-submit-bar t-class='button-submit' text='提交' bgcolor='{{main_color}}' z-index='9999' full safeArea border  bind:submit='routeToNext'></t-submit-bar>

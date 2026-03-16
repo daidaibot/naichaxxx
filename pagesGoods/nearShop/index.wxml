@@ -1,0 +1,58 @@
+<!--pagesGoods/nearShop/index.wxml-->
+<t-nav-bar title="附近店铺" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+<t-search-bar placeholder="搜索店铺" is-border="{{false}}"  bind:search="search"></t-search-bar>
+<view class="map-container">
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" 
+    scale="14" markers="{{ markers }}" show-location>
+  </map>
+</view>
+
+   <!--pagesUser/collect/index.wxml-->
+<view class="main">
+  <swiper class="tab-content"  duration="300" bindchange="changeTab" style="height:{{winHeight}}rpx">
+        <!-- 全部 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="new-list-box" bindscrolltolower="allLoadMore" scroll-top='{{scrollTop}}' scroll-with-animation refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-default-style="white" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onAllRefresh">
+                <block wx:if="{{allTabList.length > 0}}">
+                  <view class="one_mian" wx:for="{{allTabList}}" wx:for-item="item" wx:key="unique">
+                    <view class="mian_left" bind:tap="position" data-info="{{item}}">
+                      <view class="mt-20 ">
+                          <text class="mt-20 text-lg text-bold mr-10">{{item.storage_shop_name}}</text>
+                          <van-tag type="danger" color="#07c160"  wx:if="{{item.status == 0}}">已打烊</van-tag>
+                          <van-tag type="primary" color="#07c160"  wx:if="{{item.status == 1}}">营业中</van-tag>
+                      </view>                      
+                        <view class="mt-20 flex">
+                          <view>
+                              <van-button  type="primary" color="#e9f5ef" custom-style="color:#30bb73;margin-right:10rpx" size="mini">可外卖</van-button>
+                              <van-button  type="primary" color="#e9f5ef" custom-style="color:#30bb73" size="mini">可自取</van-button>
+                          </view>
+                        </view>
+                        <view class="mt-15 text-xs flex flex-direction">
+                        <view><van-icon name="location-o" size="35rpx" /><text class="ml-10">{{item.province}}{{item.city}}{{item.area}}{{item.address}}</text></view>
+                        <view class="mt-15"> <van-icon name="clock-o" size="35rpx"  />
+                            <text class="mt-15 ml-10 mr-30">00:00-23:00</text>                           
+                        </view>
+                        <view class="mt-15 mb-20">
+                          <view>
+                              <van-button plain type="primary" size="mini" custom-style="margin-right:10rpx">营业中</van-button>
+                              <van-button  type="primary" size="mini">接受预定</van-button>
+                          </view>
+                        </view>
+                        </view>
+                    </view>
+                    <view style="border-right: 1px dashed  #d1c7c7; margin-top: 30rpx; margin-bottom: 10rpx;margin-left: 10rpx;"></view>
+                    <view class="mian_right">
+                      <!-- <text style="margin-top: 85rpx; font-size: 30rpx;margin-left: 45rpx;">去下单</text> -->
+                      <van-button plain type="primary" size="mini" custom-style="margin-top: 70rpx; font-size: 20rpx;margin-left: 65rpx;" bind:click="gostorage" data-item="{{item}}">去下单</van-button>                     
+                      <text style="margin-top: 10rpx; font-size: 25rpx;margin-left: 20rpx;">距离{{item.GetDistance}}km</text>
+                      <view class="localtion" style="margin-left: 20rpx;">
+                            <view style="margin-top: 5rpx;"><van-icon name="location-o" info="常去" bind:click="openMap" size="24px"  data-item="{{item}}"/></view>
+                            <view style="margin-top: 5rpx;margin-left: 60rpx;"><van-icon name="phone-o"  size="24px" bindtap="tapMakePhoneCall" data-item="{{item}}" /></view>
+                      </view>
+                    </view>
+                  </view>
+                </block>                
+            </scroll-view>
+        </swiper-item>       
+    </swiper>
+</view>

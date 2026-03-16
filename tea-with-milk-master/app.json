@@ -1,0 +1,150 @@
+{
+    "pages": [
+        "pages/home/index",
+        "pages/classify/index",
+        "pages/discover/index",
+        "pages/order/index",
+        "pages/mine/index",
+        "pages/logs/logs",
+        "component/cell/index",
+        "component/iconfont/index",
+        "pages/wxpay/index",
+        "component/area/index",
+        "pages/docash/index",
+        "pages/moneylog/index",
+        "pages/cash-detail/index",
+        "pages/login/index",
+        "component/date-picker/date-picker",        
+        "pages/discover/detail/index",
+        "pages/level_equity/index",
+        "pages/shop_map/index",
+        "pages/membership/index",
+        "pages/scan/index",
+        "pages/recharge/index"
+    ],
+    "subpackages": [{
+            "root": "pagesOrder",
+            "pages": [
+                "confirm/index",
+                "wxPay/index",
+                "goDetails/index",
+                "orderCancel/index",
+                "discount-coupon/index",
+                "dispatch/index",
+                "evaluate/index"
+            ]
+        },
+        {
+            "root": "pagesGoods",
+            "pages": [
+                "detail/index",
+                "nearShop/index",
+                "shopgoods/index",
+                "goods/index",
+                "goodsAdd/index",
+                "goodsStock/index"
+            ]
+        },
+        {
+            "root": "pagesUser",
+            "pages": [
+                "recharge/index",
+                "coupon/index",
+                "share/index",
+                "service/index",
+                "address/index",
+                "address/add-edit/index",
+                "sign/index",
+                "points/index",
+                "collect/index",
+                "notice/index",
+                "notice/detail/index",
+                "feedback/index",
+                "about/index",
+                "cooperate/index",
+                "shopOrder/index",
+                "shopOrder/goDetails/index",
+                "income/index",
+                "income/incomelog/index",
+                "docash/index",
+                "docash/docash_log/index",
+                "points/pointslog/index",
+                "points/detail/index",
+                "points/rule/index",
+                "points/goodslog/index",
+                "onScan/index",
+                "staff/index",
+                "joinStaff/index",
+                "memberLevel/index",
+                "shopList/index",
+                "groupInfo/index",
+                "selectShop/index",
+                "selectList/index",
+                "adjust/index"
+               
+            ]
+        }
+    ],
+    "usingComponents": {
+        "page": "/component/page/index",
+        "t-nav-bar": "/component/nav-bar/index",
+        "custom-navigation": "/component/Navigation/index"
+
+    },
+    "requiredPrivateInfos":[
+      "getLocation"
+    ],
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于小程序位置接口的效果展示"
+        }
+    },
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#ffff",
+        "navigationBarTitleText": "蜀靓鸭",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#f5f5f5",
+        "navigationStyle":"custom"
+    },
+    "tabBar": {
+      "custom": true,
+      "backgroundColor": "#f5f6f5",
+      "borderStyle": "white",
+      "selectedColor": "#333333",
+      "list": [
+        {
+          "pagePath": "pages/home/index",
+          "iconPath": "images/tabs/home_unselected.png",
+          "selectedIconPath": "images/tabs/home_selected.png",
+          "text": "首页"
+        },
+        {
+          "pagePath": "pages/wxpay/index",
+          "iconPath": "/images/tabs/classify_unselected.png",
+          "selectedIconPath": "/images/tabs/classify_selected.png",
+          "text": "点单"
+        },
+        {
+          "pagePath": "pages/membership/index",
+          "iconPath": "/images/tabs/san_seleted.png",
+          "selectedIconPath": "/images/tabs/san_seleted.png",
+          "text": ""
+        },
+        {
+          "pagePath": "pages/order/index",
+          "iconPath": "/images/tabs/allorder.png",
+          "selectedIconPath": "/images/tabs/allorder_unselected.png",
+          "text": "订单"
+        },
+        {
+          "pagePath": "pages/mine/index",
+          "iconPath": "/images/tabs/mine_unselected.png",
+          "selectedIconPath": "/images/tabs/mine_selected.png",
+          "text": "我的"
+        }
+      ]
+    },
+
+    "sitemapLocation": "sitemap.json"
+}

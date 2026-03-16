@@ -1,0 +1,82 @@
+<!-- <page id="page"> -->
+  <t-nav-bar title="商品信息" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+
+
+<view class="goods_add">
+  <navigator class="cash_submit" url="/pagesGoods/goodsAdd/index?cashType=storage"  open-type="navigate">添加商品</navigator>  
+</view>
+<view class='productNav'> 
+ <!-- 左侧 -->
+ <view class='left'>
+  <scroll-view scroll-y scroll-with-animation style="height:100%;background: #f2f2f2;">
+   <view wx:for="{{goodsCate}}" wx:key="index" class="{{active==index?'selected':'normal'}}" id="{{index}}" data-cateId="{{item.id}}" bindtap='switchNav'>{{item.name}}</view>
+  </scroll-view>
+ </view>
+ 
+ <!-- 右侧 -->
+ <view class='right'>
+
+  <view style="width: 100%;border-bottom: 1px solid #f3f3f3;display: flex;flex-direction: row; ">
+    <scroll-view class="myScroll"  scroll-x="true">
+  <!-- 快捷布局 .row{$}*8 $ 往里面代入值-->
+      <view class="row {{pid==item.id?'active':''}}" wx:for="{{cate_list_level}}" wx:key="index" bind:tap="onChange" data-name="{{item.id}}" >{{item.name}}</view>
+</scroll-view>
+ </view>
+
+ 
+   <view class='type'>
+     <!-- current:当前所在滑块的 index -->
+     <!-- vertical:滑动方向是否为纵向 -->
+      <swiper class="tab-content"  duration="300" bindchange="changeTab" style="height:{{winHeight}}rpx">
+        <!-- 全部 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="new-list-box" bindscrolltolower="allLoadMore" scroll-top='{{scrollTop}}' scroll-with-animation refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-default-style="white" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onAllRefresh">
+              <view class="containerOne">
+                <block wx:if="{{goodsList.length > 0}}">
+                  <view class="item" wx:for="{{goodsList}}" wx:for-item="goods" data-cateId="{{index}}" wx:key="unique">
+                      <view class="flex">
+                          <image class="grid-img" src="{{goods.goods_logo}}" bindtap="handleChangeGoods" 	mode="scaleToFill" bindtap="{{shopInfo.status == 1?'goDetails':''}}" data-posid="{{goods.id}}"></image>
+                          <view class="cate-zt-main">
+                            <view class="cate-zt zt_cate productNameText" style="font-size: 33rpx;" bindtap="handleChangeGoods"  bindtap="{{shopInfo.status == 1?'goDetails':''}}" data-posid="{{goods.id}}">{{goods.goods_title}}</view> 
+                            <view class="cate-zt zt_cate " bindtap="handleChangeGoods"  bindtap="{{shopInfo.status == 1?'goDetails':''}}" data-posid="{{goods.id}}">
+                              <view class="pr-15 bg-white">销量 {{goods.package_sale}}</view>
+                              <view class="bg-white">库存 {{goods.goods_stock}}</view>
+                            </view> 
+                            <view class="cate-zt zt_cate justify-between">
+                              <view class="pr-30 text-lg">¥{{goods.goods_price}}</view>
+
+                              <van-button plain type="default" size="mini" custom-style="margin-right:10rpx" wx:if="{{goods.checkStatus==0}}">待审核</van-button>
+
+                              <van-button plain type="primary" size="mini" custom-style="margin-right:10rpx" wx:if="{{goods.checkStatus==1}}">销售中</van-button>
+
+                              <van-button plain type="danger" size="mini" custom-style="margin-right:10rpx" wx:if="{{goods.checkStatus==2}}">不通过</van-button>
+                            
+                            </view> 
+                          </view> 
+                      </view>
+                      
+                        <view class="specs-top-title" style="display: flex; align-items: center;">
+                          <text class="mb-20 mr-15">状态:</text>
+                            <van-switch size="18px" checked="{{goods.status==1?true:false}}" bind:change="onSChange" data-id="{{goods.id}}" style="margin-top: -10rpx; margin-right: 15rpx;"/>  
+                            <text style="margin-top:-10rpx;" wx:if="{{goods.status==1}}">上架</text>
+                            <text style="margin-top:-10rpx;" wx:if="{{goods.status==0}}">下架</text>
+                        </view>       
+                   
+                      <view class="flex justify-around" style="border-bottom: 1px solid #f3f3f3; padding-bottom: 10rpx;">
+                            <van-button type="primary" size="small" custom-style="margin-right:10rpx" bind:click="editGoods" data-goodsId="{{goods.id}}">编辑</van-button>
+                            <van-button type="warning" size="small" custom-style="margin-right:10rpx" bind:click="editGoodsStock" data-goodsId="{{goods.id}}">修改库存</van-button>
+                            <van-button  type="danger" size="small" bind:click="delGoods" data-goodsId="{{goods.id}}">删除</van-button>
+                      </view>
+                  </view>
+                </block>
+              </view>              
+            </scroll-view>
+        </swiper-item>        
+    </swiper> 
+   </view>
+ </view>
+</view>
+
+
+
+<!-- </page> -->

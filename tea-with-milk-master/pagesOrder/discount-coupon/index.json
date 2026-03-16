@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "coupon": "/component/coupon/index",
+    "iconfont": "/component/iconfont/index",
+    "t-cell": "/component/cell/index",
+    "t-image": "/component/image/index",
+    "t-submit-bar": "/component/submit-bar/index",
+    "t-input-number": "/component/input-number/index"
+  },
+  "navigationStyle": "custom",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black"
+}

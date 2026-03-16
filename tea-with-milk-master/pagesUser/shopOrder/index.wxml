@@ -1,0 +1,88 @@
+<page id="page">
+  <t-nav-bar title="订单列表" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+  <view style="background: #fff;">
+  <view class="shop_order">
+  <view class="{{orderType == '1' ? 'order_act' : ''}}" data-orderType="1" bindtap="changeOrder">店内订单</view>
+  <view class="{{orderType == '2' ? 'order_act' : ''}}" style="margin-left:20rpx;" data-orderType="2" bindtap="changeOrder"> 外卖订单</view>
+</view>
+  </view>
+  <!-- tab切换 -->
+    <view class="node-tab">
+        <view class="tab-item {{currentTab == '11' ? 'active' : ''}}" data-current="11" bindtap="changeNav">全部</view>
+        <view class="tab-item {{currentTab == 1 ? 'active' : ''}}" data-current="1" bindtap="changeNav">待付款</view>
+        <view class="tab-item {{currentTab == 2 ? 'active' : ''}}" data-current="2" bindtap="changeNav" wx:if="{{orderType==1}}">待消费</view>
+        <view class="tab-item {{currentTab == 2 ? 'active' : ''}}" data-current="2" bindtap="changeNav" wx:if="{{orderType==2}}">待发货</view>
+        <view class="tab-item {{currentTab == 3? 'active' : ''}}" data-current="3" bindtap="changeNav"  wx:if="{{orderType==2}}">待收货</view>
+        <view class="tab-item {{currentTab == 4? 'active' : ''}}" data-current="4" bindtap="changeNav">已完成</view>        
+        <!-- <view class="tab-item {{currentTab == 9? 'active' : ''}}" data-current="9" bindtap="changeNav">已退款</view> -->
+    </view>
+    <swiper class="tab-content"  duration="300" bindchange="changeTab" style="height:{{winHeight}}rpx;">
+     
+        <swiper-item>
+            <scroll-view scroll-y="true" class="new-list-box" bindscrolltolower="allLoadMore" scroll-top='{{scrollTop}}' scroll-with-animation refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-default-style="white" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onAllRefresh">
+                <block wx:if="{{allTabList.length > 0}}"  wx:for="{{allTabList}}"  wx:for-index="index1" wx:for-item="goods" wx:key="unique" >
+                  <view style="background: #fff;margin-bottom: 20rpx;margin-right: 20rpx;margin-left: 20rpx;border-radius: 30rpx;">
+                    <view class="order_main" bindtap="goDetails" data-orderId="{{goods.id}}">
+                        <view class="flex justify-between ml-25 mr-25 text-dff pt-20" style="border-bottom: 1rpx solid #f3f3f3;">
+                          <view class="flex flex-direction mb-15">
+                              <view>{{goods.shop_name}}</view>
+                              <view class="pt-10 text-xs" style="color: gray;">下单时间：{{goods.create_at}}</view>
+                          </view>
+                          <view style="color: red; margin-top: 10rpx;" wx:if="{{goods.status==1}}">待付款</view>
+                          <view style='color: #1989fa;margin-top: 10rpx;' wx:if="{{goods.status==2 && orderType==1}}">已付款</view>
+                          <view style='color: #1989fa;margin-top: 10rpx;' wx:if="{{goods.status==2 && orderType==2}}">待发货</view>
+                          <view style='color: #E07A3E;margin-top: 10rpx;' wx:if="{{goods.status==3}}">待收货</view>
+                          <view style='color: gray;margin-top: 10rpx;' wx:if="{{goods.status==0}}">已取消</view>
+                          <view style='color: orange;margin-top: 10rpx;' wx:if="{{goods.status==4}}">已完成</view>
+                          <view style='color: green;margin-top: 10rpx;' wx:if="{{goods.status==9}}">已退款</view>
+                        </view>                      
+                        <t-cell wx:for="{{goods.goods}}" wx:for-index="index" wx:for-item="item" wx:key="unique">
+                          <view slot='icon' class="flex align-center" >
+                            <image class="grid-img" src="{{item.goods_logo}}" bindtap="handleChangeGoods" 	mode="scaleToFill"></image>
+                          </view>
+                          <view class="confirm-wrap-content flex flex-direction justify-between ml-10" slot='content'>
+                            <view>
+                              <view class='flex align-center cell text-lg mb-10'>{{item.goods_title}}</view>
+                              <view class='flex align-center cell text-sm text-gray mb-10'>{{item.goods_spec}}</view>
+                            </view>
+                            <view class='confirm-wrap-price flex justify-between text-lg'>
+                              <text class="text-red">￥{{item.selling_price}}</text>
+                              <view>
+                                ×{{item.number}}
+                              </view>
+                            </view>
+                          </view>
+                        </t-cell>
+                        <view class="flex justify-between ml-25 mr-25 p-10" style="border-top: 1rpx solid #f3f3f3;">
+                          <text class="text-sm">商品小计</text>
+                          <text class="text-sm">￥{{goods.goods_price}}</text>
+                        </view>
+                        <view class="flex justify-between ml-25 mr-25 p-10">
+                          <text class="text-sm">运费</text>
+                          <text class="text-sm">￥{{goods.freight_price}}</text>
+                        </view>
+                        <view class="flex justify-between ml-25 mr-25 p-10">
+                          <text class="text-sm">会员折扣</text>
+                          <text class="text-sm text-red"> - ￥{{goods.discount_money}}</text>
+                        </view>
+                        <view class="flex justify-between ml-25 mr-25 p-10">
+                          <text class="text-sm">优惠券</text>
+                          <text class="text-sm text-red"> - ￥{{goods.redMoney}}</text>
+                        </view>   
+                        <view class="flex justify-between ml-25 mr-25 p-10">
+                          <text class="text-sm">合计</text>
+                          <text class="text-sm">￥{{goods.pay_price}}</text>
+                        </view>
+                    </view>  
+
+                    <view class="flex pb-15 mt-15" style="justify-content:flex-end;margin-right: 20rpx;">                    
+                      <van-button plain type="primary" round size="small" class="ml-20"  data-orderId="{{goods.id}}" bind:click="payok" wx:if="{{goods.status==2}}">确认消费</van-button>    
+                    </view>
+
+                  </view>
+
+                </block>                
+            </scroll-view>
+        </swiper-item>       
+    </swiper>
+</page>

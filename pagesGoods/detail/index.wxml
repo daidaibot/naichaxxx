@@ -1,0 +1,56 @@
+<!--pagesGoods/detail/index.wxml-->
+<t-nav-bar title="商品详情页" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+<view class="goods-banner">
+  <t-swiper list="{{goodsInfo.goods_image}}" height="700rpx" active-color="{{main_color}}" inactive-color="rgba(0,0,0,.2)"></t-swiper>
+</view>
+<view class="goods-info p-20">
+  <view class="goods-info-name">{{goodsInfo.goods_title}}</view>
+  <view class="goods-info-desc">{{goodsInfo.goods_intro}}</view>
+  <view class="goods-info-footer">
+    <view class="goods-info-price">￥{{goodsInfo.goods_price}}</view>
+    <!-- <button class="custom-btn" open-type="share">
+      <iconfont class="custom-btn-icon" icon="icon-share" color="{{main_color}}" size="50rpx" />
+      <text class="custom-btn-text">分享</text>
+    </button> -->
+  </view>
+</view>
+<view class="mt-20">
+  <t-cell title="优惠券" value="" bindtap="{{userInfo.wx_openid?'showCoupon':'routeToLogin'}}" isLink></t-cell>
+</view>
+<view class="mt-20 p-20 goods-desc">
+  <view class="flex justify-center align-center">
+    <iconfont class="mt-5" icon="icon-img" color="#333333" size="40rpx" />
+    <text class="ml-10">图文详情</text>
+  </view>
+  <view>
+    <rich-text html="{{goodsInfo.goods_content}}"></rich-text>
+  </view>
+</view>
+
+<t-submit-bar t-class='button-submit' text='立即购买' bgcolor='{{main_color}}' z-index='9999' border self safeArea>
+  <view class="flex justify-between align-center">
+    <view class="flex-sub flex justify-around pr-20">
+      <button class="custom-btn"  bindtap="{{userInfo.nickName?'show_pay':'routeToLogin'}}">
+        <text class="car_total" wx:if="{{car_total>0}}">{{car_total}}</text>
+        <iconfont class="mt-5 custom-btn-icon" icon="icon-shopping-cart" color="#333333" size="50rpx" />
+        <text class="custom-btn-text">购物车</text>
+      </button>
+      <button class="custom-btn" open-type="contact">
+        <iconfont class="mt-5 custom-btn-icon" icon="icon-service" color="#333333" size="50rpx" />
+        <text class="custom-btn-text">客服</text>
+      </button>
+    </view>
+    <view class="flex">
+      <view class="submit-btn-left" style="background: {{sub_color}};"  wx:if="{{userInfo.nickName==null}}" bindtap="routeToLogin">加入购物车</view>
+      <button class="submit-btn-left" style="background: {{sub_color}};"  wx:if="{{userInfo.nickName &&  userInfo.phone.length==0}}" open-type="getPhoneNumber"  bindgetphonenumber="getPhoneNumber">加入购物车</button>
+      <view class="submit-btn-left" style="background: {{sub_color}};"  wx:if="{{userInfo.nickName &&  userInfo.phone}}" data-goodsId="{{goods.id}}" bindtap="showSpecs">加入购物车</view>
+      <view class="submit-btn-right" style="background: {{main_color}};"  wx:if="{{userInfo.nickName==null}}" bindtap="routeToLogin">立即购买</view>
+      <button class="submit-btn-right" style="background: {{main_color}};"  wx:if="{{userInfo.nickName &&  userInfo.phone.length==0}}" open-type="getPhoneNumber"  bindgetphonenumber="getPhoneNumber">立即购买</button>
+      <view class="submit-btn-right" style="background: {{main_color}};"  wx:if="{{userInfo.nickName &&  userInfo.phone}}" data-goodsId="{{goods.id}}" bindtap="showSpecs">立即购买</view>
+    </view>
+  </view>
+</t-submit-bar>
+
+<biz-specs id="bizSpecs" bind:specs_pay="specs_pay" main-color="{{main_color}}" sub-color="{{sub_color}}"></biz-specs>
+<biz-pay id="bizPay"   bindechange="delcar" bindcaredit="caredit" main-color="{{main_color}}" sub-color="{{sub_color}}"></biz-pay>
+<biz-coupon id="coupon"    main-color="{{main_color}}" sub-color="{{sub_color}}"></biz-coupon>

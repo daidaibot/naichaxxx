@@ -1,0 +1,194 @@
+/* component/specs/index.wxss */
+
+page {
+  
+  --bg: #F5F5F5;
+  --c1: orange;
+  --c2: #ff2e63;
+  --c3: #a33b55;
+  --c4: #ffe2e2;
+  --c5: #bbded6;
+  --c6: #ffde7d;
+  --c7: #eeeeee;
+  --c8: #a8edea;
+  --c9: #fed6e3;
+}
+
+.specs{
+  padding: 0 20rpx;
+  align-items: flex-end;
+
+}
+
+.productNameText{color:rgb(32,27,27);font-size:35rpx;text-overflow:ellipsis;z-index:-1;display:-webkit-box;word-break:break-all;-webkit-box-orient:vertical;-webkit-line-clamp:1;overflow:hidden;}
+
+.specs-top{
+  display: flex;
+  flex-direction: row;
+  font-size: 23rpx;
+  justify-content:space-between;
+  padding-bottom: 10rpx;
+  border-bottom: 1rpx solid rgb(240, 235, 235);
+}
+
+
+/* 样式2 */
+.coupon-box {
+  width: 700rpx;
+  height: 220rpx;
+  overflow: hidden;
+  border-radius: 20rpx;
+  position: relative;
+  background: radial-gradient(circle at right top, transparent 18rpx, var(--c4) 0) top left / 215rpx 51% no-repeat,
+    radial-gradient(circle at right bottom, transparent 18rpx, var(--c4) 0) bottom left /215rpx 51% no-repeat,
+    radial-gradient(circle at left top, transparent 18rpx, var(--c5) 0) top right /487rpx 51% no-repeat,
+    radial-gradient(circle at left bottom, transparent 18rpx, var(--c5) 0) bottom right /487rpx 51% no-repeat;
+  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, .3));
+  margin: 20px auto;
+  /* 解决filter-导致border-radius生效 */
+  transform: translate3d(0, 0, 0);
+}
+
+.coupon-box::after {
+  content: '';
+  height: 184rpx;
+  width: 3rpx;
+  background-image: linear-gradient(0deg, #fff 50%, transparent 50%);
+  background-size: 20rpx 20rpx;
+  position: absolute;
+  left: 212rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+
+}
+
+.cou-banner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 130rpx;
+  text-align: center;
+  padding: 0 10rpx;
+  line-height: 45rpx;
+  height: 45rpx;
+  font-size: 25rpx;
+  color: red;
+  background: rgba(255, 165, 0, .2);
+  border-radius: 20rpx 0 20rpx 0;
+}
+
+.cou-left {
+  width: 214rpx;
+  height: 100%;
+  font-size: 25rpx;
+  color: red;
+}
+
+.cou-left text:nth-child(1) {
+  font-size: 35px;
+}
+
+.cou-right {
+  width: 484rpx;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20rpx 20rpx 20rpx 35rpx;
+  color: #333;
+  font-size: 30rpx;
+  font-weight: bold;
+  line-height: 48rpx;
+}
+
+.cou-right-time {
+  color: red;
+}
+
+.node-tab{
+  background-color: #ffffff;
+  height:88rpx;
+  font-size:28rpx;
+  line-height: 88rpx;
+  display: flex;
+}
+.node-tab .tab-item{
+  flex:1;
+  text-align: center;
+  color: #666;
+}
+.node-tab .active{
+  color: #ff6700;
+  position: relative;
+}
+.node-tab .active::before{
+  position:absolute;
+  content: " ";
+  bottom:10rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30rpx;
+  height: 6rpx;
+  background-color: #ff6700;
+  border-radius: 3rpx;
+}
+
+
+
+
+
+.cameraContainer{
+  padding: 10rpx;
+}
+.header{
+  display: flex;
+  align-items: center;
+  border: 1rpx solid #aaa;
+  border-radius: 6rpx;
+  padding: 6rpx 10rpx;
+}
+.header image{
+  width: 36rpx;
+  height: 36rpx;
+  padding: 0 10rpx;
+}
+.header .search{
+  flex: 1;
+  height: 36rpx;
+  line-height: 36rpx;
+  font-size: 26rpx;
+}
+.tabContainer{
+  margin-top: 20rpx;
+}
+.tabs{
+  display: flex;
+  height: 50rpx;
+}
+.tab{
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-right: 30rpx;
+  white-space: nowrap;
+  font-size: 28rpx;
+}
+.active{
+  border-bottom: 4rpx solid #1a74f1;
+}
+.contentContainer{
+  height: calc(100vh - 150rpx);
+}
+.content{
+  width: 100%;
+  height: 600rpx;
+  line-height: 600rpx;
+  text-align: center;
+  background:#eee;
+  color: #1a74f1;
+  font-size: 64rpx;
+  border-radius: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+
+
+

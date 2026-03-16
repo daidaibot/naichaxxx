@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "t-submit-bar": "/component/submit-bar/index",
+    "iconfont": "/component/iconfont/index",
+    "biz-specs": "/component/specs-shop/index",
+    "biz-pay": "/component/pay_list/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "biz-shop": "/component/shop-info/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-switch": "@vant/weapp/switch/index"
+    
+  },
+  "navigationStyle": "custom"
+}

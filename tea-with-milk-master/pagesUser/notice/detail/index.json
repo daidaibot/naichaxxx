@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "t-nav-bar": "/component/nav-bar/index",
+    "rich-text": "/component/rich-text/index"
+  },
+  "navigationStyle": "custom"
+}

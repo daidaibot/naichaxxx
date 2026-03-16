@@ -1,0 +1,17 @@
+<view class="swiper-container" style="border-radius: {{borderRadius}};">
+  <swiper  autoplay="auto" interval="5000" duration="1000" current="{{current}}" bindchange="swiperChange" class="swiper" style='height: {{height}};border-radius: {{borderRadius}};'>
+    <block wx:for="{{list}}" wx:key="unique">
+      <swiper-item style="border-radius: {{borderRadius}};">
+        <view class="box">
+        <image src="{{item.url}}" catch:tap='handleClickItem' data-item='{{item}}' class="img" 	mode="widthFix" />
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- <view class="{{'swiper-dots-'+shape}}" wx:if="{{list.length>1}}">
+    <block wx:for="{{list}}" wx:key="unique">
+      <view class="swiper-dot {{index == swiperCurrent ? ' active' : ''}}"
+      style="background: {{index == swiperCurrent?activeColor : inactiveColor}}"></view>
+    </block>
+  </view> -->
+</view>

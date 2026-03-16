@@ -1,0 +1,135 @@
+/* pages/mine/index.wxss *//* pages/mine/index.wxss */
+.mine__bg{
+  height: 280rpx;
+  background-size: 100% 100%;
+}
+
+.mine__info{
+  position: absolute;
+  margin-top: 40rpx;
+  margin-left: 50rpx;
+  display: flex;
+}
+
+.mine__info--cell{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20rpx;
+}
+
+.mine__info--name{
+  font-size: 28rpx;
+  color: #FFFFFF;
+}
+
+.mine__info--desc{
+  font-size: 28rpx;
+  color: #FFFFFF;
+  margin-top: 10rpx;
+}
+
+.mine__bg--avatar{
+  width: 110rpx;
+  height: 110rpx;
+  border: 5rpx solid #FFFFFF;
+  border-radius: 50%;
+}
+
+.mine__order{
+  background: #FFF;
+}
+
+.mine__cell-wrap{
+  padding: 0 25rpx;
+  margin-top: -60rpx;
+}
+
+.mine__cell{
+  box-shadow: 0 0 8rpx rgba(0, 0, 0, 0.01);
+  border-radius: 8rpx !important;
+}
+
+.main-body{
+  margin-top: -20px;
+  height: 1200rpx;
+  background: #FFF;
+  border-radius: 20px;
+}
+.do_cash{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+
+}
+.one_cd{ 
+  margin-top: 20px;
+  background:rgb(235, 231, 231);
+  margin-bottom: 3rpx;
+  width: 38%;
+  height: 150rpx;
+  border-radius: 15rpx;
+  display: flex;    /*设置显示样式**/
+  flex-direction:column; /**子view排列方式row--水平 column--垂直*/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/
+  color: rgb(105, 100, 100);
+  font-size: 24rpx;
+  /* font-weight: bold; */
+}
+
+.one_cd-active{ 
+  margin-top: 20px;
+  background:rgb(235, 231, 231);
+  margin-bottom: 3rpx;
+  width: 38%;
+  height: 150rpx;
+  border-radius: 15rpx;
+  display: flex;    /*设置显示样式**/
+  flex-direction:column; /**子view排列方式row--水平 column--垂直*/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/
+  color: #4dc182;
+  font-size: 28rpx;
+  border: 1rpx solid #4dc182;
+}
+
+.docash_val{
+  margin-bottom: 10rpx;
+  padding-bottom: 10rpx;
+  display: flex;    /*设置显示样式**/
+  flex-direction:column; /**子view排列方式row--水平 column--垂直*/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/
+  width: 150rpx;
+  font-size: 40rpx;
+  /* border-bottom: 1rpx solid rgb(105, 100, 100); */
+}
+
+
+.docash_val-active{
+  margin-bottom: 10rpx;
+  padding-bottom: 10rpx;
+  display: flex;    /*设置显示样式**/
+  flex-direction:column; /**子view排列方式row--水平 column--垂直*/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/
+  width: 150rpx;
+  font-size: 40rpx;
+  border-bottom: 1rpx solid #64c992;
+}
+.button{
+  display: flex;    /*设置显示样式**/
+  justify-content: center; /**内容居中*/
+  margin-top: 60rpx;
+  
+}
+
+
+

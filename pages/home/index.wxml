@@ -1,0 +1,218 @@
+<view>
+
+  <view class="bgmovie">
+      <image class="bgmovie_iamge" mode="scaleToFill" src="{{Index.bannner_image[swiperIndex]}}"/>   
+  </view>
+
+  <swiper  autoplay="auto" interval="5000" duration="1000" indicator-dots="" circular  bindchange="getSwiperIndex">
+        <block  wx:for="{{Index.bannner_list}}" wx:key="*this" >
+            <swiper-item>
+                <image class="swiper-item-img" src="{{item.url}}" ></image>
+            </swiper-item>
+        </block>
+    </swiper>
+
+<!-- </view> -->
+  <view class="main-info" style="background:{{Index.color[swiperIndex]}}">
+    <view class="flex title-info text-lg" >
+        <!-- 用户头像 -->
+        <view class="flex align-center ml-25" bindtap="{{user_info.wx_openid?'':'routeToLogin'}}">
+          <image src="{{user_info.wx_icon?user_info.wx_icon:'/images/resource/avator.png'}}" class="mine-avatar"></image>
+        </view>
+        
+        <!-- 会员信息 -->
+        <view  class="ml-15" bindtap="{{user_info.wx_openid?'':'routeToLogin'}}">
+           <text class="text-bold text-df">{{user_info.nickName?user_info.nickName:'欢迎光临，请登录'}}</text>
+           <text class="text-bold text-df level_name" wx:if="{{user_info.wx_openid}}">{{user_info.level_name}}</text>
+           <view style="color: #756f6f;"  wx:if="{{user_info.wx_openid}}">
+              <text class="mr-10">余额：{{user_info.balance}}</text>
+              <text class="mr-10">积分：{{user_info.points}}</text>
+              <text class="mr-10">优惠券：{{user_info.coupon_count}}</text>
+           </view>
+           <view style="color: #756f6f;"  wx:if="{{!user_info.wx_openid}}">
+              <text class="mr-10">成为会员，享受更多会员权益</text>
+           </view>
+        </view>
+
+       <!-- 会员码 -->
+        <view class="tag-title" bindtap="{{user_info.wx_openid?'routeToUser':'routeToLogin'}}">          
+          <image src="https://image.tea-milk.site/2025-04-24/d2f027bacf67053cc8d6de68881d98df.png" style="width: 55rpx;height: 55rpx;margin-left: 15rpx;margin-right: 5rpx;"></image>
+          <text style="margin-top: -2rpx; font-size: 23rpx;">会员码</text>
+        </view>
+  
+    </view>
+    <!-- 授权弹窗 -->
+    <view class="auth" wx:if="{{isShow}}">
+        <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{isShow}}"></view>
+        <!-- 弹出层 -->
+        <view class="modalDlg" wx:if="{{isShow}}">
+            <view class="title">
+                <text class="text0">隐私政策</text>
+            </view>
+            <!-- <view class="cartLeft1"></view> -->
+            <view class="content">
+                欢迎您使用本小程序，为了更好的为您提供服务，我们需要在征得您的同意后依法收集并使用您的相关信息，请您务必仔细阅读并充分理解
+                    <view  style="color: {{main_color}};"  bind:tap="privacy_info">《隐私政策》</view>
+                    如您理解并接受全部内容，请点击“同意”开始使用我们的服务。
+                    <view>我们将遵循《隐私政策》及法律法规保护您个人信息并为您提供服务。</view>           
+            </view>
+            <view class="content">
+              <!-- <navigator class="cash_submit" url="/pages/level_equity/index?id={{userInfo.level_info.id}}"  open-type="navigate">
+                  <text class="text2" style="color: {{main_color}};">《隐私政策》</text>
+              </navigator>     -->
+            </view>
+            <view class="cartLeft2"></view>
+            <view class="but mt-10 flex">
+                <van-button  round="true" type="default"  size="small"    custom-style="width:160rpx"  bindtap="rejectInfo">取消</van-button>
+                <van-button   round="true" type="info"  size="small"  custom-style="width:160rpx"  loading='{{loading}}'   bindtap="{{loading?'':'getUserProfileUrl'}}" data-levelId="{{userInfo.level_info.id}}">同意</van-button>
+            </view>
+        </view>
+    </view>
+    <!-- 到店信息 -->
+    <view class="main-info-one flex">
+        <!-- <navigator open-type="switchTab" url="/pages/classify/index"> -->
+          <view class="flex  justify-evenly align-center text-center">
+            <view class="shop-type" bind:tap="order_pay" data-type="1">
+              <!-- <image src="{{Index.image1}}" style="margin-left: 75rpx; margin-top: 15rpx; width: 200rpx;height: 180rpx;"></image> -->
+              <!-- <text class="shop-type-one">到店取</text> -->
+              <image style="width: 225rpx;height: 190rpx;" src="/images/resource/shop.png" mode="scaleToFill"/>
+              <text class="shop-type-two">提前点单免排队 </text>
+            </view>
+            <view><image style="width: 1rpx; height: 80rpx;margin-top: 40rpx;" src="/images/resource/middle.png"></image></view>
+            <view class="shop-type"  bind:tap="order_pay" data-type="2">
+              <!-- <image src="{{Index.image2}}" style="margin-left: 75rpx; margin-top: 15rpx; width: 200rpx;height: 180rpx;"></image>     -->
+              <!-- <text class="shop-type-one">外卖送</text> -->
+              <image style="width: 225rpx;height: 190rpx;" src="/images/resource/waimai.png" mode="scaleToFill"/>
+              <text class="shop-type-two">一键点单 坐等开吃 </text>
+            </view>
+          </view>
+        <!-- </navigator> -->
+        <view class="flex justify-around">
+          <view class="flex flex-direction align-center mt-30" data-type="1" bindtap="{{user_info.wx_openid?'dorouteTo':'routeToLogin'}}">
+            <image class="resoure_image" src="/images/resource/group.png"></image>
+            <text class="shop_name">共享邀请</text>
+          </view>
+          <view class="flex flex-direction align-center mt-30" data-type="2" bindtap="{{user_info.wx_openid?'dorouteTo':'routeToLogin'}}">
+            <image class="resoure_image" src="/images/resource/mycard.png"></image>
+            <text class="shop_name">会员卡</text>
+          </view>
+          <view class="flex flex-direction align-center mt-30" data-type="3" bindtap="{{user_info.wx_openid?'dorouteTo':'routeToLogin'}}">
+            <image class="resoure_image" src="/images/resource/coupon.png"></image>
+            <text class="shop_name">优惠券</text>
+          </view>
+          <view class="flex flex-direction align-center mt-30" data-type="4" bindtap="{{user_info.wx_openid?'dorouteTo':'routeToLogin'}}">
+            <image class="resoure_image" src="/images/resource/cash.png"></image>
+            <text class="shop_name">充值中心</text>
+          </view>        
+        </view>
+
+    </view>
+    <!-- 我的余额 -->
+    <view class="main-info-one flex">
+          <view class="flex justify-between mt-20 ml-20 mr-20">
+              <view class="flex align-center">
+                 <van-icon size="20px" name="paid" />
+                 <text class="text-df ml-20 text-bold">我的余额</text>
+              </view>
+              <van-icon name="arrow" class="text-gray"  data-type="4" bindtap="{{user_info.wx_openid?'dorouteTo':'routeToLogin'}}"/>
+          </view>
+          <view class="flex justify-between align-center mr-20" style="margin-top: 50rpx;">
+             <view class="ml-20">
+                <text>￥</text>
+                <text class="text-xll">{{user_info.balance?user_info.balance:0}}</text>
+             </view>          
+             <van-button custom-style="width:150rpx" round type="info" size="small" color="#333232" data-type="4" bindtap="{{user_info.wx_openid?'dorouteTo':'routeToLogin'}}">立即充值</van-button>
+          </view>
+    </view>
+
+    <!-- 附件店铺 -->
+    <view class="main-info-one flex">
+          <view class="flex justify-between mt-20 ml-20 mr-20">
+              <view class="flex align-center">
+                 <van-icon size="20px" name="shop-o" />
+                 <text class="text-df ml-20 text-bold">附件店铺</text>
+              </view>
+               <navigator open-type="navigate" url="/pagesGoods/nearShop/index">
+              <view class="text-gray">
+               <text class="text-df ">全部门店</text>
+                <van-icon name="arrow" />
+              </view>  
+              </navigator>            
+          </view>
+          <view class="hs-body">
+                <scroll-view class="hs-layout" scroll-x="true" scroll-left="{{x}}" scroll-with-animation="{{true}}">
+                  <view class="hs-item-layout" wx:for="{{Index.like_list}}" wx:key="item" data-type="item">
+                    <view class="flex">                    
+                        <view class="mian_left" bind:tap="position" data-info="{{item}}">
+                            <text class="mt-20 text-dff text-bold">{{item.storage_shop_name}}</text>
+                            <view class="mt-15 mb-20">
+                              <view>
+                                  <van-button plain type="primary" size="mini" custom-style="margin-right:10rpx">可外卖</van-button>
+                                  <van-button  type="primary" size="mini">可自取</van-button>
+                              </view>
+                            </view>
+                            <view class="mt-15 text-xs flex flex-direction">
+                            <view>
+                               <van-icon name="location-o" size="35rpx" />
+                               <text class="ml-10">{{item.province}}{{item.city}}{{item.area}}{{item.address}}</text>
+                            </view>
+                            <view class="mt-15"> 
+                                <van-icon name="clock-o" size="35rpx"  />
+                                <text class="mt-15 ml-10 mr-30">00:00-23:00</text>
+                            </view>
+                            </view>                            
+                        </view>
+                        <view style="border-right: 1px dashed  #d1c7c7; margin-top: 30rpx; margin-bottom: 10rpx;margin-left: 10rpx;"></view>
+                        <view class="mian_right">
+                          <van-button plain type="primary" size="mini" custom-style="margin-top: 70rpx; font-size: 20rpx;margin-left: 65rpx;" bind:click="gostorage" data-item="{{item}}">去下单</van-button>
+                          <text style="display: flex;width: 190rpx; margin-top: 30rpx; font-size: 25rpx;margin-left: 20rpx;">距离{{item.distance}}</text>
+                          <view class="localtion" style="margin-left: 50rpx;">
+                                <view style="margin-top: 5rpx;" bindtap="openMap" data-item="{{item}}">
+                                   <image src="/images/resource/map.png" mode="scaleToFill" style="width: 45rpx; height: 45rpx;"></image>                                   
+                                </view>
+                                <view style="margin-top: 5rpx;margin-left: 30rpx; width: 50rpx;"  bindtap="tapMakePhoneCall" data-item="{{item}}">
+                                  <image src="/images/resource/cell.png" mode="scaleToFill" style="width: 45rpx; height: 45rpx;"></image>                                   
+                                </view>
+                          </view>
+                        </view>
+                    </view>
+                  </view>
+                </scroll-view>
+           </view>
+    </view>
+
+    <!--banner图片信息--> 
+    <view  class="main-info-one flex" style="height: 490rpx;">
+      <t-swiper list="{{Index.foot_list}}" bind:click="handleSwiperClick" current="false" border-radius="10rpx" shape="square" height="796rpx" active-color="{{sub_color}}"></t-swiper>
+    </view>
+     
+    <!-- 商品信息 -->
+    <view class="main-info-goods flex">
+      <view class="goods_all_main flex flex-wrap" >                  
+        <block wx:for="{{Index.goods_list}}" wx:key="unique" wx:item="item">
+          <view class="classify-cell" bindtap="goDetails" data-posid="{{item.id}}" style="background: white;	border-radius: 18rpx !important;">
+            <image class="grid-img" src="{{item.goods_logo}}" bindtap="handleChangeGoods"   mode="scaleToFill"  data-posid="{{item.id}}"></image>
+            <view class="cate-zt zt_cate flex flex-direction mt-10"    data-posid="{{item.id}}" style="margin-left: 25rpx;">
+                <view class="pr-15 productNameText text-bold">{{item.goods_title}}</view>
+                <view class="mt-10 pr-15 bg-white" style="font-size: 20rpx;margin-top: 7rpx">{{item.goods_intro}}</view>
+                <view class="flex bg-white mt-20 justify-between text-bold align-center">         
+                 <view class="flex">
+                    <text style='color:#2B2C2E;font-size:25rpx;margin-right: 30rpx;'>¥{{item.goods_price}}</text>
+                    <text  style='color:#504b4b99;font-size:20rpx;margin-top: 5rpx;'>¥{{item.market_price}}</text>
+                 </view>    
+                 <view class="mr-20">
+                    <image style="width: 45rpx;height: 45rpx;" src="/images/resource/car.png" mode=""/>
+                 </view>
+                </view>              
+            </view> 
+          </view>
+        </block>               
+      </view>  
+    </view>
+
+    
+
+  </view>
+</view>
+
+

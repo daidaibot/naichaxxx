@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-button": "@vant/weapp/button/index",
+    "t-submit-bar": "/component/submit-bar/index"
+  },
+  "navigationStyle": "custom"
+}

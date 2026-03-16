@@ -1,0 +1,161 @@
+page{
+  background-color: #f3f6fb;
+}
+
+.mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: white;
+  border-top-right-radius: 20rpx;
+  border-top-left-radius: 20rpx;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100rpx;
+  border-bottom: 1rpx solid #d3cfcf;
+}
+
+.top-text {
+  font-size: 30rpx;
+  width: 150rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-left-color {
+  color: #878787;
+}
+
+.top-left-color-hover {
+  color: #f1eaea;
+}
+
+.top-right-color {
+  color: #1296DB;
+}
+
+.top-right-color-hover {
+  color: #82ccf3;
+}
+
+.item {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+}
+
+
+.shop_info{
+  background: #fff;
+   width: 100%;
+   height: auto;
+   display: flex;
+  flex-direction: row;
+  font-family: "Microsoft YaHei";
+}
+.shop_detail{
+  font-size: 28rpx;
+  margin: 20rpx 50rpx;
+}
+.shop_detail_l2{    
+  display: flex;
+  flex-direction: row;
+  color: gray;
+  font-size: 13px;
+  margin-left: -19px;
+  width: 490rpx;
+  margin-top: 10rpx;
+}
+.shop_type{
+  display: flex;
+  flex-direction: row;
+  padding: 17rpx;
+  width: 157rpx;
+  background: #fff;
+  height: 25rpx;
+  border-radius: 35rpx;
+  margin-top: 46rpx;
+  margin-right: 19rpx;
+  border: 2rpx solid rgb(216, 210, 210);
+  box-shadow: 0 0 5px rgb(202, 196, 196);
+}
+
+.shop_type_l1{
+  background: #000000;
+    color: white;
+    text-align: center;
+    font-size: 28rpx;
+    margin: -12rpx -9rpx;
+    padding: 7rpx 57prx;
+    width: 103rpx;
+    border-radius: 20rpx;
+}
+
+.shop_type_l2{
+ 
+    color: rgb(165, 155, 155);
+    text-align: center;
+    font-size: 28rpx;
+    margin: -10rpx -9rpx;
+    padding: 7rpx 57prx;
+    width: 103rpx;
+    border-radius: 20rpx;
+  
+}
+.grid-img{  
+  width: 120rpx;
+  height: 120rpx;
+  margin: 15rpx;
+  border-radius: 10rpx;
+  
+}
+
+.qhm{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  background: #f5f2f2;
+  border-width: 50px;
+  border-radius: 10rpx;
+  width: 140rpx;
+  margin-left: 42%;
+  margin-top:20rpx;
+  border-color: #000;
+  color: rgb(82, 76, 76);
+}
+
+.qhm3{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;  
+}
+

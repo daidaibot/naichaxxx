@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "usingComponents": {
+    "popup": "/component/popup/index",
+    "t-image": "/component/image/index",
+    "t-submit-bar": "/component/submit-bar/index",
+    "iconfont": "/component/iconfont/index",
+    "t-input-number": "/component/input-number/index",
+    "van-field": "@vant/weapp/field/index"
+  },
+  "navigationBarTextStyle": "black",
+  "navigationStyle": "custom"
+
+}

@@ -1,0 +1,17 @@
+/* component/page/index.wxss */
+.page{
+  height: 100%;
+}
+
+.page-loading-wrap{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+}
+.page-loading{
+  width: 300rpx;
+  height: 120rpx;
+}

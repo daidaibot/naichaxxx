@@ -1,0 +1,38 @@
+<!--component/specs/index.wxml-->
+<popup id="popup">
+  <view class="specs">
+    <view class="flex" style="flex-direction: row;">
+      <t-image t-class="specs-image" shape src="{{goodsSpec.check_attr.sku_pic}}"></t-image>
+      <view class="flex pl-20" style="flex-direction: column;width: 525rpx;">
+        <view class="flex" style="flex-direction: row; justify-content: space-between;margin-bottom: 40rpx;">
+          <view class="specs-goods-name">{{goodsSpec.goods_title}}</view>
+          <view class="flex">
+            <iconfont icon="icon-del" color="#999999" size="40rpx" bindtap="hideSpecs" />
+          </view>
+        </view>
+        <view class="flex justify-between">
+          <view class="specs-price">￥{{goodsSpec.check_attr.selling_price}}</view>
+          <view class="specs-num">库存：{{goodsSpec.check_attr.stock}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="mt-20" wx:for="{{goodsSpec.goodsSpecParam}}" wx:key="unique">
+      <view class="specs-title">{{item.name}}</view>
+      <view class="specs-cell">
+        <view class="specs-name {{children.checked?'specs-name-select':''}}" wx:for="{{item.list}}" wx:for-item="children" wx:key="unique" bindtap="clickSkuValue" data-value="{{children.name}}" data-item_value="{{item.name}}">{{children.name}}</view>
+      </view>      
+    </view>    
+  </view>
+  <view>
+    <t-submit-bar  text='立即购买' bgcolor='{{main_color}}' z-index='9999' border self safeArea>
+    <text style="position: fixed;margin-left: 30rpx;">备注信息</text>
+    <view class="specs" style="margin-left: 507rpx;">
+        <t-input-number visible custom-color='#64c992' data-index="1" value="{{num}}" min="0" max="1000" bindnumChange="numChange" inputType='number'></t-input-number>
+    </view>
+      <view class="flex justify-between align-center pt-30 pl-20 pr-20 mb-15">        
+        <view class="submit-btn-left" style="background: #a6e0c1;" bindtap="order_car">加入购物车</view>
+        <view class="submit-btn-right" style="background: #7ad1a1;" bindtap="order_pay">立即购买</view>
+      </view>
+    </t-submit-bar>
+  </view>
+</popup>

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+    "t-submit-bar": "/component/submit-bar/index",
+    "van-field": "@vant/weapp/field/index"
+  },
+  "navigationStyle": "custom"
+}

@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "t-cell": "/component/cell/index",
+    "t-image": "/component/image/index",
+    "t-swiper": "/component/swiper/index",
+    "t-submit-bar": "/component/submit-bar/index",
+    "rich-text": "/component/rich-text/index",
+    "biz-specs": "/component/specs/index",
+    "iconfont": "/component/iconfont/index",
+    "biz-pay": "/component/pay_list/index",
+    "biz-coupon": "/component/coupon_list/index"
+    
+  },
+  "navigationStyle": "custom"
+}

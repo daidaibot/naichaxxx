@@ -1,0 +1,20 @@
+<!--pagesOrder/dispatch/index.wxml-->
+<t-nav-bar title="调整等级" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+
+
+
+
+<view  class="all_shop">
+  <van-cell-group>
+  <van-field
+    value="{{ username }}"
+    required
+    clearable
+    label="用户手机号"    
+    placeholder="请输入用户手机号"
+    bind:change="onChange"
+  />
+</van-cell-group>
+</view>
+
+<t-submit-bar t-class='button-submit' text='提交' bgcolor='{{main_color}}' z-index='9999' full safeArea border  bind:submit='routeToNext'></t-submit-bar>

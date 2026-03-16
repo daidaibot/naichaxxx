@@ -1,0 +1,75 @@
+/* pages/docash/index.wxss */
+
+
+.margin-top{
+ 
+  
+   background: #FFF;
+}
+
+
+.cash_top{  
+  /* position: absolute;     */
+  padding:  40rpx 200rpx;
+  font-size: 30rpx;
+  display: flex;    /*设置显示样式**/
+  flex-direction:column; /**子view排列方式row--水平 column--垂直*/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/ 
+  
+}
+.text-lg{
+  margin-bottom: 40rpx;
+  display: flex;
+}
+.cash_money{
+  font-size: 40rpx;
+  margin-left:20rpx ;
+  margin-bottom: 24rpx
+}
+.cash_value{
+  font-size: 30rpx;
+  margin-left:-5rpx ;
+  margin-bottom: 24rpx;
+  color:red;
+}
+.cash_submit{
+    width: 156px;
+    background: #2B91ED;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 8rpx !important;
+    font-size: 28rpx;
+    border: 1rpx solid #f3f3f3 !important;
+    padding-top: 15rpx !important;
+    padding-bottom: 15rpx !important;
+    /* margin-left: -53rpx; */
+}
+
+.income{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top:13rpx; 
+  padding-left:30rpx; 
+  padding-right:15rpx; 
+  padding-top: 20rpx;
+  background-color: white;
+  border-bottom: 1rpx solid #f3f3f3;
+  height: 50rpx;
+ 
+ 
+  
+}
+.income_top{
+  display: flex;    /*设置显示样式**/
+  flex-direction:column; /**子view排列方式row--水平 column--垂直*/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/ 
+  justify-content:space-around;
+  color: gray;
+ 
+
+}

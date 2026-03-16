@@ -1,0 +1,19 @@
+<view class="navigation-wrap">
+  <view class="fixed-nav-wrap" >
+    <view class="shadow-box">
+      <view class="middle-circle"></view>
+    </view>
+    <view class="fixed-nav-content" >
+      <view class="table">
+        <view class="cell" wx:for="{{list}}" wx:key="index"  data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab">
+            <view class="flex pt-10">
+               <image wx:if="{{index !=1 && index !=2}}" src="{{selected === index ? item.selectedIconPath : item.iconPath}}" mode="aspectFill" class="scan" />
+               <image wx:if="{{index ==1}}" src="{{selected === index ? item.selectedIconPath : item.iconPath}}" mode="aspectFill" class="scan" />
+               <image wx:if="{{index ==2}}" src="{{selected === index ? item.selectedIconPath : item.iconPath}}" mode="aspectFill" class="scan_icon" />           
+            </view>       
+            <view class="mt-5 tab_name">{{item.text}}</view>            
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

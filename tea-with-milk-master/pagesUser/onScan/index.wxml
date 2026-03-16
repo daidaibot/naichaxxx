@@ -1,0 +1,39 @@
+<!--pages/mine/about/index.wxml-->
+<t-nav-bar title="商家管理" btn-color="rgba(0, 0, 0, .4)" background="{{main_color}}" text-color="#FFFFFF" bind:home="routeToHome"/>
+<view class="p-20">
+  <view class="about border-radius box-shadow">
+    <view class="about-header">
+    <image class="about-header__image" src="{{shopInfo.shop_logo}}"></image>
+    </view>
+
+    <view class="specs-top-title" style="font-size: 30rpx;">店铺名称</view>
+    <view  class="specs-top-name mt-10">{{shopInfo.storage_shop_name}}</view>
+
+      <view class="specs-top-title" style="font-size: 30rpx;">公告</view>
+      <view  class="specs-top-desc mt-10" wx:if="{{shopInfo.shop_intro.length<0}}">商家暂无公告</view>
+      <view  class="specs-top-desc mt-10 mr-25" wx:else>{{shopInfo.shop_intro}}</view>
+
+
+      <view class="specs-top-title" style="font-size: 30rpx;">店铺信息</view>
+      <view class="specs-top-desc" style="font-size: 25rpx;">
+        <view class="mt-10">营业时间：24小时营业</view>
+        <view class="mt-10">营业电话：{{shopInfo.link_phone}}</view>
+        <view class="localtion mt-10">
+            <view>门店地址：{{shopInfo.province}}{{shopInfo.city}}{{shopInfo.area}}{{shopInfo.address}}</view>
+        </view>       
+      </view>
+
+      <view class="specs-top-title" style="font-size: 30rpx;">
+        <text class="mb-20">店铺状态</text>
+        <view style="display: flex;justify-content: space-between; align-items: center;color:#756f6f">
+            <van-switch active-color="{{main_color}}" checked="{{shopInfo.status==1?true:false}}" bind:change="onChange" data-id="{{shopInfo.id}}"/>  
+            <text wx:if="{{shopInfo.status==1}}">营业中</text>
+            <text wx:if="{{shopInfo.status==0}}">已打烊</text>
+        </view>
+       
+      </view>     
+       
+  </view>
+  <button class="about-button" style="background:{{main_color}}" 
+    bindtap="copyWechatCode" open-type="share">分享店铺</button>
+</view>

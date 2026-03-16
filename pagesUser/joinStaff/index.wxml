@@ -1,0 +1,31 @@
+<!--pages/mine/about/index.wxml-->
+<t-nav-bar title="加入合作商家" btn-color="rgba(0, 0, 0, .4)" background="{{main_color}}" text-color="#FFFFFF" bind:home="routeToHome"/>
+<view class="p-20">
+  <view class="about border-radius box-shadow">
+    <view class="about-header">
+    <image class="about-header__image" src="{{shopInfo.shop_logo}}"></image>
+    </view>
+    <view class="specs-top-title" style="font-size: 30rpx;">合作协议</view>      
+      <view  class="specs-top-desc mt-10 mr-25">{{shopInfo.shop_join_xy}}</view>
+      <view class="specs-top-title" style="font-size: 30rpx;">店铺信息</view>
+      <view class="specs-top-desc" style="font-size: 25rpx;">
+        <view class="mt-10">营业时间：{{shopInfo.shop_time}}</view>
+        <view class="mt-10">营业电话：{{shopInfo.link_phone}}</view>
+        <view class="localtion mt-10">
+            <view>门店地址：{{shopInfo.province}}{{shopInfo.city}}{{shopInfo.area}}{{shopInfo.address}}</view>
+            <view class="localtion" style="margin-left: 60rpx;">
+              <view style="margin-top: -10rpx;"><van-icon name="location-o" info="导航" bind:click="openMap" size="24px" /></view>
+              <view style="margin-top: -10rpx;margin-left: 60rpx;"><van-icon name="phone-o"  size="24px" bindtap="tapMakePhoneCall" /></view>
+            </view>
+        </view>  
+        <view class="phone">
+          <input  type="text" model:value="{{realname}}" placeholder-class="placeholder" placeholder="请留下您的姓名" />
+      </view>
+
+      <view class="phone" style="margin-top:-15rpx;">
+          <input  type="text" model:value="{{contact}}" placeholder-class="placeholder" placeholder="请留下您的手机号，方便我们及时联系您" />
+      </view>   
+      </view>
+  </view>
+  <button class="about-button" style="background:{{main_color}}" bindtap="{{userInfo.wx_openid?'doJoin':'routeToLogin'}}">加入合作</button>
+</view>

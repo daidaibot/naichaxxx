@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "rich-text": "/component/rich-text/index"
+  },
+  "navigationBarTitleText": "会员权益协议"
+}

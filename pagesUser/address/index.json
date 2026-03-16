@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "iconfont": "/component/iconfont/index",
+    "t-submit-bar": "/component/submit-bar/index",
+    "t-cell": "/component/cell/index",
+    "van-button": "@vant/weapp/button/index"
+  },
+  "navigationStyle": "custom"
+}

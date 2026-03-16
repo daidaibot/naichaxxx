@@ -1,0 +1,32 @@
+<!--pages/docash/index.wxml-->
+<!-- <page id="page"> -->
+<t-nav-bar title="奖励金额" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+
+  <view class="">
+			<view class="margin-top">
+        <view class="cash_top">
+            <view class="text-lg cash_money">可用余额</view>
+            <view class="text-lg cash_value">￥ <view style="font-size: 55rpx;"> {{userInfo.balance}}</view></view>
+            <!-- <navigator class="cash_submit" url="/pagesUser/recharge/index"  open-type="navigate">立即充值</navigator>       -->
+            <navigator class="cash_submit" url="/pagesUser/docash/index?cashType=member"  open-type="navigate">提现</navigator>  
+            <navigator class="cash_submit" style="background-color: gray;" url="/pagesUser/docash/docash_log/index?cashType=member"  open-type="navigate">提现记录</navigator>     
+          </view>		
+			</view>
+
+      <view class="income">
+        <text class="service_fw text-lg">结算数据</text> 
+        <!-- <view class="text-lg mt-20"><van-icon name="arrow" style="color: {{main_color}};font-size: 38rpx;" /></view>         -->
+      </view>
+      <view class="income_top" style=" background-color: white; padding: 20rpx; ">
+            <view class="income_top_one mb-20" wx:for="{{userInfo.moneylog}}" wx:key="unique" wx:item="item">
+                <text style="font-size: 26rpx;font-weight: bold;">{{item.name}}</text>
+                <text style="margin-top: 10px;color: red;margin-bottom: 10px;">￥{{item.money}}</text>
+            </view>
+      </view> 
+			<view style="margin-top:30rpx;">
+				<t-cell open-type="{{item.openType}}" title="{{item.name}}" data-isauth="{{item.isauth}}" data-url="{{item.url}}" bindtap="routeToNext"	t-class="{{index===0?'border-radius-t':(index+1===moduleList.length?'border-radius-b':'')}}" border isLink wx:for="{{moduleList}}" wx:key="unique">
+					<iconfont slot="icon" icon="{{item.icon}}" color="{{main_color}}" size="80rpx" />
+				</t-cell>
+			</view>		
+	</view>
+<!-- </page> -->

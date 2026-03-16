@@ -1,0 +1,287 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+/* pages/mine/index.wxss *//* pages/mine/index.wxss */
+.mine__bg{
+  height: 380rpx;
+  background-size: 100% 100%;
+}
+
+.mine__info{
+  /* position: absolute; */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  padding-top: 60rpx;
+  
+}
+
+.mine__info--cell{
+  
+  margin-left: 20rpx;
+}
+
+.mine__info--name{
+  font-size: 28rpx;
+  color: #FFFFFF;
+}
+
+.mine__info--desc{
+  font-size: 28rpx;
+  color: #FFFFFF;
+  margin-top: 10rpx;
+}
+
+.mine__bg--avatar{
+  width: 110rpx;
+  height: 110rpx;
+  border: 5rpx solid #FFFFFF;
+  border-radius: 50%;
+}
+
+.mine__order{
+  background: #FFF;
+}
+
+.mine__cell-wrap{
+  padding: 0 25rpx;
+  margin-top: -60rpx;
+}
+
+.mine__cell{
+  box-shadow: 0 0 8rpx rgba(0, 0, 0, 0.01);
+  border-radius: 8rpx !important;
+}
+
+.main-body{
+  display: flex;
+  margin-top: -20px;
+  height: 710rpx;
+  background: #FFF;  
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  border-radius: 20px;
+}
+
+.points_rule{
+  display: flex;
+  flex-direction: row;
+  background: #FFF;  
+  padding-top: 20rpx;
+  justify-content: center; 
+  height: 90rpx;
+}
+.points_rule_info{
+  display: flex;
+  flex-direction: row;
+  background: #FFF;  
+  padding-top: 40rpx;
+  justify-content: center; 
+  font-size: 25rpx;
+  padding: 20rpx 40rpx 100rpx 40rpx;
+
+}
+.do_cash{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+
+}
+.one_cd{ 
+  margin-top: 20px;
+  background:rgb(235, 231, 231);
+  margin-bottom: 3rpx;
+  width: 38%;
+  height: 150rpx;
+  border-radius: 15rpx;
+  display: flex;    /*设置显示样式**/
+  flex-direction:column; /**子view排列方式row--水平 column--垂直*/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/
+  color: rgb(105, 100, 100);
+  font-size: 24rpx;
+  /* font-weight: bold; */
+}
+
+.one_cd-active{ 
+  margin-top: 20px;
+  background:rgb(235, 231, 231);
+  margin-bottom: 3rpx;
+  width: 38%;
+  height: 150rpx;
+  border-radius: 15rpx;
+  display: flex;    /*设置显示样式**/
+  flex-direction:column; /**子view排列方式row--水平 column--垂直*/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/
+  color: #73db53 ;
+  font-size: 28rpx;
+  border: 1rpx solid #73db53;
+}
+
+.docash_val{
+  margin-bottom: 10rpx;
+  padding-bottom: 10rpx;
+  display: flex;    /*设置显示样式**/
+  flex-direction:column; /**子view排列方式row--水平 column--垂直*/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/
+  width: 150rpx;
+  font-size: 40rpx;
+  /* border-bottom: 1rpx solid rgb(105, 100, 100); */
+}
+
+
+.docash_val-active{
+  margin-bottom: 10rpx;
+  padding-bottom: 10rpx;
+  display: flex;    /*设置显示样式**/
+  flex-direction:column; /**子view排列方式row--水平 column--垂直*/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/
+  width: 150rpx;
+  font-size: 40rpx;
+  border-bottom: 1rpx solid #73db53;
+}
+.button{
+  display: flex;    /*设置显示样式**/
+  justify-content: center; /**内容居中*/
+  margin-top: 60rpx;
+  
+}
+
+
+/* components/xx-calendar/xx-calendar.wxss */
+/* 头部样式start */
+.title-wrap{
+  background-color: #fff;
+  padding-top: 20rpx;
+  border-bottom: 1px solid #D4DBDC;
+  padding-bottom: 10rpx;
+}
+.change-date{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.change-date image{
+  width: 50rpx;
+  height: 50rpx;
+  transform: scale(1.5);
+  display: flex;
+}
+.year-mouth{
+  margin: 0 60rpx;
+}
+.week{
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  margin-top: 30rpx;
+  color: #1F1F1F;
+}
+.week text{
+  flex: 1;
+  text-align: center;
+}
+/* 头部样式end */
+/* 日期区域样式start */
+.date-wrap{
+  /* height: 500rpx; */
+  background-color: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+}
+.mouth-date{
+  display: flex;
+  font-size: 24rpx;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% / 7);
+  border-bottom: 1rpx solid rgb(229, 234, 235);
+  padding-top: 10rpx;
+}
+.last-mouth text,.next-mouth text{
+  opacity: 0;
+}
+.mouth-date .day{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #1F1F1F;
+
+}
+.mouth-date  .day-nongli{
+  font-size: 18rpx;
+  color: #888888;
+  margin-bottom: 6rpx;
+}
+.mouth-date .color{
+  color: #8096F0;
+}
+.mouth-date  .day-dot{
+  margin-top: -60rpx;
+  width: 68rpx;
+  height: 68rpx;
+  /* border-radius: 50%; */
+  background-color:#cccc;
+ 
+}
+.mouth-date .day-box{
+  border-radius: 10rpx;
+  width: 86rpx;
+  padding-top: 6rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10rpx;
+  padding-bottom: 8rpx;
+ 
+  
+}
+.mouth-date .active{
+  background-color: #2bae67 ;
+}
+.mouth-date .active text{
+  color: #fff;
+}
+.mouth-date .active .day-text{
+  font-weight: 600;
+}
+.not-dot{
+  width: 8rpx;
+  height: 8rpx;
+}
+
+
+
+
+
+
+

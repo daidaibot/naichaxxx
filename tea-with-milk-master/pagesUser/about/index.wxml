@@ -1,0 +1,17 @@
+<!--pages/mine/about/index.wxml-->
+<t-nav-bar title="我要加盟" btn-color="rgba(0, 0, 0, .4)" background="{{main_color}}" text-color="#FFFFFF" bind:home="routeToHome"/>
+<view class="p-20">
+  <view class="about border-radius box-shadow">
+    <view class="about-header">
+      <image class="about-header__image" src="{{list.OfficialQRcode}}"></image>
+      <view class="about-header__text">微信号：{{list.serviceWechat}}</view>
+    </view>
+    <view class="about-content">
+      <view>{{list.OfficialInfo}}</view>
+    </view>
+  </view>
+  <button class="about-button" style="background:{{main_color}}" 
+    bindtap="copyWechatCode">复制微信号</button>
+    <button class="about-button" style="background:{{main_color}}" 
+    bindtap="saveQrcode">下载二维码</button>
+</view>

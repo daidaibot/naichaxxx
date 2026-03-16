@@ -1,0 +1,294 @@
+page{
+  background-color: #f3f6fb;
+}
+
+page {
+  
+  --bg: #F5F5F5;
+  --c1: orange;
+  --c2: #ff2e63;
+  --c3: #a33b55;
+  --c4: #ffe2e2;
+  --c5: #bbded6;
+  --c6: #ffde7d;
+  --c7: #eeeeee;
+  --c8: #a8edea;
+  --c9: #fed6e3;
+}
+
+/* 样式2 */
+.coupon-box {
+  width: 700rpx;
+  height: 220rpx;
+  overflow: hidden;
+  border-radius: 20rpx;
+  position: relative;
+
+  background: radial-gradient(circle at right top, transparent 18rpx, var(--c4) 0) top left / 215rpx 51% no-repeat,
+    radial-gradient(circle at right bottom, transparent 18rpx, var(--c4) 0) bottom left /215rpx 51% no-repeat,
+    radial-gradient(circle at left top, transparent 18rpx, var(--c5) 0) top right /487rpx 51% no-repeat,
+    radial-gradient(circle at left bottom, transparent 18rpx, var(--c5) 0) bottom right /487rpx 51% no-repeat;
+
+  
+    /* background: radial-gradient(circle at 20rpx center, transparent 20rpx, #ff6810 20rpx) -20rpx; */
+    /* background: linear-gradient(45deg, var(--c8), pink);
+    background: linear-gradient(35deg, var(--c7), var(--c9)); */ 
+   
+
+  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, .3));
+  margin: 20px auto;
+  /* 解决filter-导致border-radius生效 */
+  transform: translate3d(0, 0, 0);
+}
+
+.coupon_bg_1{
+  background: linear-gradient(35deg, var(--c5), var(--c3))
+}
+.coupon_bg_2{
+  background:rgb(148, 147, 147);
+}
+
+
+.coupon-box::after {
+  content: '';
+  height: 184rpx;
+  width: 3rpx;
+  background-image: linear-gradient(0deg, #fff 50%, transparent 50%);
+  background-size: 20rpx 20rpx;
+  position: absolute;
+  left: 212rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+
+}
+
+.cou-banner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 130rpx;
+  text-align: center;
+  padding: 0 10rpx;
+  line-height: 45rpx;
+  height: 45rpx;
+  font-size: 25rpx;
+  color: red;
+  background: rgba(255, 165, 0, .2);
+  border-radius: 20rpx 0 20rpx 0;
+}
+
+.cou-left {
+  width: 214rpx;
+  height: 100%;
+  font-size: 25rpx;
+  color: red;
+}
+
+.cou-left text:nth-child(1) {
+  font-size: 35px;
+}
+
+.cou-right {
+  width: 484rpx;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20rpx 20rpx 20rpx 35rpx;
+  color: #333;
+  font-size: 30rpx;
+  font-weight: bold;
+  line-height: 48rpx;
+}
+
+.cou-right-time {
+  color: red;
+}
+.node-tab{
+  background-color: #ffffff;
+  height:88rpx;
+  font-size:28rpx;
+  line-height: 88rpx;
+  display: flex;
+}
+.node-tab .tab-item{
+  flex:1;
+  text-align: center;
+  color: #666;
+}
+.node-tab .active{
+  color: #ff6700;
+  position: relative;
+}
+.node-tab .active::before{
+  position:absolute;
+  content: " ";
+  bottom:10rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30rpx;
+  height: 6rpx;
+  background-color: #ff6700;
+  border-radius: 3rpx;
+}
+
+
+/* .inp-box{
+  padding:10rpx 20rpx 10rpx;
+  box-sizing: border-box;
+  position:relative;
+  background-color: #ffffff;
+} */
+.node-tab{
+  background-color: #ffffff;
+  height:88rpx;
+  font-size:28rpx;
+  line-height: 88rpx;
+  display: flex;
+}
+.node-tab .tab-item{
+  flex:1;
+  text-align: center;
+  color: #666;
+}
+.node-tab .active{
+  color: #ff6700;
+  position: relative;
+}
+.node-tab .active::before{
+  position:absolute;
+  content: " ";
+  bottom:10rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30rpx;
+    height: 6rpx;
+    background-color: #ff6700;
+    border-radius: 3rpx;
+}
+.tab-content{
+  margin-top:20rpx;
+}
+
+.no-data{
+  text-align: center;
+  box-sizing: border-box;
+  padding-top:230rpx;
+  color: #999999;
+}
+
+/* 更新样式 */
+.node-tab {
+  position: relative;
+}
+.new-list-box {
+  height: 100%;
+} 
+.new-list-item {
+  box-sizing:border-box;
+  /* height:260rpx; */
+  position: relative;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  padding: 20rpx 30rpx 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.new-list-item:last-child {
+  margin-bottom: 0;
+}
+
+.new-list-item view {
+  box-sizing: border-box;
+}
+
+.item-content {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #eaeaea;
+  align-items: center;
+  position: relative;
+}
+
+.content-left {
+  width: 100%;
+  padding-bottom: 30rpx;
+}
+
+.content-left .content-title {
+  font-size: 32rpx;
+  color: #333;
+}
+
+.content-left .content-des {
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+
+.content-deadline {
+  font-size: 24rpx;
+  color: #495060;
+}
+
+.content-right {
+  width: 130rpx;
+  flex-shrink: 0;
+  height: 48rpx;
+  border: 1rpx solid #ff6700;
+  color: #ff6700;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 48rpx;
+}
+
+.content-right-is-no {
+  opacity: 0.8;
+  border-color: #999;
+  color: #999;
+}
+
+.item-tag {
+  padding: 10rpx 0 10rpx;
+  font-size: 24rpx;
+}
+
+.list-tag-item {
+  padding: 5rpx 12rpx;
+  text-align: center;
+  background-color: #e5efff;
+  border-radius: 4rpx;
+  margin-right: 10rpx;
+  color: #ff6700;
+  border-radius: 8rpx;
+  margin-bottom: 10rpx;
+  font-size: 24rpx;
+}
+
+.content-right.bg-green {
+  background-color:#e6ffca;
+  border-color: #e6ffca;
+  color:#ff6700;
+  margin-right: 20rpx;
+}
+
+.exchange-btn{
+  text-align: center;
+  margin: 10px 0 0;
+}
+
+.dialog-box{
+  font-size: 28rpx;
+  padding: 30rpx 30rpx 0;
+}
+
+.textarea_css{
+  margin-top: 15rpx;
+  color: #333;
+  height: 160px;
+  border: 1px solid #999;
+  border-radius: 6rpx;
+  padding: 20rpx;
+}

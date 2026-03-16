@@ -1,0 +1,75 @@
+<!-- <page id="page"> -->
+
+<t-nav-bar title="我的收益" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+
+  <view class="">
+			<view class="margin-top" style=" padding-bottom: 20rpx;">
+        <view class="cash_top" >
+            <view class="text-df cash_money">可提现余额(元)</view>
+            <view class="text-lg cash_value" style="font-size: 55rpx;">￥ <view > {{incrome.accountMoney?incrome.accountMoney:'0.00'}}</view></view>
+            <navigator class="cash_submit" style="background-color: {{main_color}};" url="/pagesUser/docash/index?cashType=storage"  open-type="navigate">提现</navigator>  
+            <navigator class="cash_submit" style="background-color: gray;" url="/pagesUser/docash/docash_log/index?cashType=storage"  open-type="navigate">提现记录</navigator>     
+          </view>		
+			</view>
+
+      <view class="income">
+        <text class="service_fw text-lg">结算数据</text> 
+        <!-- <view class="text-lg mt-20"><van-icon name="arrow" style="color: {{main_color}};font-size: 38rpx;" /></view>         -->
+      </view>
+      <view class="income_top" style=" background-color: white; padding: 20rpx; ">
+            <view class="income_top_one">
+                <text style="font-size: 26rpx;font-weight: bold;">上月结算金额</text>
+                <text style="margin-top: 10px;color: red;margin-bottom: 10px;">￥{{incrome.lastMonthSettle?filter.formatPrice(incrome.lastMonthSettle):'0.00'}}</text>
+            </view>
+            <view class="income_top_one">
+              <text style="font-size: 26rpx;font-weight: bold;">本月结算金额</text>
+              <text style="margin-top: 10px;color: red;margin-bottom: 10px;">￥{{incrome.MonthSettle?filter.formatPrice(incrome.MonthSettle):'0.00'}}</text>
+            </view>
+      </view> 
+      <view class="income  pt-15">
+        <text class="service_fw text-lg">效果数据</text> 
+        <!-- <view class="text-lg mt-20"><van-icon name="arrow" style="color: {{main_color}};font-size: 38rpx;" /></view>         -->
+      </view>
+      <view class="node-tab">
+        <view class="tab-item {{currentTab == '0' ? 'active' : ''}}" data-current="0" bindtap="changeNav">昨天</view>
+        <view class="tab-item {{currentTab == 1 ? 'active' : ''}}" data-current="1" bindtap="changeNav">今天</view>
+        <view class="tab-item {{currentTab == 2 ? 'active' : ''}}" data-current="2" bindtap="changeNav">近7天</view>
+        <view class="tab-item {{currentTab == 3 ? 'active' : ''}}" data-current="3" bindtap="changeNav">近30天</view>  
+      </view>
+      <view class="income_top" style=" background-color: white; ">
+            <view class="income_top_one" style="margin-top:30rpx">
+                <text style="font-size: 26rpx;font-weight: bold;">预计收入(元)</text>
+                <text style="margin-top: 10px;color: red;margin-bottom: 10px;">￥{{filter.formatPrice(money)}}</text>
+            </view>
+            <view class="income_top_one"  style="margin-top:30rpx">
+              <text style="font-size: 26rpx;font-weight: bold;">有效订单数量</text>
+              <text style="margin-top: 10px;color: red;margin-bottom: 10px;">{{order}}</text>
+            </view>
+            <view class="income_top_one"  style="margin-top:30rpx">
+              <text style="font-size: 26rpx;font-weight: bold;">有效订单金额(元)</text>
+              <text style="margin-top: 10px;color: red;margin-bottom: 10px;">￥{{filter.formatPrice(total)}}</text>
+            </view>
+      </view> 
+      <view class="income  pt-15">
+        <text class="service_fw text-lg">实时数据</text> 
+        <view class="text-lg mt-20"></view>  
+        <navigator class="text-lg mt-20"  url="/pagesUser/income/incomelog/index"  open-type="navigate">
+          <van-icon name="arrow" style="color: {{main_color}};font-size: 38rpx;" />
+        </navigator>     
+      </view>
+      <view style=" background-color: white; padding-bottom: 40rpx; ">
+        <view class="new-list-item" wx:for="{{incrome.money_log}}" wx:key="index">                        
+            <view class="item-tag dis-flex-between">                    
+                <view class="content-deadline mb-15 text-xsl">交易时间：{{item.add_time}}</view>
+                <view class="content-deadline">类型：{{item.info}}</view>                            
+            </view>
+            <view class="item-tag dis-flex-between">
+            <view class="content-deadline mb-15" style="color: red;font-weight: bold;font-size: 28rpx;" wx:if="{{item.style == '1'}}">+ {{item.affectMoney}}</view>
+            <view class="content-deadline mb-15" style="color: gray;font-weight: bold;font-size: 28rpx;" wx:if="{{item.style == '0'}}">- {{item.affectMoney}}</view>
+            <view class="content-deadline">余额：{{item.accountMoney}}</view>
+          </view>
+        </view>                
+      </view>			
+	</view>
+  <wxs module="filter" src="../../utils/addmul.wxs"></wxs>
+<!-- </page> -->

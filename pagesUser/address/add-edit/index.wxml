@@ -1,0 +1,57 @@
+<!--pagesMine/address/add-edit/index.wxml-->
+<t-nav-bar title="{{type==='c'?'新增':'编辑'}}地址" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+
+
+
+
+
+
+<t-cell-group>
+  <view class="bg-white border-b">
+    <t-input title='收货人' data-param="linkname" value="{{formData.linkname}}" bind:change="bindInputFormData" placeholder="请输入收货人姓名" required='left'></t-input>
+    <view class="flex justify-center p-20">
+      <radio class="mr-30" color="{{main_color}}" checked="{{check_index==1?'true':''}}" data-index="1" catchtap="radioChange">先生</radio>
+      <radio class="ml-30" color="{{main_color}}" checked="{{check_index==2?'true':''}}" data-index="2" catchtap="radioChange">女士</radio>
+    </view>
+  </view>
+  <t-input border  title='联系方式'  data-param="phone" value="{{formData.phone}}" bind:change="bindInputFormData" placeholder="请输入手机号码"></t-input>
+  <t-input border  title="所在地区" value="{{province}} {{city}} {{area}}" required='left' border bindtap="getbox" disabled="disabled"></t-input>
+  <t-input border  title='详细地址' data-param="address"  value="{{formData.address}}" bind:change="bindInputFormData" placeholder="请输入详细地址" ></t-input>
+ 
+  <view class="bg-white p-20 flex justify-end">
+    <radio color="{{main_color}}" checked="{{check_addres==1?'true':''}}" data-index="{{check_addres}}" catchtap="is_def">设为默认地址</radio>
+  </view>
+</t-cell-group>
+
+
+<t-submit-bar t-class='button-submit' text='{{loading?"提交中...":"保存"}}' bgcolor='{{main_color}}' bind:submit='confirm_ok' loading='{{loading}}' safeArea full></t-submit-bar>
+
+  <!-- 省市区弹框 -->
+  <view class="box" wx:if="{{boxShow}}">
+    <!-- 阴影 -->
+    <view class="black" bindtap="hidebox"></view>
+    <!-- 内容 -->
+    <view class="nr">
+      <view class="item">
+        <text bindtap="hidebox">取消</text>
+        <text bindtap="confirm">确认</text>
+      </view>
+      <view style="display:flex;width: 100%;height: 400rpx;">
+          <picker-view indicator-style="height: 200rpx;" style="width: 100%;height: 400rpx;text-align: center" value="{{pIndex}}" bindchange="changeProvince2">
+              <picker-view-column>
+                  <view wx:for="{{placeArray}}" wx:key="name" style="line-height: 50rpx">{{item.name}}</view>
+              </picker-view-column>
+          </picker-view>
+          <picker-view indicator-style="height: 200rpx;" style="width: 100%;height: 400rpx;text-align: center" value="{{cIndex}}" bindchange="changeCity2">
+              <picker-view-column>
+                  <view wx:for="{{placeArray[pIndex].city}}" wx:key="name" style="line-height: 50rpx">{{item.name}}</view>
+              </picker-view-column>
+          </picker-view>
+          <picker-view indicator-style="height: 200rpx;" style="width: 100%;height: 400rpx;text-align: center" value="{{aIndex}}" bindchange="changeArea2">
+              <picker-view-column>
+                  <view wx:for="{{placeArray[pIndex].city[cIndex].area}}" wx:key="*this" style="line-height: 50rpx">{{item}}</view>
+              </picker-view-column>
+          </picker-view>
+      </view>
+    </view>
+  </view>

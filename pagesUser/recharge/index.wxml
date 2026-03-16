@@ -1,0 +1,30 @@
+<!--pages/recharge/index.wxml-->
+<view>
+  <t-nav-bar title="充值中心" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+  <view class="mine-wrap">
+		<view class="mine__bg" style="background-color:{{main_color}};background-image: url('/images/mine/header.png');">
+			<view class="mine__info">
+				<image class="mine__bg--avatar" style="background: {{main_color}}" src="/images/mine/avatar.png"></image>
+				<view class="mine__info--cell">
+					<view class="mine__info--name mb-5">余额：￥{{balance}}</view>
+          <navigator class="mine__info--desc" url="/pages/moneylog/index"  open-type="navigate">交易记录<van-icon name="arrow" /></navigator>  
+				</view>
+			</view>
+		</view>
+  </view>
+  <view class="main-body">
+      <view class="do_cash">
+        <view bindtap="cash"   wx:for="{{list}}" wx:for-item="item" wx:key="unique"  class="{{item.id==docashId?'one_cd-active':'one_cd'}}" data-id="{{item.id}}" data-money="{{item.money}}">
+          <text class="{{item.id==docashId?'docash_val-active':'docash_val'}}">{{item.money}} 元</text>         
+          <text class="mt-5">赠送：{{item.value}}元</text>
+        </view>
+
+      </view> 
+      <view class="one_cd {{docashId==21?'one_cd-active':'one_cd'}}" style="margin-left: 65rpx;" bindtap="cash"   data-id="21" >
+        <view style="display: flex;font-size: 30rpx;"><input class="docash_val"   bindchange="getInputNum" value="{{value2}}"  placeholder="请输入"  style="width: 100rpx;font-size: 30rpx;"/>元 </view>   
+        <text class="mt-5">其他金额</text>
+      </view>
+      <van-button loading="{{loading}}"  loading-text="加载中..." type="info" class="button" custom-style="width:300rpx;height:80rpx;background:{{main_color}};border:{{main_color}};text-center:center;align-center:center" bind:click="dosubmit">立即充值</van-button>     
+  </view>
+  
+</view>

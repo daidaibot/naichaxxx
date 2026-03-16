@@ -1,0 +1,103 @@
+<view>
+  <t-nav-bar title="店铺信息" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+  <!-- tab切换 -->
+    <view class="node-tab">
+        <view class="tab-item {{currentTab == 1 ? 'active' : ''}}" data-current="1" bindtap="changeNav">待投资</view>
+        <view class="tab-item {{currentTab == 2 ? 'active' : ''}}" data-current="2" bindtap="changeNav">待开业</view>
+        <view class="tab-item {{currentTab == 3 ? 'active' : ''}}" data-current="3" bindtap="changeNav">运营中</view>
+    </view>
+
+    <!---支付信息-->
+    <view class="auth" wx:if="{{isShow}}">
+      <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{isShow}}"></view>
+      <!-- 弹出层 -->
+      <view class="modalDlg" wx:if="{{isShow}}">
+          <view class="title">
+              <text class="text0">店铺投资</text>
+          </view>
+          <view class="cartLeft"></view>
+          <u-image :lazy-load="true" width="150rpx" height="150rpx" :src="logo"></u-image>
+          <view class="name mt-30">
+              <text class="text1 ">支付金额：{{pay_money}} 元</text>
+          </view>
+          <!-- <view class="cartLeft1"></view> -->
+          <!-- <view class="content">
+              <text class="text2">{{userInfo.level_info.level_intro}}</text>
+          </view> -->
+          <view class="content mt-20">
+            <navigator url="/pages/cash-detail/index?type=invest"  open-type="navigate">
+                <text class="text mt-30" style="color: {{main_color}};">《店铺投资协议》</text>
+            </navigator>    
+          </view>
+          <view class="cartLeft2"></view>
+          <view class="but mt-20">
+            <van-button  round="true" type="default"  size="small"    custom-style="width:160rpx"  bindtap="rejectInfo">取消</van-button>
+              <van-button   round="true" type="info"  size="small"  custom-style="width:160rpx"  loading='{{loading}}'   bindtap="{{loading?'':'getUserProfileUrl'}}" data-levelId="{{userInfo.level_info.id}}">支付</van-button>
+             
+          </view>
+      </view>
+  </view>
+
+
+
+    <swiper class="tab-content"  duration="300" bindchange="changeTab" style="height:{{winHeight}}rpx">
+        <!-- 全部 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="new-list-box" bindscrolltolower="allLoadMore" scroll-top='{{scrollTop}}' scroll-with-animation refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-default-style="white" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onAllRefresh">
+                <block wx:if="{{allTabList.length > 0}}">
+
+                    <view class="new-list-item" wx:for="{{allTabList}}" wx:key="index" wx:if="{{currentTab == 1 || currentTab == 2}}">                                            
+                        <view class="item-tag dis-flex-between" wx:if="{{currentTab == 1 || currentTab == 2}}">                    
+                            <view class="content-deadline mb-15 text-xsl">申请人：{{item.realname}}</view>
+                            <view class="content-deadline mt-20">店铺地址：{{item.address}}</view>  
+                            <view class="content-deadline mt-20">店铺图片： </view>   
+                            <image wx:for="{{item.images}}" wx:key="unique" wx:item="item" class="grid-img" src="{{item}}" bindtap="handleChangeGoods" 	mode="scaleToFill" bindtap="toPreviewImage" data-url="{{item}}"></image>
+                            <view class="content-deadline mt-20">申请理由： {{item.content}}</view>                            
+                            <button class="cash_submit"  wx:if="{{currentTab == 1}}" bind:tap="dopay" data-id="{{item.id}}" data-pay_money="{{item.pay_money}}">支付</button>
+                        </view>
+                    </view>
+                  <view class="one_mian" wx:for="{{allTabList}}" wx:for-item="item" wx:key="unique" wx:if="{{currentTab == 3}}">
+                    <view class="mian_left" bind:tap="position" data-info="{{item}}">
+                        <text class="mt-20 text-lg text-bold">{{item.storage_shop_name}}</text>
+                        <view class="mt-15 flex">
+                          <view class="main_tag" style="background: {{main_color}};margin-right: 10rpx;"><text>可外卖</text></view>
+                          <view class="main_tag" style="background: {{main_color}};"><text>可自取</text></view>
+                        </view>
+                        <view class="mt-15 text-xs flex flex-direction">
+                        <view><van-icon name="location-o" size="35rpx" /><text class="ml-10">{{item.province}}{{item.city}}{{item.area}}{{item.address}}</text></view>
+                        <view class="mt-15"> <van-icon name="clock-o" size="35rpx"  /><text class="mt-15 ml-10">00:00-23:00</text></view>
+                        </view>
+                        <view class="mt-15 mb-20">
+                          <view>
+                              <van-button plain type="primary" size="mini" custom-style="margin-right:10rpx">营业中</van-button>
+                              <van-button  type="primary" size="mini">接受预定</van-button>
+                          </view>
+                        </view>
+                    </view>
+                    <view style="border-right: 1px solid #e2dede; margin-top: 30rpx; margin-bottom: 30rpx;margin-left: 10rpx;"></view>
+                    <view class="shop-right">
+                      <view class="mian_right">                          
+                          <text style="font-size: 25rpx;margin-top: 5rpx;">今日营业额</text>   
+                          <text class="text-bold" style="font-size: 25rpx;color: red;">￥{{item.day_order_money}}</text>                                            
+                        </view>
+                        <view class="mian_right">                          
+                          <text style="font-size: 25rpx;margin-top: 5rpx;">累计营业额</text>   
+                          <text class="text-bold" style="font-size: 25rpx;color: red;">￥{{item.order_money}}</text>                                            
+                        </view>
+                        <view class="mian_right">                          
+                          <text style="font-size: 25rpx; margin-top: 5rpx;">投资人昨日收益</text>  
+                          <text class="text-bold" style="font-size: 25rpx;color: red;">￥{{item.yest_gift_money}}</text>                                              
+                        </view>
+                        <view class="mian_right">                          
+                          <text style="font-size: 25rpx;margin-top: 5rpx;">投资人累计收益</text>   
+                          <text class="text-bold" style="font-size: 25rpx;color: red;">￥{{item.gift_money}}</text>                                            
+                        </view>
+                      </view>
+                  </view>    
+
+
+                </block>                
+            </scroll-view>
+        </swiper-item>       
+    </swiper>
+</view>

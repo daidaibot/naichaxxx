@@ -1,0 +1,9 @@
+<page id="page">
+  <t-nav-bar title="{{project_cn}}" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+  <!-- <import src="../../utils/wxParse/wxParse.wxml"/> -->
+  <view class="content" style="background:white;">
+    <rich-text html="{{article}}"></rich-text>
+    <!-- <template is="wxParse" data="{{wxParseData:article.nodes}}"/> -->
+  </view>
+</page>
+

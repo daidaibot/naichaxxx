@@ -1,0 +1,34 @@
+<!--pagesGoods/detail/index.wxml-->
+<t-nav-bar title="商品详情页" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+<view class="goods-banner">
+  <image class="grid-img" src="{{goodsInfo.goods_image}}"  	mode="scaleToFill" data-posid="{{goods.id}}"></image>
+</view>
+<view class="goods-info p-20">
+  <view class="goods-info-name">{{goodsInfo.goods_title}}</view>
+  <view class="goods-info-desc">{{goodsInfo.goods_desc}}</view>
+  <view class="goods-info-footer">
+    <view class="goods-info-price">积分 {{goodsInfo.goods_points}}</view>
+    
+  </view>
+</view>
+
+<view class="mt-20 p-20 goods-desc">
+  <view class="flex justify-center align-center">
+    <iconfont class="mt-5" icon="icon-img" color="#333333" size="40rpx" />
+    <text class="ml-10">图文详情</text>
+  </view>
+  <view>
+    <rich-text html="{{goodsInfo.goods_content}}"></rich-text>
+  </view>
+</view>
+
+<t-submit-bar t-class='button-submit' text='立即购买' bgcolor='{{main_color}}' z-index='9999' border self safeArea>
+  <view class="flex">
+      <view class="submit-btn-left" style="background: {{sub_color}};"  wx:if="{{userInfo.nickName==null}}" bindtap="routeToLogin">兑换</view>
+      
+    </view>
+</t-submit-bar>
+
+<biz-specs id="bizSpecs" bind:specs_pay="specs_pay" main-color="{{main_color}}" sub-color="{{sub_color}}"></biz-specs>
+<biz-pay id="bizPay"   bindechange="delcar" bindcaredit="caredit" main-color="{{main_color}}" sub-color="{{sub_color}}"></biz-pay>
+<biz-coupon id="coupon"    main-color="{{main_color}}" sub-color="{{sub_color}}"></biz-coupon>

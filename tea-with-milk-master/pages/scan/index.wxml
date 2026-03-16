@@ -1,0 +1,38 @@
+<!--pages/scan/index.wxml-->
+
+<view>
+  <t-nav-bar title="会员信息" visible="{{true}}" background="#2bae67" btn-color="{{nav_bar_btn_color}}" text-color="#ffff" bind:home="routeToHome"/>
+  <view class="content">
+       <view class="mian"> 
+          <view class="flex flex-direction justify-center align-center text-center">
+              <image class="mine__bg--avatar" src="{{memberInfo.wx_icon}}" bind:tap="adv_logo"></image>
+              <text class="mt-10 ml-30">{{memberInfo.nickName}}</text>
+          </view>    
+          
+          <view class="flex justify-around align-center text-center mt-60">
+              <view class="flex flex-direction text-lg">
+                <text style="color:#2bae67">{{memberInfo.coupon_count}}</text>
+                <text class="mt-5" style="color: #494e52;">优惠券</text>
+              </view>
+              <view class="flex flex-direction text-lg">
+                <text style="color:#2bae67">{{memberInfo.points}}</text>
+                <text class="mt-5" style="color: #494e52;">积分</text>
+              </view>
+              <view class="flex flex-direction text-lg">
+                <text style="color:#2bae67">{{memberInfo.balance}}</text>
+                <text class="mt-5" style="color: #494e52;">余额</text>
+              </view>          
+          </view>
+          <view class="mt-45">
+            <van-cell-group>       
+                <van-field   type="number" model:value="{{ userbalace }}" required clearable label="操作余额" icon="balance-o" placeholder="请输入操作余额" bind:click-icon="onClickIcon"/> 
+              
+                <van-field  model:value="{{ remark }}" required clearable label="操作说明" icon="notes-o" placeholder="请输入操作说明" bind:click-icon="onClickIcon"/>   
+            </van-cell-group>
+          </view>  
+          <view class="flex justify-center mt-30">
+            <van-button loading="{{loading}}"  loading-text="加载中..." type="info" class="button" custom-style="width:300rpx;height:80rpx;background:{{main_color}};border:{{main_color}};text-center:center;align-center:center" bind:click="dosubmit">确认提交</van-button>     
+          </view>
+       </view>   
+  </view>
+</view>

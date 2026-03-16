@@ -1,0 +1,28 @@
+<view>
+  <t-nav-bar title="消费记录" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+  <!-- tab切换 -->
+    <view class="node-tab">
+        <view class="tab-item {{currentTab == 1 ? 'active' : ''}}" data-current="1" bindtap="changeNav">收入</view>
+        <view class="tab-item {{currentTab == 2 ? 'active' : ''}}" data-current="2" bindtap="changeNav">支出</view>
+    </view>
+    <swiper class="tab-content"  duration="300" bindchange="changeTab" style="height:{{winHeight}}rpx">
+        <!-- 全部 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="new-list-box" bindscrolltolower="allLoadMore" scroll-top='{{scrollTop}}' scroll-with-animation refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-default-style="white" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onAllRefresh">
+                <block wx:if="{{allTabList.length > 0}}">
+                    <view class="new-list-item" wx:for="{{allTabList}}" wx:key="index">                        
+                        <view class="item-tag dis-flex-between">                    
+                            <view class="content-deadline mb-15 text-xsl">交易时间：{{item.add_time}}</view>
+                            <view class="content-deadline">类型：{{item.moneyType_name}}</view>                            
+                        </view>
+                        <view class="item-tag dis-flex-between">
+                          <view class="content-deadline mb-15" style="color: red;font-weight: bold;font-size: 28rpx;" wx:if="{{item.style == '1'}}">+ {{item.affectMoney}}</view>
+                          <view class="content-deadline mb-15" style="color: gray;font-weight: bold;font-size: 28rpx;" wx:if="{{item.style == '0'}}">- {{item.affectMoney}}</view>
+                        <view class="content-deadline">余额：{{item.accountMoney}}</view>
+                      </view>
+                    </view>
+                </block>                
+            </scroll-view>
+        </swiper-item>       
+    </swiper>
+</view>

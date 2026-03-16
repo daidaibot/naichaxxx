@@ -1,0 +1,24 @@
+
+<t-nav-bar title="我的地址" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+<paging page-count="{{list.lenght}}" emptyText="暂无收货地址" emptyImage="/images/common/empty_address.png">
+	<view class='p-20' wx:for="{{list}}" wx:for-item="item" wx:key="unique">
+		<view class="mb-10" data-item="{{item}}" bindlongpress="handleOperate">
+			<t-cell t-class='border-radius border-b pt-30 pb-30'>
+				<view class="flex flex-direction" slot='content'>
+					<view class='flex align-center cell text-lg'>
+						<view class="title text-lg ellipsis">{{item.realname}}
+             <text class="text-sm" wx:if="{{item.is_gender==1}}">(先生)</text>
+             <text class="text-sm" wx:elif="{{item.is_gender==2}}">(女士)</text>
+             {{item.phone}}</view>
+					</view>
+          <view class="text-sm mt-10">{{item.province}}{{item.city}}{{item.region}}{{item.address}}</view>
+          <van-button type="info" color="#64c992" size="mini" class="mt-10" wx:if="{{item.is_default==1}}">默认地址</van-button>
+				</view>
+        <view slot="footer">
+        	<iconfont icon="icon-edit" color="{{main_color}}" size="50rpx" data-item="{{item}}" bindtap="handleEdit"/>
+        </view>
+			</t-cell>
+		</view>
+	</view>
+  <t-submit-bar t-class='button-submit' text='新增地址' bgcolor='{{main_color}}' z-index='9999' full safeArea border data-url="/pagesUser/address/add-edit/index?type=c" bind:submit='routeToNext'></t-submit-bar>
+</paging>

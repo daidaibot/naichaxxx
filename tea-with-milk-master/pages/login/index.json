@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "t-input": "/component/input/index",
+    "t-button": "/component/button/index"
+  }
+}

@@ -1,0 +1,51 @@
+<!--pages/shopInfo/index.wxml-->
+<view>
+  <t-nav-bar title="会员码" visible="{{false}}" background="#2bae67" btn-color="{{nav_bar_btn_color}}" text-color="#ffff"  bind:home="routeToHome"/>
+  <view class="content">       
+       <view class="mian">       
+          <view class="flex border-b pb-20 align-center ml-20 pt-20">
+            <image src="/images/resource/wechat.png" mode="scaleToFill" style="width: 43rpx;height: 43rpx;" ></image>
+            <text class="ml-10"  style="color: #494e52;">向商家付款</text> 
+          </view>
+          <view class="flex flex-direction justify-center mt-20 text-center align-center pt-20">
+              <!-- 条形码 -->
+               <canvas class="barcode" canvas-id="barcode" bindtap="barEnlargePage" style="height: 160rpx;" />
+               <text style="margin-top: -28rpx;color: #494e52;font-size: 28rpx ;" class="pt-15">会员卡号:{{userInfo.member_code}}</text>
+          </view>
+
+          <view class="flex flex-direction justify-center text-center align-center dashed-b padding-10">
+               <!-- 二维码 -->
+              <view style="margin-top: -20rpx;">
+                <canvas class="qrcode" canvas-id="qrcode" bindtap="qrEnlargePage" style="height:380rpx;margin-left: 170rpx;" />
+              </view>
+              <view class="margin-20" style="color: #494e52;font-size: 25rpx;">
+                <van-icon color="#494e52" name="replay"  bind:click="Refresh" />
+                <text style="color: #494e52;font-size: 25rpx;margin-left: 15rpx;padding-top: 25rpx;">会员码每30秒自动更新，请在店内消费使用</text>
+              </view>
+          </view>
+
+          <view class="flex justify-around align-center text-center mt-25">
+              <view class="flex flex-direction text-lg">
+                <text style="color:#2bae67">{{userInfo.coupon_count}}</text>
+                <text class="mt-5" style="color: #494e52;">优惠券</text>
+              </view>
+              <view class="flex flex-direction text-lg">
+                <text style="color:#2bae67">{{userInfo.points}}</text>
+                <text class="mt-5" style="color: #494e52;">积分</text>
+              </view>
+              <view class="flex flex-direction text-lg">
+                <text style="color:#2bae67">{{userInfo.balance}}</text>
+                <text class="mt-5" style="color: #494e52;">余额</text>
+              </view>          
+          </view>
+
+          <view class="flex justify-center align-center text-center mt-35">
+            <image src="/images/resource/wechatpay.png" mode="scaleToFill" style="width: 43rpx;height: 43rpx;" ></image>
+            <text class="ml-10"  style="color: #2bae67; font-size: 32rpx;">使用微信支付</text>
+          </view>
+  
+
+       </view>
+  </view>
+
+</view>

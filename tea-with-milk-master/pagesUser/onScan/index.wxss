@@ -1,0 +1,94 @@
+/* pages/mine/about/index.wxss */
+.about{
+  background: white;
+  padding: 10rpx 20rpx;
+  /* height: 1080rpx; */
+}
+
+.about-header{
+  margin-top: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-header__image{
+  height: 350rpx;
+  width: 350rpx;
+  display: block;
+  /* background: rgb(216, 216, 216); */
+}
+
+.about-header__text{
+  font-size: 28rpx;
+  padding: 10rpx 0 30rpx 0;
+  color: #666666;
+}
+
+.about-content{
+  color: #666666;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  padding: 0 20rpx;
+}
+
+.about-button{
+  margin-top: 40rpx;
+  font-size: 28rpx;
+  line-height: 80rpx;
+  height: 80rpx;
+  color: #FFFFFF;
+}
+
+.about-button:active{
+  opacity: 0.5;
+}
+
+/* component/specs/index.wxss */
+
+.specs-top-desc{
+  display: flex;
+  flex-direction: column;
+  font-size: 25rpx;
+  margin-left: 35rpx;
+  color: #756f6f; 
+  font-weight: bold; 
+}
+
+.specs-top-name{
+  display: flex;
+  flex-direction: column;
+  font-size: 35rpx;
+  margin-left: 35rpx;
+  color: #756f6f;  
+  align-items: center;
+  font-weight: bold;
+}
+
+.specs-top-title{
+  display: flex;
+  flex-direction: column;
+  font-size: 25rpx;
+  margin-left: 35rpx;  
+  margin-top: 25rpx;
+  
+}
+
+.localtion{
+  display: flex;
+  flex-direction: row;
+  /* color: gray; */
+}
+
+.specs-top{
+  display: flex;
+  flex-direction: row;
+  font-size: 23rpx;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10rpx;
+  border-bottom: 1rpx solid rgb(240, 235, 235);
+
+ 
+}

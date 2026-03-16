@@ -1,0 +1,23 @@
+<view>
+  <t-nav-bar title="提现记录" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+  <!-- tab切换 -->
+    <swiper class="tab-content"  duration="300" bindchange="changeTab" style="height:{{winHeight}}rpx">
+        <!-- 全部 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="new-list-box" bindscrolltolower="allLoadMore" scroll-top='{{scrollTop}}' scroll-with-animation refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-default-style="white" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onAllRefresh">
+                <block wx:if="{{allTabList.length > 0}}">
+                    <view class="new-list-item" wx:for="{{allTabList}}" wx:key="index">                        
+                        <view class="item-tag dis-flex-between">                    
+                            <view class="content-deadline mb-15 text-xsl">交易时间：{{item.add_time}}</view>
+                            <view class="content-deadline">类型：{{item.status}}</view>                            
+                        </view>
+                        <view class="item-tag dis-flex-between">
+                          <view class="content-deadline mb-15" style="color: gray;font-weight: bold;font-size: 28rpx;" >{{item.bankname}}</view>
+                        <view class="content-deadline">提现金额：{{item.money}}</view>
+                      </view>
+                    </view>
+                </block>                
+            </scroll-view>
+        </swiper-item>       
+    </swiper>
+</view>

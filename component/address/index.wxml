@@ -1,0 +1,29 @@
+<!--component/specs/index.wxml-->
+<popup id="popup">
+  <view class="specs">
+  <view class="specs-top">
+  <view>用户地址信息</view>
+  <view style="color: gray;" bindtap="delcar"></view>  
+  </view>
+    
+  <block wx:for="{{addresslist}}" wx:for-index="index" wx:for-item="item" wx:key="unique">
+    <view class="mb-10" data-item="{{item}}" bind:tap="handleOperate">
+        <t-cell t-class='border-radius border-b pt-30 pb-30'>
+          <view class="flex flex-direction" slot='content'>
+            <view class='flex align-center cell text-lg'>
+              <view class="title text-lg ellipsis">{{item.realname}}
+              <text class="text-sm" wx:if="{{item.is_gender==1}}">(先生)</text>
+              <text class="text-sm" wx:elif="{{item.is_gender==2}}">(女士)</text>
+              {{item.phone}}</view>
+            </view>
+            <view class="text-sm mt-10">{{item.province}}{{item.city}}{{item.region}}{{item.address}}</view>
+            
+          </view>
+          <view slot="footer">
+            <van-button type="info" size="mini" class="mt-10" wx:if="{{item.is_default==1}}">默认地址</van-button>
+          </view>
+        </t-cell>
+    </view>                
+  </block>      
+  </view>
+</popup>

@@ -1,0 +1,7 @@
+<!--pages/level_equity/index.wxml-->
+<view class="bg-white pt-20 pb-20 pl-15 pr-15">
+  
+  <view class="text-black text-df mt-15">
+    <rich-text html="{{levelInfo.level_desc}}"></rich-text>
+  </view>
+</view>

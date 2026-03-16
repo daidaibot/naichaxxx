@@ -1,0 +1,68 @@
+
+<page id="page">
+<view>
+  <t-nav-bar title="店铺列表" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+  <!-- tab切换 -->
+    <view class="node-tab">
+        <view class="tab-item {{currentTab == 4 ? 'active' : ''}}" data-current="4" bindtap="changeNav">线下店铺</view>
+        <view class="tab-item {{currentTab == 3 ? 'active' : ''}}" data-current="3" bindtap="changeNav">店铺收入</view>
+    </view>
+    <swiper class="tab-content"  duration="300" bindchange="changeTab" style="height:{{winHeight}}rpx">
+        <!-- 全部 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="new-list-box" bindscrolltolower="allLoadMore" scroll-top='{{scrollTop}}' scroll-with-animation refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-default-style="white" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onAllRefresh">
+                <block wx:if="{{currentTab == 3 && allTabList.length > 0}}">
+
+
+                    <view class="new-list-item" wx:for="{{allTabList}}" wx:key="index">                        
+                        <view class="item-tag dis-flex-between">                    
+                            <view class="content-deadline mb-15 text-xsl">交易时间：{{item.add_time}}</view>
+                            <view class="content-deadline">类型：{{item.moneyType_name}}</view>                            
+                        </view>
+                        <view class="item-tag dis-flex-between">
+                          <view class="content-deadline mb-15" style="color: red;font-weight: bold;font-size: 28rpx;" wx:if="{{item.style == '1'}}">+ {{item.affectMoney}}</view>
+                          <view class="content-deadline mb-15" style="color: gray;font-weight: bold;font-size: 28rpx;" wx:if="{{item.style == '0'}}">- {{item.affectMoney}}</view>
+                        <view class="content-deadline">余额：{{item.accountMoney}}</view>
+                      </view>
+                    </view>
+
+
+                </block> 
+
+              <block wx:if="{{currentTab == 4 && allTabList.length > 0}}">
+
+
+                <view class="one_mian" wx:for="{{allTabList}}" wx:for-item="item" wx:key="unique">
+       <view class="mian_left" bind:tap="position" data-info="{{item}}">
+          <text class="mt-20 text-lg text-bold">{{item.storage_shop_name}}</text>
+          <view class="mt-15 flex">
+             <view class="main_tag" style="background: {{main_color}};margin-right: 10rpx;"><text>可外卖</text></view>
+             <view class="main_tag" style="background: {{main_color}};"><text>可自取</text></view>
+          </view>
+          <view class="mt-15 text-xs flex flex-direction">
+          <view><van-icon name="location-o" size="35rpx" /><text class="ml-10">{{item.province}}{{item.city}}{{item.area}}{{item.address}}</text></view>
+          <view class="mt-15"> <van-icon name="clock-o" size="35rpx"  /><text class="mt-15 ml-10">00:00-23:00</text></view>
+          </view>
+          <view class="mt-15 mb-20">
+             <view>
+                <van-button plain type="primary" size="mini" custom-style="margin-right:10rpx">营业中</van-button>
+                <van-button  type="primary" size="mini">接受预定</van-button>
+             </view>
+          </view>
+       </view>
+       <view style="border-right: 1px solid #e2dede; margin-top: 30rpx; margin-bottom: 30rpx;margin-left: 10rpx;"></view>
+       <view class="mian_right">
+       
+        <text class="text-bold" style="font-size: 25rpx;color: red;">￥{{item.money}}</text>
+        <text style="font-size: 30rpx;margin-top:20rpx;">店铺收益</text>
+        
+
+       </view>
+    </view>    
+  </block>            
+            </scroll-view>
+        </swiper-item>       
+    </swiper>
+</view>
+
+</page>

@@ -1,0 +1,39 @@
+<view>
+
+
+
+  <t-nav-bar title="我的卡券" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+  <!-- tab切换 -->
+  <view class="node-tab">
+        <view class="tab-item {{currentTab == '0' ? 'active' : ''}}" data-current="0" bindtap="changeNav">未使用</view>
+        <view class="tab-item {{currentTab == 1 ? 'active' : ''}}" data-current="1" bindtap="changeNav">已使用</view>
+        <view class="tab-item {{currentTab == 2 ? 'active' : ''}}" data-current="2" bindtap="changeNav">已过期</view>
+</view>
+    
+    <swiper class="tab-content"  duration="300" bindchange="changeTab" style="height:{{winHeight}}rpx">
+        <!-- 全部 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="new-list-box" bindscrolltolower="allLoadMore" scroll-top='{{scrollTop}}' scroll-with-animation refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-default-style="white" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onAllRefresh">
+              <block wx:if="{{allTabList.length > 0}}"  wx:for="{{allTabList}}" wx:for-item="item" wx:key="unique" >
+              <view class="coupon-box flex coupon_bg_{{currentTab}}">
+                  <view></view>
+                  <view class="cou-left flex-row j_c margin-20"  style="color:{{ item.use_status=='2'?'white': ';'}}">
+                    <view>
+                      <text style="font-size: 56rpx;margin-left: 15rpx;">{{item.amount}}</text>
+                      <text>元</text>
+                    </view>
+                    <view class="text-lg" style="margin-left: 30rpx;margin-top:10rpx;">{{item.name}}</view>
+                  </view>
+                  <view class="cou-right flex-row ">
+                    <view style="color:{{ item.use_status=='2'?'white': ';'}}">
+                      <view>{{item.shop_name}}</view>
+                      <view style="margin-top: 10rpx;">消费满{{item.min_point}}减{{item.amount}}</view>
+                      <view class="cou-right-time" style="font-size: 25rpx; margin-top: 15rpx;color:{{ item.use_status=='2'?'white': ';'}}">有效时间：{{item.end_time}}</view>
+                    </view>
+                  </view>
+                </view>                
+              </block>                
+            </scroll-view>
+        </swiper-item>       
+    </swiper>
+</view>

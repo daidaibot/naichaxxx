@@ -1,0 +1,25 @@
+<!--pagesUser/cooperlist/index.wxml-->
+<t-nav-bar title="员工列表" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+
+<block wx:if="{{list.length > 0}}">
+    <view class="new-list-item flex-direction" wx:for="{{list}}" wx:key="index"> 
+        <view class="item-tagg"> 
+          <view class="item-tag flex"> 
+            <image class="mine__bg--avatar" style="background: gray" src="{{item.wx_icon}}"></image>   
+            <view class="mrember-info">
+                <text class="ml-20">{{item.nickName}}</text> 
+                <text class="mt-10 ml-20">{{item.staff_name}}</text>               
+                <text class="mt-10 ml-20">{{item.staff_phone}}</text>  
+            </view>                                        
+          </view>
+          <view class="flex align-center text-center ml-30">
+                <van-switch active-color="{{main_color}}" checked="{{item.staff_status==1?true:false}}" bind:change="onChange" data-id="{{item.id}}"/>   
+          </view> 
+        </view>  
+    </view>
+</block> 
+
+<button class="price_share" open-type="share" bindtap="showStaff">
+ <text class="share-size" style="margin-top:1rpx;">添加</text>
+ <text class="share-size">员工</text>
+</button>

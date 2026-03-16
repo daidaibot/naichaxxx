@@ -1,0 +1,47 @@
+/* pagesOrder/wxPay/index.wxss */
+page{
+  /* background-color: white; */
+}
+
+.pay_top{
+  display: flex;    /*设置显示样式**/
+  flex-direction:column; /**子view排列方式row--水平 column--垂直*/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/ 
+  background: white;
+  padding-top: 60rpx;
+  font-size:28rpx;
+  /* border-bottom: 1rpx solid rgb(233, 225, 225); */
+
+}
+.mian{
+  display: flex;    /*设置显示样式**/
+  flex-direction:column; /**子view排列方式row--水平 column--垂直*/
+  margin-top: 20rpx;
+  padding-top: 30rpx;
+  padding-left:20rpx ;
+  font-size:28rpx;
+  background-color: #ffff;
+}
+.pay_type{
+  display:flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+  height: 70rpx;
+  margin-left: 30rpx;
+  align-items: center;
+}
+.pay_image{  
+  width: 44rpx;
+  height: 44rpx;
+}
+.submit{
+  display: flex;    /*设置显示样式**/
+  flex-direction:column; /**子view排列方式row--水平 column--垂直*/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/ 
+  margin-top: 25rpx;
+  
+}

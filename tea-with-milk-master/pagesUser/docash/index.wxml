@@ -1,0 +1,35 @@
+<t-nav-bar title="{{cashType=='member'?'用户':'商户'}}提现" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+<view class="opinion_wrap">
+  <form bindsubmit="formSubmit">
+    <view class="dochsh_one">
+      <text class="service_fw text-lg">税前可提现金额：<text style="color: red;">{{cash_info.balance}}元</text></text> 
+      <view class="money">
+            <input name="money" value="{{money}}" placeholder-class="placeholder" placeholder="请输入提现金额 0.00 元" />
+      </view>
+      <text class="text-lg" style="margin-left: 30rpx;font-size: 25rpx;">提现金额不低于<text style="color: red;">{{cash_info.min_money}}</text>元</text> 
+    </view>
+
+    <view class="dochsh_two">
+      <text class="service_fw text-lg">完善提现信息</text> 
+      <view class="phone">
+          <input name="realname" value="{{realname}}" placeholder-class="placeholder" placeholder="请输入真实姓名" />
+      </view>
+      <view class="phone">
+          <input name="idCard" value="{{idCard}}" placeholder-class="placeholder" placeholder="请输入身份证号码(报税使用请务必填写准确)" />
+      </view>
+      <view class="phone">
+          <input name="bankname" value="{{bankname}}" placeholder-class="placeholder" placeholder="请输入银行卡名称" />
+      </view>
+      <view class="phone">
+          <input name="bank_num" value="{{bank_num}}" placeholder-class="placeholder" placeholder="请输入银行卡卡号" />
+      </view>
+      <view class="phone">
+          <input name="bank_address" value="{{bank_address}}" placeholder-class="placeholder" placeholder="请输入“ⅩⅩ银行ⅩⅩ市ⅩⅩ支行”" />
+      </view>
+      <view class="phone">
+          <input name="phone" value="{{phone}}" placeholder-class="placeholder" placeholder="请输入您的手机号" />
+      </view>
+      <button formType="submit" hover-class="button_active" loading="{{loading}}">提交</button>
+    </view>
+  </form>
+</view>

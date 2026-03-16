@@ -1,0 +1,49 @@
+<!-- <page id="page"> -->
+
+<t-nav-bar title="积分商城" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+
+  <view class="">
+			<view class="margin-top">
+        <view class="cash_top" >
+            <view class="text-df cash_money">可用积分</view>
+            <view class="text-lg cash_value" style="font-size: 55rpx;"><view > {{userInfo.points?userInfo.points:'0'}}</view></view>
+            <!-- <navigator class="cash_submit" url="/pagesUser/docash/index"  open-type="navigate">提现</navigator>  
+            <navigator class="cash_submit" style="background-color: gray;" url="/pagesUser/docash/docash_log/index"  open-type="navigate">提现记录</navigator>      -->
+          </view>	
+          <view class="rule_points">
+            <navigator url="/pagesUser/points/pointslog/index" open-type="navigate"><view>积分明细</view></navigator> 
+            <navigator url="/pagesUser/points/rule/index"  open-type="navigate"> <view>积分规则</view></navigator>
+            <navigator url="/pagesUser/points/goodslog/index"  open-type="navigate"> <view>兑换记录</view></navigator>
+        </view>	
+			</view>
+      <view class="income  pt-15">
+        <text class="service_fw text-lg">兑换商品信息</text>          
+      </view>
+      <view style="background-color: white; padding-bottom: 40rpx;margin-top: -25rpx;padding-left: 30rpx; ">
+        <swiper class="tab-content"  duration="300" bindchange="changeTab" style="height:{{winHeight}}rpx;">     
+          <swiper-item>
+              <scroll-view scroll-y="true" class="new-list-box" bindscrolltolower="allLoadMore" scroll-top='{{scrollTop}}' scroll-with-animation refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-default-style="white" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onAllRefresh">
+                  <block wx:if="{{allTabList.length > 0}}"  >
+                    <view class="item" wx:for="{{allTabList}}" wx:for-item="goods" data-cateId="{{index}}" wx:key="unique">
+                        <image class="grid-img" src="{{goods.goods_image}}" bindtap="handleChangeGoods" 	mode="scaleToFill" data-posid="{{goods.id}}"></image>
+                        <view class="cate-zt-main">
+                          <view class="cate-zt zt_cate productNameText" style="font-size: 33rpx;" bindtap="handleChangeGoods"  data-posid="{{goods.id}}">{{goods.goods_title}}</view> 
+                          <view class="cate-zt zt_cate " bindtap="handleChangeGoods"  data-posid="{{goods.id}}">
+                            <view class="pr-15 bg-white">销量 {{goods.goods_sale}}</view>
+                            <view class="bg-white">库存 {{goods.goods_stock}}</view>
+                          </view> 
+                          <view class="cate-zt zt_cate justify-between">
+                            <view class="pr-30 text-lg">{{goods.goods_points}} 积分</view>                            
+                            <button class="boton-submit" bindtap="buyorder" data-item="{{goods}}">兑换</button>                            
+                          </view> 
+                        </view> 
+                      </view>                                  
+                  </block>                
+                  </scroll-view>
+              </swiper-item>       
+          </swiper>                  
+      </view>			
+	</view>
+  <biz-address id="buyorder" bind:specs_pay="specs_pay"  main-color="{{main_color}}" sub-color="{{sub_color}}"></biz-address>
+ 
+<!-- </page> -->

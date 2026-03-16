@@ -1,0 +1,37 @@
+<!--pagesOrder/evaluate/index.wxml-->
+<t-nav-bar title="评价订单" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+
+<block wx:for="{{order_list.goods}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+  <view class="order-info">
+    <view class="order-info-prod">
+      <image src="{{item.goods_logo}}" mode="aspectFit"></image>
+      <view class="order-info-prod-right">
+        <view class="order-info-prod-right-name">{{item.goods_title}}</view>
+        <view class="order-info-prod-right-size">{{item.goods_spec}}</view>
+      </view>
+    </view>
+    <view class="flex order-info-star mt-15 pb-15">
+      <view class="order-info-star-label">商家评价：</view>
+      <van-rate value="5" data-item="{{item}}" data-id="{{item.order_goods_id}}" data-star="star1"  void-icon="star" color='#F3AE5A' void-color="#eee" custom-class="order-info-star-star" bind:change="changeStar"  style="margin-left:-140rpx;margin-top:-5rpx ;"/>
+    </view>
+    <view class="flex order-info-star-1 pb-15">
+      <view class="order-info-star-label">口味评价：</view>
+      <van-rate value="5" data-item="{{item}}" data-id="{{item.order_goods_id}}" data-star="star2" void-icon="star" color='#F3AE5A' void-color="#eee" custom-class="order-info-star-star" bind:change="changeStar"  style="margin-top:-5rpx ;"/>
+    </view>
+    <view class="flex order-info-star-1 pb-15">
+      <view class="order-info-star-label">包装评价：</view>
+      <van-rate value="5" data-item="{{item}}" data-id="{{item.order_goods_id}}" data-star="star3" void-icon="star" color='#F3AE5A' void-color="#eee" custom-class="order-info-star-star" bind:change="changeStar"  style="margin-top:-5rpx ;"/>
+    </view>
+    <view class="showImages">
+      <textarea bindinput="setMessage" data-id="{{item.order_goods_id}}" placeholder-class="message-placeholder" maxlength="100" placeholder="快写下你的感受分享给大家吧！" />
+      <!-- <van-uploader file-list="{{ item.fileList }}" multiple="true" accept="image" max-count="3" data-id="{{index}}"  image-fit="aspectFit" bind:after-read="afterRead" bind:delete="deleteImages" /> -->
+      <van-uploader file-list="{{ item.image }}" data-id="{{item.order_goods_id}}" accept="image" max-count="9" multiple bind:after-read="afterRead" bind:delete="deleteImg"  preview-size="{{(width+50)/4 }}" />
+    </view>   
+  </view>
+  
+</block>
+<button bind:tap="submit" hover-class="button_active" loading="{{loading}}" style="background-color: {{main_color}};">提交</button>
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />
+
+

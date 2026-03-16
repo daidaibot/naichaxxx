@@ -1,0 +1,112 @@
+<page id="page">
+  <t-nav-bar title="商品信息" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+  <view class="shop_info" >
+   <view class="shop_detail">
+      <view class="text-lg mt-10">
+         <van-icon name="{{is_collect?'star':'star-o'}}" custom-style="margin-left:-37rpx;margin-right:20rpx" bind:click="collect" />{{shopInfo.storage_shop_name}}</view>
+      <view class="shop_detail_l2" >
+        <navigator open-type="navigate" url="/pagesGoods/nearShop/index?latitude={{latitude}}&longitude={{longitude}}">
+          <van-icon name="location-o" size="30rpx" />
+          <!-- <image src="../../images/common/detail.png" style="width: 30rpx;height: 30rpx; margin-right:9rpx ;"></image>
+          欢迎光临我们的花店！我们提供精美鲜花和专业花艺服务，让您感受花海的美丽与温馨。 --> 
+          <text style="margin-left:20rpx">距离您{{shopInfo.GetDistance}}km 切换门店</text>
+          <van-icon name="arrow" size="30rpx" color="#1989fa" />
+        </navigator>
+      </view>
+   </view>
+   <view class="shop_type">
+     <view class="{{orderType == '1' ? 'shop_type_l1' : 'shop_type_l2'}}" data-orderType="1" bindtap="changeOrder">自提</view>
+     <view style="margin-left:14rpx;"></view>
+     <view class="{{orderType == '2' ? 'shop_type_l1' : 'shop_type_l2'}}" data-orderType="2" bindtap="changeOrder">外卖</view>
+   </view>  
+</view>
+<view class="shop_detail_info" style="font-size: 25rpx;">    
+    <view>
+      <image src="../../images/common/aigei_com.png"  style="width: 30rpx;height: 30rpx; margin-left:9rpx;margin-right: 15rpx;"></image>
+      <text wx:if="{{shopInfo.shop_intro.length>0}}">商家公告</text>
+      <text wx:else>商家暂无公告</text>
+    </view>
+   
+    <view style="margin-right: 10rpx;" bindtap="hb">
+      <text style="padding-right:5rpx">更多</text>
+      <van-icon name="arrow-down" size="35rpx" color="#1989fa"/>
+    </view>   
+</view>
+<view class='productNav'> 
+ <!-- 左侧 -->
+ <view class='left'>
+  <scroll-view scroll-y scroll-with-animation style="height:100%;background: #f2f2f2;">
+   <view wx:for="{{goodsCate}}" wx:key="index" class="{{active==index?'selected':'normal'}}" id="{{index}}" data-cateId="{{item.id}}" bindtap='switchNav'>{{item.name}}</view>
+  </scroll-view>
+ </view>
+ 
+ <!-- 右侧 -->
+ <view class='right'>
+
+  <view style="width: 100%;border-bottom: 1px solid #f3f3f3;display: flex;flex-direction: row; ">
+    <scroll-view class="myScroll"  scroll-x="true">
+  <!-- 快捷布局 .row{$}*8 $ 往里面代入值-->
+      <view class="row {{pid==item.id?'active':''}}" wx:for="{{cate_list_level}}" wx:key="index" bind:tap="onChange" data-name="{{item.id}}" >{{item.name}}</view>
+</scroll-view>
+ </view>
+
+ 
+   <view class='type'>
+     <!-- current:当前所在滑块的 index -->
+     <!-- vertical:滑动方向是否为纵向 -->
+      <swiper class="tab-content"  duration="300" bindchange="changeTab" style="height:{{winHeight}}rpx">
+        <!-- 全部 -->
+        <swiper-item>
+            <scroll-view scroll-y="true" class="new-list-box" bindscrolltolower="allLoadMore" scroll-top='{{scrollTop}}' scroll-with-animation refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-default-style="white" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onAllRefresh">
+              <view class="containerOne">
+                <block wx:if="{{goodsList.length > 0}}">
+                  <view class="item" wx:for="{{goodsList}}" wx:for-item="goods" data-cateId="{{index}}" wx:key="unique">
+                        <image class="grid-img" src="{{goods.goods_logo}}" bindtap="handleChangeGoods" 	mode="scaleToFill" bindtap="{{shopInfo.status == 1?'goDetails':''}}" data-posid="{{goods.id}}"></image>
+                        <view class="cate-zt-main">
+                          <view class="cate-zt zt_cate productNameText" style="font-size: 33rpx;" bindtap="handleChangeGoods"  bindtap="{{shopInfo.status == 1?'goDetails':''}}" data-posid="{{goods.id}}">{{goods.goods_title}}</view> 
+                          <view class="cate-zt zt_cate " bindtap="handleChangeGoods"  bindtap="{{shopInfo.status == 1?'goDetails':''}}" data-posid="{{goods.id}}">
+                            <view class="pr-15 bg-white">销量 {{goods.package_sale}}</view>
+                            <view class="bg-white">库存 {{goods.goods_stock}}</view>
+                          </view> 
+                          <view class="cate-zt zt_cate justify-between">
+                            <view class="pr-30 text-lg">¥{{goods.goods_price}}</view>
+                            <text class="custom-btn-text" style="margin-left: 291rpx;margin-top: -31rpx;z-index: 4;border: 1px solid;" wx:if="{{goods.car_num>0 && shopInfo.status == 1}}">{{goods.car_num}}</text>
+                            <button class="boton-submit"  wx:if="{{userInfo.nickName==null}}" bindtap="routeToLogin">选择</button>
+                            <button class="boton-submit"  wx:if="{{userInfo.nickName &&  userInfo.phone==null}}" open-type="getPhoneNumber"  bindgetphonenumber="getPhoneNumber">选择</button>
+                            <button class="boton-submit"  wx:if="{{userInfo.nickName &&  userInfo.phone}}" data-goodsId="{{goods.id}}" bindtap="{{shopInfo.status == 0?'':'showSpecs'}}">选择</button>
+                          </view> 
+                        </view> 
+                      </view>
+                  </block>
+              </view> 
+             
+            </scroll-view>
+        </swiper-item>        
+    </swiper> 
+   </view>
+ </view>
+</view>
+
+<t-submit-bar t-class='button-submit' text='去结算' bgcolor='{{main_color}}' z-index='9999'  border self safeArea>
+  <view class="flex justify-between align-center" style="background: #f5f5f5;">
+    <view class="flex-sub flex pr-20" bindtap="{{userInfo.nickName?'show_pay':'routeToLogin'}}">
+      
+      <view class="custom-btn">
+        <text class="custom-btn-text" wx:if="{{car_total>0}}">{{car_total}}</text>
+        <iconfont class="mt-5 custom-btn-icon" icon="icon-shopping-cart" color="#333333" size="50rpx" />
+      </view>
+      <view class="order_pay">
+        <text class="order_pay_price">结算价格</text>
+        <text class="order_pay_price" style="font-size: 34rpx;color:{{main_color}};">¥ {{setting_money}}</text>
+      </view>
+    </view>
+    <view class="flex">      
+      <view class="submit-btn-right" style="background: {{main_color}};" bindtap='confirm'>去派单</view>
+    </view>
+  </view>
+</t-submit-bar>
+
+<biz-specs id="bizSpecs" bind:specs_pay="specs_pay"  main-color="{{main_color}}" sub-color="{{sub_color}}"></biz-specs>
+<biz-pay id="bizPay"  bindechange="delcar" bindcaredit="caredit" main-color="{{main_color}}" sub-color="{{sub_color}}"></biz-pay>
+<biz-shop id="shopInfo"></biz-shop>
+</page>

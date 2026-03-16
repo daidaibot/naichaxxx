@@ -1,0 +1,61 @@
+.swiper-container{
+  position: relative;
+  width: 100%;
+  /* overflow: hidden; */
+}
+.swiper-container .swiper{
+  height: 380rpx;
+}
+.swiper-container .swiper .img{
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+.swiper-container .swiper-dots-square{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16rpx;
+  display: flex;
+  justify-content: center;
+}
+.swiper-container .swiper-dots-square .swiper-dot{
+  margin: 4rpx;
+  width: 20rpx;
+  height: 6rpx;
+  background: #fff;
+  transition: all .6s;
+}
+.swiper-container .swiper-dots-square .swiper-dot.active{
+  width: 20rpx;
+}
+
+.swiper-container .swiper-dots-circle{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16rpx;
+  display: flex;
+  justify-content: center;
+}
+.swiper-container .swiper-dots-circle .swiper-dot{
+  margin: 4rpx;
+  width: 16rpx;
+  height: 16rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  transition: all .6s;
+}
+.swiper-container .swiper-dots-circle .swiper-dot.active{
+  width: 16rpx;
+}
+
+swiper-item{
+  text-align: center;/*这里是重点*/
+}
+ /*图片的容器*/
+ .box{
+  display: inline-block; /*这里是重点*/
+  width: 96%;/*这里是重点*/ 
+  height: 360rpx;
+}

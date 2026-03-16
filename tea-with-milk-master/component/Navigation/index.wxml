@@ -1,0 +1,24 @@
+<!--components/Navigation/index.wxml-->
+<view class="navigation-wrap">
+  <!-- <view class="navigation-empty-wrap">
+    <view class="empty-box"></view>
+    <view class="bottom-safet-area" style="height: {{emptyHeight}}rpx;"></view>
+  </view> -->
+  <view class="fixed-nav-wrap" >
+    <view class="shadow-box">
+      <view class="middle-circle"></view>
+    </view>
+    <view class="fixed-nav-content" >
+      <view class="table">
+        <view class="cell" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" bind:tap="jump2Event">
+            <view class="flex pt-10">
+               <image wx:if="{{index !=1}}" src="{{selected === index ? item.selectedIconPath : item.iconPath}}" mode="aspectFill" class="scan" />
+               <image wx:if="{{index ==1}}" src="{{selected === index ? item.selectedIconPath : item.iconPath}}" mode="aspectFill" class="scan" />
+            </view>       
+            <view class="mt-5 tab_name">{{item.text}}</view>            
+        </view>
+      </view>
+    </view>
+    <!-- <view class="bottom-safet-area" style="height: {{emptyHeight}}rpx;"></view> -->
+  </view>
+</view>

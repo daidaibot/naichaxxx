@@ -1,0 +1,30 @@
+page {
+  background-color: #2bae67;
+}
+.content{
+  /* margin: 20rpx 20rpx; */
+  height: 1000rpx;
+  margin-top: 80rpx;
+  
+}
+
+
+.mian{
+  display: flex;
+  flex-direction: column;
+  
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+  padding-top: 30rpx;
+  /* height: 1000rpx; */
+  /* width: 300rpx; */
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  padding-bottom: 80rpx;
+}
+
+.mine__bg--avatar1{
+  width: 600rpx;
+  height: 600rpx;
+}

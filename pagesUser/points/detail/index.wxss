@@ -1,0 +1,143 @@
+/* pagesGoods/detail/index.wxss */
+page {
+  background: #F2F1F6;
+}
+
+.goods-banner {
+  background: #FFF;
+}
+
+.goods-info {
+  background: #FFF;
+}
+
+.goods-info-name {
+  font-size: 32rpx;
+  line-height: 40rpx;
+}
+
+.goods-info-desc {
+  font-size: 28rpx;
+  line-height: 32rpx;
+  margin-top: 20rpx;
+  color: #999999;
+}
+.car_total {
+  position: fixed;
+  height: 30rpx;
+  line-height: 35rpx;
+  font-size: 26rpx;
+  color: #ffffff;
+  margin-left: 33rpx;
+  margin-top: -75rpx;
+  width: 37rpx;
+  height: 37rpx;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #DCAA6B;
+}
+
+.goods-info-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20rpx;
+}
+
+.goods-info-price {
+  font-size: 38rpx;
+  color: #EE4D52;
+  margin-left: -5rpx;
+}
+
+.goods-desc {
+  background: #FFFFFF;
+  color: #333333;
+}
+
+.custom-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 20rpx;
+  color: #333333;
+  background: rgba(0, 0, 0, 0);
+  padding: 0;
+  margin: 0;
+}
+
+.custom-btn::after {
+  height: auto;
+  line-height: auto;
+  width: auto;
+  border: 0;
+}
+
+.custom-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 20rpx;
+  color: #333333;
+  background: rgba(0, 0, 0, 0);
+  padding: 0;
+  margin: 0;
+}
+
+.custom-btn::after {
+  height: auto;
+  line-height: auto;
+  width: auto;
+  border: 0;
+}
+
+.custom-btn-icon {
+  height: 50rpx;
+}
+
+.custom-btn-text {
+  height: 30rpx;
+  line-height: 30rpx;
+}
+
+.submit-btn-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  min-width: 240rpx;
+  width: 94%;
+  height: 76rpx;
+  opacity: 1;
+  border-radius: 38rpx 38rpx 38rpx 38rpx;
+}
+
+.submit-btn-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  min-width: 240rpx;
+  width: 100%;
+  height: 76rpx;
+  opacity: 1;
+  border-radius: 0 38rpx 38rpx 0;
+}
+
+.tab-content{
+  margin-top:20rpx;
+}
+
+
+.new-list-box {
+  height: 100%;
+} 
+.grid-img{  
+  width: 700rpx;
+  height: 300rpx;
+  margin: 20rpx;
+  border-radius: 10rpx;
+  
+}

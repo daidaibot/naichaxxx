@@ -1,0 +1,309 @@
+{
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "projectname": "%E9%98%BF%E6%B0%B4%E5%A5%B6%E8%8C%B6",
+  "setting": {
+    "compileHotReLoad": true,
+    "urlCheck": true
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pagesUser/sign/index",
+          "pathName": "pagesUser/sign/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/membership/index",
+          "pathName": "pages/membership/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pagesUser/sign/index",
+          "pathName": "pagesUser/sign/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/classify/index",
+          "pathName": "pages/classify/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/classify/index",
+          "pathName": "pages/classify/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pagesGoods/detail/index",
+          "pathName": "pagesGoods/detail/index",
+          "query": "id=5061",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pagesOrder/wxPay/index",
+          "pathName": "pagesOrder/wxPay/index",
+          "query": "order_no=WX706970778872118784184&goods_total=14.50&orderpay=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/scan/index",
+          "pathName": "pages/scan/index",
+          "query": "q=https%253A%252F%252Ftea-milk.jwautumn.com%253Fscan%253D1%2526u%253D885184%2526t%253D1725438727&scancode_time=1725499814",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/scan/index",
+          "pathName": "pages/scan/index",
+          "query": "q=https%25253A%25252F%25252Ftea-milk.jwautumn.com%25253Fscan%25253D1%252526u%25253D885184%252526t%25253D1725438727&scancode_time=1725438475",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/scan/index",
+          "pathName": "pages/scan/index",
+          "query": "q=https%253A%252F%252Ftea-milk.jwautumn.com%253Fscan%253D1%2526u%253D885184%2526t%253D1725438727&scancode_time=1725438475",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/membership/index",
+          "pathName": "pages/membership/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/membership/index",
+          "pathName": "pages/membership/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/classify/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/classify/index",
+          "pathName": "pages/classify/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pagesGoods/nearShop/index",
+          "pathName": "pagesGoods/nearShop/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pagesGoods/nearShop/index",
+          "pathName": "pagesGoods/nearShop/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/index",
+          "pathName": "pages/mine/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pagesGoods/shopgoods/index",
+          "pathName": "pagesGoods/shopgoods/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/classify/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/shop_map/index",
+          "query": "orderid=5744",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/shop_map/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/order/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesOrder/goDetails/index",
+          "query": "orderId=5733",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesUser/address/add-edit/index",
+          "query": "type=c",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesOrder/confirm/index",
+          "query": "value=%7B%22goodsId%22%3A4728%2C%22specId%22%3A13439%2C%22number%22%3A1%2C%22token%22%3A%22o4--g61eSdRPy6aw_4ZDdo6KNI50%22%7D",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesOrder/confirm/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesGoods/goods/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesGoods/goods/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesOrder/dispatch/index",
+          "query": "orderType=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesUser/joinStaff/index",
+          "query": "storageId=875",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesUser/income/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesUser/shopcoupon/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/mine/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/recharge/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesOrder/wxPay/index",
+          "query": "order_no=WX189500749986881826178&goods_total=12.00",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/docash/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/address/add-edit/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/wxpay/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/moneylog/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/classify/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesOrder/confirm/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pagesOrder/wxPay/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  },
+  "libVersion": "3.2.2"
+}

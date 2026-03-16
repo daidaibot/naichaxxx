@@ -1,0 +1,42 @@
+
+
+.one_mian{
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  margin:25rpx;
+  border-radius:20rpx;
+}
+
+.mian_left{
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+  width: 420rpx;
+}
+
+.main_tag{
+  display: flex;
+  color: white;
+  width: 88rpx;
+  height: 36rpx;
+  font-size: 20rpx;
+  align-items: center;
+  vertical-align: center;
+  justify-content: center;
+  border-radius: 5rpx;
+
+}
+
+.mian_right{
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+}
+.localtion{
+
+  display: flex;
+  flex-direction: row;
+  color: gray;
+  margin-top: 30rpx;
+}

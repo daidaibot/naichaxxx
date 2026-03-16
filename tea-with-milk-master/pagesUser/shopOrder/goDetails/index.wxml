@@ -1,0 +1,143 @@
+<t-nav-bar title="订单详情" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+<view style="background: #fff;margin-top: 20rpx;"> 
+    <view class="order_main" bindtap="goDetails" data-orderId="{{goods.id}}">
+        <view class="flex justify-between ml-25 mr-25 text-dff pt-20" style="border-bottom: 1rpx solid #f3f3f3;">
+          <view class="flex flex-direction mb-15">
+            <view>{{order_list.order.storage.shop_name}}</view>       
+            <view class="text-sm" style="color: gray;margin-top: 15rpx;">下单时间：{{order_list.order.create_at}}</view>
+          </view>
+          <view style='color: gray;margin-top: 10rpx;' wx:if="{{order_list.order.status==0}}">已取消</view>
+          <view style="color: red; margin-top: 10rpx;" wx:if="{{order_list.order.status==1}}">待付款</view>
+          <view style='color: #1989fa;margin-top: 10rpx;' wx:if="{{order_list.order.status==2}}">已付款</view>
+          <view style='color: #E07A3E;margin-top: 10rpx;' wx:if="{{order_list.order.status==3}}">待收货</view>
+         
+          <view style='color: orange;margin-top: 10rpx;' wx:if="{{order_list.order.status==4}}">已完成</view>
+          <view style='color: green;margin-top: 10rpx;' wx:if="{{order_list.order.status==9}}">已退款</view>
+        </view>                      
+        <t-cell wx:for="{{order_list.goods}}" wx:for-index="index" wx:for-item="item" wx:key="unique">
+          <view slot='icon' class="flex align-center" >
+            <image class="grid-img" src="{{item.goods_logo}}" bindtap="handleChangeGoods" 	mode="scaleToFill"></image>
+          </view>
+          <view class="confirm-wrap-content flex flex-direction justify-between ml-10" slot='content'>
+            <view>
+              <view class='flex align-center cell text-lg mb-10'>{{item.goods_title}}</view>
+              <view class='flex align-center cell text-sm text-gray mb-10'>{{item.goods_spec}}</view>
+            </view>
+            <view class='confirm-wrap-price flex justify-between text-lg'>
+              <text class="text-red">￥{{item.selling_price}}</text>
+              <view>
+                ×{{item.number}}
+              </view>
+            </view>
+          </view>
+        </t-cell>
+        <view class="flex justify-between ml-25 mr-25 p-10" style="border-top: 1rpx solid #f3f3f3;">
+          <text class="text-sm">商品小计</text>
+          <text class="text-sm">￥{{order_list.order.goods_price}}</text>
+        </view>
+        <view class="flex justify-between ml-25 mr-25 p-10">
+          <text class="text-sm">运费</text>
+          <text class="text-sm">￥{{order_list.order.freight_price}}</text>
+        </view>
+        <view class="flex justify-between ml-25 mr-25 p-10">
+          <text class="text-sm">会员折扣</text>
+          <text class="text-sm text-red"> - ￥{{order_list.order.discount_money}}</text>
+        </view>
+        <view class="flex justify-between ml-25 mr-25 p-10">
+          <text class="text-sm">优惠券</text>
+          <text class="text-sm text-red"> - ￥{{order_list.order.redMoney}}</text>
+        </view> 
+        <view class="flex justify-between ml-25 mr-25 p-10">
+          <text class="text-sm">合计</text>
+          <text class="text-sm">￥{{order_list.order.pay_price}}</text>
+        </view>
+    </view>
+</view>
+<view class="flex flex-direction mt-20 pl-30 pr-30" style=" background: #fff;  line-height: 2.55555556;font-size: 26rpx;" wx:if="{{order_list.order.type==1}}">
+  <text style="border-bottom: 1rpx solid #f3f3f3;">订单核销</text>
+  <view class="mb-30">
+     <view class="text-sm qhm">取货码</view>
+     <view class="mt-30 qhm3">
+         <canvas class="code" canvas-id="myQrcode" style="width: 400rpx;height:400rpx"  bindtap="saveQrcode"/>  
+     </view>  
+  </view>  
+</view>
+
+
+<view class="flex flex-direction mt-20 pl-30 pr-30" style=" background: #fff;  line-height: 2.55555556;font-size: 26rpx;" >
+  <text style="border-bottom: 1rpx solid #f3f3f3;">取货信息</text>
+  <view class="mb-30">
+    <view class="flex justify-between ml-5 mr-5" style="border-top: 1rpx solid #f3f3f3;color: #7e7979;" wx:if="{{order_list.order.type==1}}">
+          <text class="text-sm">取货时间</text>
+          <text class="text-sm">{{order_list.order.selectDate}}</text>
+    </view>
+    <view class="flex justify-between ml-5 mr-5" style="color: #7e7979;">
+          <text class="text-sm">自取类型</text>
+          <text class="text-sm" wx:if="{{order_list.order.type==1}}">到店自取</text>
+          <text class="text-sm" wx:if="{{order_list.order.type==2}}">外卖订单</text>
+    </view>
+    <view class="flex justify-between ml-5 mr-5" style="color: #7e7979;">
+          <text class="text-sm">商家地址</text>
+          <text class="text-sm">{{order_list.order.storage.province}}{{order_list.order.storage.city}}{{order_list.order.storage.area}}{{order_list.order.storage.address}}</text>
+    </view>
+    <view class="flex justify-between ml-5 mr-5" style="color: #7e7979;">
+          <text class="text-sm">联系方式</text>
+          <text class="text-sm">{{order_list.order.storage.realname}}（{{order_list.order.storage.link_phone}}）</text>
+    </view>
+  </view>  
+</view>
+
+<view class="flex flex-direction mt-20 pl-30 pr-30" style=" background: #fff;  line-height: 2.55555556;font-size: 26rpx;" wx:if="{{order_list.order.type==2}}">
+  <text style="border-bottom: 1rpx solid #f3f3f3;">收货信息</text>
+  <view class="mb-30">
+    <view class="flex justify-between ml-5 mr-5" style="border-top: 1rpx solid #f3f3f3;color: #7e7979;" >
+          <text class="text-sm">联系人</text>
+          <text class="text-sm">{{order_list.express.username}}</text>
+    </view>
+    <view class="flex justify-between ml-5 mr-5" style="color: #7e7979;">
+          <text class="text-sm">联系方式</text>
+          <text class="text-sm">{{order_list.express.phone}}</text>
+         
+    </view>
+    <view class="flex justify-between ml-5 mr-5" style="color: #7e7979;">
+          <text class="text-sm">商家地址</text>
+          <text class="text-sm">{{order_list.express.province}}{{order_list.express.city}}{{order_list.express.area}}{{order_list.express.address}}</text>
+    </view>
+    
+  </view>  
+</view>
+
+
+<view class="flex flex-direction mt-20 pl-30 pr-30" style=" background: #fff;  line-height: 2.55555556;font-size: 26rpx;">
+  <text style="border-bottom: 1rpx solid #f3f3f3;">订单信息</text>
+  <view class="mb-30">
+    <view class="flex justify-between ml-5 mr-5" style="border-top: 1rpx solid #f3f3f3;color: #7e7979;">
+          <text class="text-sm">订单号码</text>
+          <text class="text-sm">{{order_list.order.order_no}}</text>
+    </view>
+    <view class="flex justify-between ml-5 mr-5" style="color: #7e7979;">
+          <text class="text-sm">支付单号</text>
+          <text class="text-sm">{{order_list.order.pay_no}}</text>
+    </view>
+    <view class="flex justify-between ml-5 mr-5" style="color: #7e7979;" >
+          <text class="text-sm">下单时间</text>
+          <text class="text-sm">{{order_list.order.create_at}}</text>
+    </view>
+    <view class="flex justify-between ml-5 mr-5" style="color: #7e7979;" wx:if="{{order_list.order.pay_at !='0000-00-00 00:00:00'}}">
+          <text class="text-sm">支付时间</text>
+          <text class="text-sm">{{order_list.order.pay_at}}</text>
+    </view>
+    <view class="flex justify-between ml-5 mr-5" style="color: #7e7979;" wx:if="{{order_list.order.pack_at !='0000-00-00 00:00:00'}}">
+          <text class="text-sm">消费时间</text>
+          <text class="text-sm">{{order_list.order.pack_at}}</text>
+    </view>
+    <view class="flex justify-between ml-5 mr-5" style="color: #7e7979;">
+          <text class="text-sm">备注</text>
+          <text class="text-sm">{{order_list.order.desc}}</text>
+    </view>
+  </view>  
+</view>
+
+
+
+

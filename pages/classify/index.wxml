@@ -1,0 +1,127 @@
+<page id="page">
+  <t-nav-bar title="{{project_cn}}" visible="{{true}}" background="#ffff" btn-color="{{nav_bar_btn_color}}" text-color="black" bind:home="routeToHome" />
+ 
+  <view class="shop_info" >
+   <view class="shop_detail">
+      <view class="text-xl mt-10">
+         <van-icon name="{{is_collect?'star':'star-o'}}" custom-style="margin-left:-37rpx;margin-right:2rpx" bind:click="collect" />
+         {{shopInfo.storage_shop_name}}
+         <view class="flex tag-all">
+          <view style="margin-top:-10rpx">
+            <van-rate value="{{ value }}" count="{{ 1 }}" color="#ff976a" size="15"/>
+            <text class="tag">5.0</text>
+          </view>
+          <van-tag class="tag" type="warning" size="mini" style="font-size: 3rpx;">UU配送</van-tag>
+           <text class="tag">接受预定</text>
+           <text class="tag">月销售100+</text>
+         </view>
+      </view>
+      <navigator open-type="navigate" url="/pagesGoods/nearShop/index?latitude={{latitude}}&longitude={{longitude}}">
+        <view class="shop_detail_l2" >
+          <view class="flex">
+              <image src="/images/resource/mapping.png" mode="scaleToFill" style="width: 40rpx; height: 40rpx;margin-top: 5rpx;"></image>  
+          </view>          
+            <view class="flex">
+              <text style="margin-left:20rpx;">距离您{{shopInfo.GetDistance}}km 切换门店</text>
+              <van-icon name="arrow" size="30rpx" color="#07c160" />
+              <van-tag type="danger " color="#07c160"  wx:if="{{shopInfo.status == 0}}">已打烊</van-tag>
+              <van-tag type="primary" color="#07c160" wx:if="{{shopInfo.status == 1}}">营业中</van-tag>
+            </view>       
+        </view>
+    </navigator>
+   </view>
+</view>
+<view class="shop_detail_info" style="font-size: 25rpx;">    
+    <view class="flex mr-15">
+      <image src="/images/resource/notice.png" mode="scaleToFill" style="width: 32rpx; height: 32rpx;margin-top: 5rpx;"></image>  
+    </view>    
+    <view style="margin-right: 11rpx;margin-top: 5rpx;">      
+      <text class="productNameT"  style="font-size: 25rpx;" wx:if="{{shopInfo.shop_intro.length>0}}">{{shopInfo.shop_intro}}</text>
+      <text wx:else>商家暂无公告</text>
+    </view>
+    <view style="margin-right: 10rpx;display: flex;flex-direction: row; white-space: nowrap;" bindtap="hb">
+      <text style="padding-right:5rpx">更多</text>
+      <van-icon name="arrow-down" size="35rpx" color="#07c160"/>
+    </view>   
+</view> 
+ <!--banner图片信息--> 
+ <view  class="bg-white mt-5 pt-15 border-radius"   wx:if="{{currentTab==1 && banner_list.length>0}}">
+    <t-swiper list="{{banner_list}}" bind:click="handleSwiperClick" border-radius="10rpx" shape="square" height="350rpx" active-color="{{sub_color}}"></t-swiper>
+  </view>  
+  <!-- 菜单 开始 -->
+  <view class="productNav"  style="{{ scrollTop>248?'margin-top: 33px;width: 100%;z-index: 999;position: absolute;':''}}" wx:if="{{currentTab==1}}" >  
+    <view class='left'>
+          <scroll-view scroll-y scroll-with-animation style="height:100%;background: #f2f2f2;">
+          <view wx:for="{{goodsCate}}" wx:for-item="Cate" wx:key="index" class="{{active==index?'selected':'normal'}}" id="{{index}}" data-cateId="{{Cate.id}}" bindtap='switchNav'>
+            <image style="width: 40rpx; height: 40rpx; margin-top: 20rpx; margin-bottom: -10rpx;" src="{{Cate.image}}" mode="scaleToFill"></image>
+            <text>{{Cate.name}}</text>
+          </view>
+          </scroll-view>
+    </view>
+    <view class='right'>    
+      <view class='type'>
+          <swiper class="tab-content"  duration="300" style="height:{{winHeight}}rpx">
+            <!-- 全部 -->
+            <swiper-item>
+                <scroll-view scroll-y="true" class="new-list-box" bindscrolltolower="allLoadMore" scroll-top='{{scrollTop}}' scroll-with-animation refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-default-style="white" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onAllRefresh">
+                  <view class="containerOne" style="padding-bottom:{{car_total>0?'124rpx':'8rpx'}}">
+                    <block wx:if="{{goodsList.length > 0}}">
+                      <view class="item" wx:for="{{goodsList}}" wx:for-item="goods" data-cateId="{{index}}" wx:key="unique">
+                            <image class="grid-img" src="{{goods.goods_logo}}" bindtap="handleChangeGoods" 	mode="scaleToFill" bindtap="{{shopInfo.status == 1?'goDetails':''}}" data-posid="{{goods.id}}"></image>
+                            <view class="cate-zt-main">
+                              <view class="zt_cate productNameText" style="font-size: 33rpx;" bindtap="handleChangeGoods"  bindtap="{{shopInfo.status == 1?'goDetails':''}}" data-posid="{{goods.id}}">{{goods.goods_title}}</view> 
+                              <view class="zt_cate_desc productNameText1 bg-white">{{goods.goods_intro}}</view> 
+                              <view class="flex mt-10 mb-20" bindtap="handleChangeGoods"  bindtap="{{shopInfo.status == 1?'goDetails':''}}" data-posid="{{goods.id}}">
+                                <view class="pr-15 bg-white">销量 {{goods.package_sale}}</view>
+                                <view class="bg-white">库存 {{goods.goods_stock}}</view>
+                              </view> 
+                              <view class="flex  justify-between align-center">
+                                <view class="pr-30 text-lg">¥{{goods.goods_price}}</view>
+                                <text class="custom-btn-text" style="margin-left: 271rpx;margin-top: -31rpx;z-index: 4;border: 1px solid;" wx:if="{{goods.car_num>0 && shopInfo.status == 1}}">{{goods.car_num}}</text>
+                                <view  wx:if="{{userInfo.nickName==null}}" bindtap="routeToLogin">
+                                  <image style="width: 55rpx;height: 55rpx;" src="/images/resource/car.png" mode=""/>
+                                </view>
+                                <view  wx:if="{{userInfo.nickName &&  userInfo.phone==null}}" open-type="getPhoneNumber"  bindgetphonenumber="getPhoneNumber">
+                                  <image style="width: 55rpx;height: 55rpx;" src="/images/resource/car.png" mode=""/>
+                                </view>
+                                
+                                <view  wx:if="{{userInfo.nickName &&  userInfo.phone}}" data-goodsId="{{goods.id}}" bindtap="{{shopInfo.status == 0?'':'showSpecs'}}">
+                                  <image style="width: 55rpx;height: 55rpx;" src="/images/resource/car.png" mode=""/>
+                                </view>
+                                <!-- <button class="boton-submit" style="width:{{shopInfo.status == 0?'133rpx':'113rpx'}}"  wx:if="{{userInfo.nickName &&  userInfo.phone}}" data-goodsId="{{goods.id}}" bindtap="{{shopInfo.status == 0?'':'showSpecs'}}">{{shopInfo.status == 0?'已打烊':'选择3'}}</button> -->
+                              </view> 
+                            </view> 
+                          </view>
+                      </block>
+                  </view> 
+                  <view  class="no-data-txt" wx:if="{{shopInfo.status == 0}}">店铺已打烊</view>
+                </scroll-view>
+            </swiper-item>        
+        </swiper> 
+      </view>
+    </view>
+  </view>
+  <!-- 菜单 结算 -->
+<t-submit-bar t-class='button-submit' text='去结算' bgcolor='{{main_color}}' z-index='9999'  border self safeArea wx:if="{{car_total>0 && shopInfo.status>0}}">
+  <view class="flex justify-between align-center" style="background: #f5f5f5;">
+    <view class="flex-sub flex pr-20" bindtap="{{userInfo.nickName?'show_pay':'routeToLogin'}}">
+      
+      <view class="custom-btn">
+        <text class="custom-btn-text" wx:if="{{car_total>0}}">{{car_total}}</text>
+        <iconfont class="mt-5 custom-btn-icon" icon="icon-shopping-cart" color="#333333" size="50rpx" />
+      </view>
+      <view class="order_pay">
+        <text class="order_pay_price">结算价格</text>
+        <text class="order_pay_price" style="font-size: 34rpx;color:#7ad1a1;">¥ {{setting_money}}</text>
+      </view>
+    </view>
+    <view class="flex">      
+      <view class="submit-btn-right" style="background:#7ad1a1;" bindtap='confirm'>去结算</view>
+    </view>
+  </view>
+</t-submit-bar>
+
+<biz-specs id="bizSpecs" bind:specs_pay="specs_pay"  main-color="{{main_color}}" sub-color="{{sub_color}}"></biz-specs>
+<biz-pay id="bizPay"  bindechange="delcar" bindcaredit="caredit" main-color="{{main_color}}" sub-color="{{sub_color}}"></biz-pay>
+<biz-shop id="shopInfo"></biz-shop>
+</page>

@@ -1,0 +1,23 @@
+<!--pagesUser/selectShop/index.wxml-->
+<t-nav-bar title="店铺选址" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+
+<view class="opinion_wrap">
+  <form bindsubmit="formSubmit">
+      <view class="content_wrap">
+          <view class="content">
+              <textarea name="content"  maxlength="50" value="{{content}}" auto-height placeholder-class="placeholder" placeholder="填写选择店铺的原因" />
+              <van-uploader file-list="{{ fileList }}"  accept="image" max-count="9" multiple bind:after-read="afterRead" bind:delete="deleteImg"  preview-size="{{(width+50)/4 }}" />
+          </view>
+      </view>  
+      <view class="phone">
+          <input name="address" value="{{address}}" placeholder-class="placeholder" placeholder="请留下您的选择地铺的地址" />
+      </view>
+      <view class="phone">
+          <input name="realname" value="{{realname}}" placeholder-class="placeholder" placeholder="请留下您的姓名，方便我们及时回复" />
+      </view>
+      <view class="phone">
+          <input name="phone" value="{{phone}}" placeholder-class="placeholder" placeholder="请留下您的手机号，方便我们及时回复" />
+      </view>
+      <button formType="submit" hover-class="button_active" loading="{{loading}}">提交</button>
+  </form>
+</view>

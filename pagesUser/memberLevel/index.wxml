@@ -1,0 +1,23 @@
+<page id="page">
+<t-nav-bar title="会员权益" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+
+<base-page page-count="{{list.length}}">
+	<view class='p-20'>
+		<view class="border-b mb-10 box-shadow-radius" wx:for="{{list}}" wx:key="unique" style="margin-top:35rpx !important;border-radius: 60rpx !important;" >
+			<t-cell t-class='border-radius-t border-b pt-10 pb-10'>
+				<view class="flex align-center" slot='content'>
+					<view class='flex align-center cell text-lg'>
+						<view class="rectangle" wx:if="{{item.id==level}}" style="background:{{main_color}};margin-left: 1rpx !important;height: 50rpx !important;"></view>
+            <view class="level_img" style="background-image: url('{{item.icon}}'); margin-left: {{item.id!=level?'20rpx':''}};"></view>
+						<view class="title text-lg ellipsis" style="margin-left: 20rpx;">{{item.level_name}}</view>
+					</view>
+				</view>
+			</t-cell>
+			<view class="border-radius-b cell-footer text-df text-gray">
+        <view class="ellipsis-l2" style="color: #353340;">交易金额满 {{item.total_pricle}}元</view>
+				<view class="ellipsis-l2 mt-25 pb-30">{{item.level_intro}}</view>
+			</view>
+		</view>
+	</view>
+</base-page>
+</page>

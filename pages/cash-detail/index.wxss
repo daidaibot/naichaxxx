@@ -1,0 +1,15 @@
+@import "../../utils/wxParse/wxParse.wxss";
+page{
+  background:white;
+}
+.content{
+  color:#666;
+  letter-spacing: 2rpx;
+  margin-top:20rpx;
+  padding-left:20rpx;
+  padding-right:20rpx;
+  line-height:40rpx;
+  font-size:25rpx;
+  text-indent:50rpx;
+  background:white;
+}

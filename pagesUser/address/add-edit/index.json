@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "t-nav-bar": "/component/nav-bar/index",
+    "t-cell-group": "/component/cell-group/index",
+    "t-cell": "/component/cell/index",
+    "t-input": "/component/input/index",
+    "t-submit-bar": "/component/submit-bar/index",
+    "t-iconfont": "/component/iconfont/index",
+    "backdrop": "/component/backdrop/index"
+  },
+  "navigationStyle": "custom"
+}

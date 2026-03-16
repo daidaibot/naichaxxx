@@ -1,0 +1,32 @@
+<!--component/specs/index.wxml-->
+<popup id="popup">
+  <view class="specs">
+      <view class="specs-top">
+        <view>填写地址信息</view>
+        <!-- <view style="color: gray;" bindtap="delcar">清空购物车</view>   -->
+      </view>   
+  </view>
+  <view class="opinion_wrap">
+      <view class="phone" style="margin-top:20rpx;">
+          <input name="realname" model:value="{{realname}}" placeholder-class="placeholder" placeholder="请输入收货人信息" />
+      </view>
+      <view class="phone" style="margin-top:-20rpx;">
+          <input name="phone" model:value="{{phone}}" placeholder-class="placeholder" placeholder="请输入联系方式信息" />
+      </view>
+      <view class="phone" style="margin-top:-20rpx;">
+          <input name="addrsss" model:value="{{addrsss}}" placeholder-class="placeholder" placeholder="请输入收获地址信息" />
+      </view>
+
+      <view class="phone" style="margin-top:-20rpx;">
+          <input name="remark" model:value="{{remark}}" placeholder-class="placeholder" placeholder="请输入备注信息" />
+      </view>
+  
+  </view>
+  <view>
+    <t-submit-bar bindtap="confirm" t-class='button-submit' text='立即兑换' bgcolor='{{main_color}}' z-index='9999' border self safeArea>
+      <view class="flex justify-between align-center pt-30 mb-15">         
+        <view class="submit-btn-right" style="background: {{mainColor}};">立即兑换</view>
+      </view>      
+    </t-submit-bar>
+  </view>
+</popup>
